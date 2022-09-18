@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		@apply font-main;
+		@apply break-words;
+		@apply leading-5;
+		@apply subpixel-antialiased;
+	}
+	body {
+		@apply text-dark;
+	}
+	img {
+		@apply object-cover;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	time {
+		@apply !leading-4;
+		@apply mb-5;
+	}
+	h1 {
+		@apply text-4xl lg:text-5xl;
+		@apply lg:mb-12 mb-6;
+		@apply uppercase;
+	}
+	h2 {
+		@apply text-3xl lg:text-4xl;
+		@apply lg:mb-12 mb-6;
+		@apply uppercase;
+	}
+	h3 {
+		@apply text-2xl lg:text-3xl;
+	}
+	h4 {
+		@apply text-lg lg:text-xl;
+	}
+	h5 {
+		@apply text-base;
+	}
+	p {
+		@apply text-base mb-4;
+		@apply font-light;
+	}
+	a {
+		@apply hover:underline;
+	}
+	small {
+		@apply text-small;
+	}
+}
+
+@layer components {
+	.wrap {
+		@apply grid grid-cols-6 gap-5;
+		&-full {
+			@apply grid grid-cols-6 md:grid-cols-12 gap-5;
+		}
+	}
+
+	.text-shadow {
+		text-shadow: 2px 3px 2px rgb(0 0 0 / 30%), 0 0 5px #e82882, 0 0 30px #945aa4;
+	}
+	.text-neon {
+		@apply text-main-light;
+		text-shadow: 0 0 1px #f385b9, 0 0 2px #f385b9, 0 0 5px #f385b9, 0 0 11px #0fa, 0 0 20px #e82882, 0 0 30px #e82882, 0 0 55px #e82882,
+			0 0 80px #e82882;
+	}
+	.stretch {
+		&:after {
+			@apply absolute inset-0 content-[''] z-10;
+		}
+	}
+}
+
+@layer utilities {
+	.scrollbar {
+		/* &::-webkit-scrollbar {
+			@apply w-1.5;
+		} */
+		&::-webkit-scrollbar-track {
+			@apply bg-sec-light;
+		}
+		&::-webkit-scrollbar-thumb {
+			@apply border-2;
+			@apply bg-main-darker;
+			@apply rounded-full;
+		}
+	}
+	.fade-enter-active {
+		@apply transition-opacity duration-300 ease-in-out;
+	}
+
+	.fade-enter-from,
+	.fade-leave-to {
+		@apply opacity-0 duration-300;
+	}
+
+	.page-enter-active {
+		@apply transition-opacity duration-300 ease-in-out;
+	}
+
+	.page-enter-from,
+	.page-leave-to {
+		@apply opacity-0 duration-300;
+	}
+}

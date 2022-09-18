@@ -1,0 +1,12 @@
+{
+	"files.autoSave": "off",
+	"eslint.run": "onSave",
+	"files.autoSaveDelay": 9000,
+	"editor.formatOnSave": true,
+	"editor.detectIndentation": true,
+	"editor.formatOnPaste": true,
+	"vetur.validation.template": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	}
+}
