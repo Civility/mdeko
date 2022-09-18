@@ -1,39 +1,40 @@
 <template>
 	<header>
-		<nav>
-			<div class="flex sm:flex-row flex-col sm:justify-between container sm:items-center">
-				<a href="/" class="mr-6 my-2">
-					<img src="/assets/svg/logo.svg" height="48" width="48" alt="logo" />
-				</a>
-				<div class="m-2">
-					<Btn class="!p-0">
-						<span class="phone">
-							<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
-							<a class="text-xl" :href="`tel:${PHONESPB}`">{{ PHONESPB }}</a>
-							<span class="block text-md">СПб</span>
-						</span>
-						<span class="phone">
-							<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
-							<a class="text-xl" :href="`tel:${PHONEMSK}`">{{ PHONEMSK }}</a>
-							<span class="block text-md">МСК</span>
-						</span>
-					</Btn>
-				</div>
+		<div class="flex sm:flex-row flex-col sm:justify-between container sm:items-center">
+			<a href="/" class="mr-6 my-2">
+				<img src="/assets/svg/logo.svg" height="48" width="48" alt="logo" />
+			</a>
+			<Menu :menu="MENU" />
 
-				<div class="ml-6 my-2">
-					<button @click="istoggleMenu = !istoggleMenu" class="nav__menu" :class="{ 'nav__menu--active': istoggleMenu }">
-						<span :class="'nav__menu-icon'" v-for="i in 3" />
-					</button>
-				</div>
+			<div class="m-2">
+				<Btn class="phone !p-0">
+					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
+					<a class="text-xl" :href="`tel:${PHONESPB}`">{{ PHONESPB }}</a>
+					<span class="block text-md">СПб</span>
+				</Btn>
+				<Btn class="phone !p-0">
+					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
+					<a class="text-xl" :href="`tel:${PHONEMSK}`">{{ PHONEMSK }}</a>
+					<span class="block text-md">МСК</span>
+				</Btn>
 			</div>
-		</nav>
+
+			<div class="ml-6 my-2" v-if="useMq().mdMinus">
+				<button @click="getMenuToggle()" class="nav__menu" :class="{ 'nav__menu--active': toggleMenu }">
+					<span :class="'nav__menu-icon'" v-for="i in 3" />
+				</button>
+			</div>
+		</div>
 	</header>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
+import { useMq } from 'vue3-mq'
+import { storeToRefs, mapActions } from 'pinia'
 import { useMainStore } from '@/store/main.js'
-const { PHONESPB, PHONEMSK } = useMainStore()
-const { istoggleMenu } = storeToRefs(useMainStore())
+const { getMenu, MENU, PHONESPB, PHONEMSK } = useMainStore()
+const { getMenuToggle } = mapActions(useMainStore, ['getMenuToggle'])
+const { toggleMenu } = storeToRefs(useMainStore())
+const { pending: menuWait, data: menu } = await useLazyAsyncData('menu', () => getMenu())
 </script>
 <style scoped lang="postcss">
 .nav {
