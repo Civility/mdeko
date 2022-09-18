@@ -1,0 +1,20 @@
+[
+	{
+		"title": "Баннер1",
+		"url": "category1",
+		"text": "Баннер1 text text",
+		"img": {
+			"mini": "banner.webp",
+			"alt": "alt text"
+		}
+	},
+	{
+		"title": "Баннер2",
+		"url": "category2",
+		"text": "Баннер2 text text",
+		"img": {
+			"mini": "banner2.webp",
+			"alt": "alt text"
+		}
+	}
+]

@@ -1,0 +1,12 @@
+[
+	{
+		"title": "СПб",
+		"phone": "+7 812 123 12 12",
+		"mail": "test@test.com",
+		"address": "String"
+	},
+	{
+		"title": "РФ",
+		"phone": "8 800 999 99 99"
+	}
+]

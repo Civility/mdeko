@@ -39,7 +39,6 @@ const component = computed(() => (props.href ? 'a' : 'button'))
 	@apply py-2 lg:py-3 px-2  w-auto;
 	@apply rounded;
 
-
 	@apply text-white;
 	@apply text-sm xl:text-lg md:text-base;
 
@@ -48,7 +47,7 @@ const component = computed(() => (props.href ? 'a' : 'button'))
 
 	@apply focus:ring-0 focus:outline-none;
 
-	@apply disabled:bg-disabled disabled:cursor-not-allowed disabled:shadow-none;
+	/* @apply disabled:bg-disabled disabled:cursor-not-allowed disabled:shadow-none; */
 	@apply disabled:isolate disabled:pointer-events-none;
 	-webkit-appearance: none;
 

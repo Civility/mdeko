@@ -1,2 +1,3 @@
 import { getTailwind } from './tailwindcss'
-export { getTailwind }
+import { getGoogleFonts } from './googleFonts'
+export { getTailwind, getGoogleFonts }

@@ -1,0 +1,26 @@
+[
+	{
+		"title": "Категории",
+		"url": "category",
+		"meta_desc": "meta_desc",
+		"title_desc": "title_desc"
+	},
+	{
+		"title": "Наша история",
+		"url": "about",
+		"meta_desc": "meta_desc",
+		"title_desc": "title_desc"
+	},
+	{
+		"title": "Оплата и доставка",
+		"url": "pay&pass",
+		"meta_desc": "meta_desc",
+		"title_desc": "title_desc"
+	},
+	{
+		"title": "Контакты",
+		"url": "contacts",
+		"meta_desc": "meta_desc",
+		"title_desc": "title_desc"
+	}
+]

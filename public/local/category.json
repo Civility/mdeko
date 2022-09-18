@@ -1,0 +1,38 @@
+[
+	{
+		"title": "Категория1",
+		"url": "category1",
+		"text": "text text category1",
+		"img": {
+			"mini": "category1.webp",
+			"alt": "alt category1"
+		}
+	},
+	{
+		"title": "Категория2",
+		"url": "category2",
+		"text": "text text category2",
+		"img": {
+			"mini": "category2.webp",
+			"alt": "alt category2"
+		}
+	},
+	{
+		"title": "Категория3",
+		"url": "category3",
+		"text": "text text category3",
+		"img": {
+			"mini": "category3.webp",
+			"alt": "alt category3"
+		}
+	},
+	{
+		"title": "Категория4",
+		"url": "category4",
+		"text": "text text category4",
+		"img": {
+			"mini": "category4.webp",
+			"alt": "alt category4"
+		}
+	}
+]

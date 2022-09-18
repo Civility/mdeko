@@ -13,36 +13,37 @@ module.exports = {
 		colors: {
 			white: '#FFF',
 			black: '#000',
-			dark: '#222',
-			green: '#13A463',
-			orange: '#DE6B00',
+			dark: '#0B0006',
+			green: '#3AE06C',
+			orange: '#D6654D',
 			red: '#D91D0B',
 			transparent: 'transparent',
-			disabled: '#D5D8DE',
 			main: {
-				lighter: '#F385B9',
-				light: '#F35CA4',
-				DEFAULT: '#e82882',
-				dark: '#AE4275',
-				darker: '#970D4E',
+				lighter: '#66E08B',
+				light: '#3AE06C',
+				DEFAULT: '#03C03C',
+				dark: '#269046',
+				darker: '#017D26',
 			},
 			sec: {
-				lighter: '#C69ED2',
-				light: '#C28BD2',
-				DEFAULT: '#945AA4',
-				dark: '#bc13fe',
-				darker: '#5A1D6B',
+				lighter: '#EBA698',
+				light: '#EB8D7A',
+				DEFAULT: '#D6654D',
+				dark: '#A16153',
+				darker: '#8B2D19',
 			},
 			some: {
-				light: '#7086AA',
-				DEFAULT: '#2E3D54',
-				dark: '#0F1E37',
+				lighter: '#499892',
+				light: '#2D9890',
+				DEFAULT: '#03302D',
+				dark: '#0B2422',
+				darker: '#011F1D',
 			},
 		},
 
 		fontFamily: {
-			main: ['Rubik', 'sans-serif'],
-			neon: ['Yellowtail', 'cursive'],
+			main: ['Roboto Flex', 'sans-serif'],
+			header: ['Roboto Condensed', 'sans-serif'],
 		},
 
 		extend: {
@@ -56,9 +57,6 @@ module.exports = {
 				'1.5': '0.375rem', // 6px
 				'7.5': '1.875rem', // 30px
 				'15': '3.75rem', // 60px
-			},
-			boxShadow: {
-				neon: '0 0 .2rem #fff, 0 0 .2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe',
 			},
 		},
 	},
