@@ -1,0 +1,30 @@
+[
+	{
+		"title": "Категории",
+		"url": "kategoriya",
+		"order": 0,
+		"meta_title": "meta_title",
+		"meta_desc": "meta_desc"
+	},
+	{
+		"title": "Наша история",
+		"url": "istoriya",
+		"order": 1,
+		"meta_title": "Наша история",
+		"meta_desc": "Наша история 123"
+	},
+	{
+		"title": "Оплата и доставка",
+		"url": "informatsiya",
+		"order": 2,
+		"meta_title": "meta_title",
+		"meta_desc": "meta_desc"
+	},
+	{
+		"title": "Контакты",
+		"url": "kontakty",
+		"order": 3,
+		"meta_title": "meta_title",
+		"meta_desc": "meta_desc"
+	}
+]
