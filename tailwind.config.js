@@ -43,7 +43,7 @@ module.exports = {
 
 		fontFamily: {
 			main: ['Roboto Flex', 'sans-serif'],
-			header: ['Roboto Condensed', 'sans-serif'],
+			display: ['Roboto Condensed', 'sans-serif'],
 		},
 
 		extend: {

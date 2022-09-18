@@ -66,22 +66,22 @@
 
 	.text-shadow {
 		text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0, 0, 0, 0.15);
-	}
-	.text-shadow-light {
-		text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
-	}
-	.text-anaglyph {
-		text-shadow: -0.06em 0 red, 0.06em 0 cyan;
-	}
-	.text-shadow-outline {
-		text-shadow: 0 1px 1px #000, 0 -1px 1px #000, 1px 0 1px #000, -1px 0 1px #000;
-	}
-	.text-shadow-multiple {
-		text-shadow: 0.04em 0.04em 0 #fff, 0.08em 0.08em 0 #aaa;
-	}
-	.text-shadow-3d {
-		text-shadow: 0 0.032em 0 #b0b0b0, 0px 0.15em 0.11em rgb(0 0 0 / 15%), 0px 0.25em 0.021em rgb(0 0 0 / 10%),
-			0px 0.32em 0.32em rgb(0 0 0 / 10%);
+		&-light {
+			text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+		}
+		&-anaglyph {
+			text-shadow: -0.06em 0 red, 0.06em 0 cyan;
+		}
+		&-outline {
+			text-shadow: 0 1px 1px #000, 0 -1px 1px #000, 1px 0 1px #000, -1px 0 1px #000;
+		}
+		&-multiple {
+			text-shadow: 0.04em 0.04em 0 #fff, 0.08em 0.08em 0 #aaa;
+		}
+		&-3d {
+			text-shadow: 0 0.032em 0 #b0b0b0, 0px 0.15em 0.11em rgb(0 0 0 / 15%), 0px 0.25em 0.021em rgb(0 0 0 / 10%),
+				0px 0.32em 0.32em rgb(0 0 0 / 10%);
+		}
 	}
 
 	.stretch {

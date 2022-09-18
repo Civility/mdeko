@@ -12,7 +12,7 @@ const getTailwind = () => {
 						DEFAULT: '1rem',
 					},
 					screens: {
-						xl: getScreens().xl + 'px',
+						xl: getScreens().xxl + 'px',
 					},
 				},
 				screens: {
