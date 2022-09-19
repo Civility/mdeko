@@ -1,25 +1,25 @@
 <template>
-	<header>
-		<div class="flex sm:flex-row flex-col sm:justify-between container sm:items-center">
-			<a href="/" class="mr-6 my-2">
-				<img src="/assets/svg/logo.svg" height="48" width="48" alt="logo" />
-			</a>
+	<header class="header">
+		<div class="header__wrap">
+			<NuxtLink href="/" class="header__logo logo">
+				<img src="/assets/svg/logo.svg" height="300" width="102" alt="logo" class="w-full" />
+			</NuxtLink>
 			<Menu :menu="MENU" />
 
-			<div class="m-2">
-				<Btn class="phone !p-0">
+			<div>
+				<Btn class="phone !p-0 !text-dark">
 					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
 					<a class="text-xl" :href="`tel:${PHONESPB}`">{{ PHONESPB }}</a>
 					<span class="block text-md">СПб</span>
 				</Btn>
-				<Btn class="phone !p-0">
+				<Btn class="phone !p-0 !text-dark">
 					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
 					<a class="text-xl" :href="`tel:${PHONEMSK}`">{{ PHONEMSK }}</a>
 					<span class="block text-md">МСК</span>
 				</Btn>
 			</div>
 
-			<div class="ml-6 my-2" v-if="useMq().mdMinus">
+			<div v-if="useMq().mdMinus">
 				<button @click="getMenuToggle()" class="nav__menu" :class="{ 'nav__menu--active': toggleMenu }">
 					<span :class="'nav__menu-icon'" v-for="i in 3" />
 				</button>
@@ -31,12 +31,20 @@
 import { useMq } from 'vue3-mq'
 import { storeToRefs, mapActions } from 'pinia'
 import { useMainStore } from '@/store/main.js'
+
 const { getMenu, MENU, PHONESPB, PHONEMSK } = useMainStore()
 const { getMenuToggle } = mapActions(useMainStore, ['getMenuToggle'])
 const { toggleMenu } = storeToRefs(useMainStore())
 const { pending: menuWait, data: menu } = await useLazyAsyncData('menu', () => getMenu())
 </script>
 <style scoped lang="postcss">
+.header {
+	@apply bg-white;
+	&__wrap {
+		@apply flex justify-between items-center gap-5  xl:gap-8;
+	}
+}
+
 .nav {
 	@apply sticky top-0 z-30 w-full;
 	@apply py-2;

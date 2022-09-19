@@ -7,17 +7,6 @@
 	</main>
 </template>
 
-<script setup>
-import { storeToRefs, mapActions } from 'pinia'
-import { useMainStore } from '@/store/main.js'
-
-const { PHONESPB, PHONEMSK } = useMainStore()
-// const { pending: goodsWait, data: goods } = await useLazyAsyncData('goods', () => getGoods())
-
-definePageMeta({
-	title: 'Some Page',
-})
-</script>
 <style scoped lang="postcss">
 .category {
 	@apply relative;
@@ -27,11 +16,11 @@ definePageMeta({
 	@apply h-[90vh];
 	&__wrap {
 		@apply bg-black/5;
-		@apply border border-solid border-black/25;
+		@apply border border-solid border-white/25;
 		@apply rounded-3xl;
 
 		@apply inline-block relative;
-		@apply backdrop-blur;
+		@apply backdrop-blur-sm;
 		@apply w-11/12;
 		@apply h-5/6;
 	}

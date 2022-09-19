@@ -1,10 +1,10 @@
 [
 	{
 		"title": "Категории",
-		"url": "kategoriya",
+		"url": "kategorii",
 		"order": 0,
-		"meta_title": "meta_title",
-		"meta_desc": "meta_desc"
+		"meta_title": "kategorii meta_title",
+		"meta_desc": "kategorii meta_desc"
 	},
 	{
 		"title": "Наша история",

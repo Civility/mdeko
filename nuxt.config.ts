@@ -3,6 +3,11 @@ import { getTailwind, getGoogleFonts } from './config/modules/configModules'
 const isDev = process.env.NODE_ENV !== 'production'
 export default defineNuxtConfig({
 	telemetry: false,
+	runtimeConfig: {
+		public: {
+			G_NAME: 'Akvamdeko',
+		},
+	},
 	meta: {
 		title: 'MDeko',
 		htmlAttrs: { lang: 'ru' },

@@ -48,6 +48,7 @@ export const useMainStore = defineStore('main', {
 			if (!this.MENU.length) {
 				try {
 					const API = await $fetch(`http://localhost:3000/api/menu.json`)
+
 					return (this.menu = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)

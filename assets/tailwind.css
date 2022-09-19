@@ -5,12 +5,14 @@
 @layer base {
 	html {
 		@apply font-main;
+
 		@apply break-words;
 		@apply leading-5;
 		@apply subpixel-antialiased;
 	}
 	body {
 		@apply text-dark;
+		@apply text-base;
 	}
 	img {
 		@apply object-cover;

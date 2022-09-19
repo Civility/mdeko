@@ -1,14 +1,14 @@
 <template>
 	<Header />
-	<NuxtLayout>
-		<NuxtPage />
-	</NuxtLayout>
+	<NuxtPage />
 	<Footer />
 </template>
+
 <script setup>
+const config = useRuntimeConfig()
 const route = useRoute()
 
 useHead({
-	meta: [{ name: 'og:title', content: `akvamdeko | ${route.meta.title}` }],
+	meta: [{ name: 'og:title', content: ` ${config.public.G_NAME} | ${route.meta.title}` }],
 })
 </script>
