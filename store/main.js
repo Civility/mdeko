@@ -5,51 +5,51 @@ const sortOrder = (a, b) => {
 }
 export const useMainStore = defineStore('main', {
 	state: () => ({
-		toggleMenu: false,
-		modalOpen: false,
-		modalClose: true,
-		modalToggle: false,
-		phoneSPb: '+7 (812) 333-33-41',
-		phoneMSK: '+7 (812) 333-33-42',
-		menu: [],
-		socials: [
+		TOGGLEMENU: false,
+		MODALOPEN: false,
+		MODALCLOSE: true,
+		MODALTOGGLE: false,
+		PHONESPB: '+7 (812) 333-33-41',
+		PHONEMSK: '+7 (812) 333-33-42',
+		MENU: [],
+		SOCIALS: [
 			{ title: 'vk', url: '#', icon: 'socials/vk' },
 			{ title: 'whatsapp', url: '#', icon: 'socials/whatsapp' },
 		],
-		docs: [{ title: 'Пользовательское соглашение', url: '#' }],
-		copyright: {
+		DOCS: [{ title: 'Пользовательское соглашение', url: '#' }],
+		COPYRIGHT: {
 			low: '© Все права зарегистрированы.',
 			inn: 'ООО "MDEKO Финанс"',
 		},
-		fullYear: {
+		FULLYEAR: {
 			date: new Date().getFullYear(),
 		},
 	}),
 	getters: {
-		MENU: (s) => s.menu,
-		PHONESPB: (s) => s.phoneSPb.replace(/[^0-9]/g, ''),
-		PHONEMSK: (s) => s.phoneMSK.replace(/[^0-9]/g, ''),
-		TOGGLEMENU: (s) => s.toggleMenu,
-		MODALOPEN: (s) => (s.modalOpen = true),
-		MODALCLOSE: (s) => (s.modalClose = false),
-		MODALTOGGLE: (s) => s.modalToggle,
+		menu: (s) => s.MENU,
+		phonespb: (s) => s.PHONESPB.replace(/[^0-9]/g, ''),
+		phonemsk: (s) => s.PHONEMSK.replace(/[^0-9]/g, ''),
+		togglemenu: (s) => s.TOGGLEMENU,
+		modalopen: (s) => (s.MODALOPEN = true),
+		modalclose: (s) => (s.MODALCLOSE = false),
+		modaltoggle: (s) => s.MODALTOGGLE,
 	},
 	actions: {
 		getMenuToggle() {
-			this.toggleMenu = !this.toggleMenu
+			this.TOGGLEMENU = !this.TOGGLEMENU
 		},
 		getModalToggle(val) {
-			this.modalToggle = val
+			this.MODALTOGGLE = val
 		},
 		getMenuClosed() {
-			this.toggleMenu = false
+			this.TOGGLEMENU = false
 		},
 		async getMenu() {
 			if (!this.MENU.length) {
 				try {
 					const API = await $fetch(`http://localhost:3000/api/menu.json`)
 
-					return (this.menu = API.sort(sortOrder))
+					return (this.MENU = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)
 				}

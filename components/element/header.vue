@@ -1,20 +1,20 @@
 <template>
 	<header class="header">
-		<div class="header__wrap">
+		<div class="header__wrap container">
 			<NuxtLink href="/" class="header__logo logo">
 				<img src="/assets/svg/logo.svg" height="300" width="102" alt="logo" class="w-full" />
 			</NuxtLink>
-			<Menu :menu="MENU" />
+			<Menu :menu="menu" />
 
 			<div>
-				<Btn class="phone !p-0 !text-dark">
+				<Btn class="phone !p-0 !text-white">
 					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
-					<a class="text-xl" :href="`tel:${PHONESPB}`">{{ PHONESPB }}</a>
+					<a class="text-xl" :href="`tel:${phonespb}`">{{ phonespb }}</a>
 					<span class="block text-md">СПб</span>
 				</Btn>
-				<Btn class="phone !p-0 !text-dark">
+				<Btn class="phone !p-0 !text-white">
 					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
-					<a class="text-xl" :href="`tel:${PHONEMSK}`">{{ PHONEMSK }}</a>
+					<a class="text-xl" :href="`tel:${phonemsk}`">{{ phonemsk }}</a>
 					<span class="block text-md">МСК</span>
 				</Btn>
 			</div>
@@ -32,27 +32,26 @@ import { useMq } from 'vue3-mq'
 import { storeToRefs, mapActions } from 'pinia'
 import { useMainStore } from '@/store/main.js'
 
-const { getMenu, MENU, PHONESPB, PHONEMSK } = useMainStore()
+const { getMenu, menu, phonespb, phonemsk } = useMainStore()
 const { getMenuToggle } = mapActions(useMainStore, ['getMenuToggle'])
 const { toggleMenu } = storeToRefs(useMainStore())
-const { pending: menuWait, data: menu } = await useLazyAsyncData('menu', () => getMenu())
+const { pending: menuWait, data: menuData } = await useLazyAsyncData('menu', () => getMenu())
 </script>
 <style scoped lang="postcss">
 .header {
-	@apply bg-white;
+	@apply sticky top-0 z-30 w-full;
+	@apply py-2;
+	@apply bg-some/30;
+	@apply text-white;
+	@apply border-b border-main-dark;
+	@apply before:content-[''] before:absolute before:w-full before:h-full before:inset-0 before:-z-20;
+	@apply before:bg-gradient-to-b before:from-some-dark/50 before:to-some/70;
 	&__wrap {
 		@apply flex justify-between items-center gap-5  xl:gap-8;
 	}
 }
 
 .nav {
-	@apply sticky top-0 z-30 w-full;
-	@apply py-2;
-	@apply bg-black/30;
-	@apply border-b border-main-dark;
-	@apply before:content-[''] before:absolute before:w-full before:h-full before:inset-0 before:-z-20;
-	@apply before:bg-gradient-to-b before:from-some-dark/50 before:to-some/70;
-
 	&__menu {
 		@apply -translate-y-2;
 		@apply w-8 h-4 relative;

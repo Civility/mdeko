@@ -1,6 +1,7 @@
 [
 	{
 		"title": "Категория1",
+		"order": 0,
 		"url": "category1",
 		"text": "text text category1",
 		"img": {
@@ -10,6 +11,7 @@
 	},
 	{
 		"title": "Категория2",
+		"order": 1,
 		"url": "category2",
 		"text": "text text category2",
 		"img": {
@@ -19,6 +21,7 @@
 	},
 	{
 		"title": "Категория3",
+		"order": 2,
 		"url": "category3",
 		"text": "text text category3",
 		"img": {
@@ -28,6 +31,7 @@
 	},
 	{
 		"title": "Категория4",
+		"order": 3,
 		"url": "category4",
 		"text": "text text category4",
 		"img": {

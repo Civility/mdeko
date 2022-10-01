@@ -1,60 +1,57 @@
 <template>
-	<component :is="component" class="btn" :class="className" :type="type != 'button' ? type : 'button'" :href="href">
+	<component :is="isComponent" class="btn" :class="isClass" :type="isType" :to="link">
 		<slot />
 	</component>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+const NuxtLink = resolveComponent('NuxtLink')
+definePageMeta({
+	keepalive: true,
+})
 const props = defineProps({
-	href: {
+	link: {
 		type: String,
 		default: null,
-		required: false,
 	},
-	type: {
-		type: String,
-		default: 'button',
+	sec: {
+		type: Boolean,
 	},
 	clear: {
 		type: Boolean,
 	},
-	clip: {
+	glue: {
 		type: Boolean,
 	},
 })
-
-const className = computed(() => {
+const isComponent = computed(() => (props.link ? NuxtLink : 'button'))
+const isType = computed(() => (isComponent != 'button' ? null : 'button'))
+const isClass = computed(() => {
 	return {
+		btn__sec: props.sec,
 		btn__clear: props.clear,
-		btn__clip: props.clip,
+		btn__glue: props.glue,
 	}
 })
-const component = computed(() => (props.href ? 'a' : 'button'))
 </script>
 
 <style scoped lang="postcss">
 .btn {
 	@apply inline-flex items-center justify-center;
-	@apply py-2 lg:py-3 px-2  w-auto;
+	@apply py-2 lg:py-3 px-2 w-auto;
 	@apply rounded;
-
 	@apply text-white;
 	@apply text-sm xl:text-lg md:text-base;
-
 	@apply align-middle not-italic;
 	@apply transition duration-300;
-
 	@apply focus:ring-0 focus:outline-none;
-
-	/* @apply disabled:bg-disabled disabled:cursor-not-allowed disabled:shadow-none; */
 	@apply disabled:isolate disabled:pointer-events-none;
 	-webkit-appearance: none;
 
 	&__clear {
 		@apply rounded-none;
 	}
-	&__clip {
+	&__glue {
 		@apply after:absolute after:inset-0 after:content-[''] after:z-10;
 	}
 }
