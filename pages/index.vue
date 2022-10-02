@@ -1,12 +1,33 @@
 <template>
 	<main>
-		<section class="category">
-			<div class="wrap-full container md:py-15 py-10">
-				<CardCategory v-for="item in category" :data="item" :key="item.url" class="col-span-3" />
+		<!-- https://picsum.photos/200/100.jpg -->
+		<section class="category md:my-15 my-10 container">
+			<div class="wrap">
+				<CardCategory
+					v-for="item in category"
+					:data="item"
+					:key="item.url"
+					class="lg:col-span-2 md:col-span-4 col-span-full"
+					v-if="!categoryWait"
+				/>
 			</div>
 		</section>
-		<section class="wrap-full lg:gap-10 container xl:py-14 md:py-10 py-8"></section>
-		<div class="absolute inset-0 w-full h-full -z-10">
+
+		<Banner class="md:my-15 my-10" :data="bannerMain" v-if="!bannersWait" />
+
+		<section class="container" v-if="!hitsWait">
+			<div class="wrap">
+				<h2 class="text-center col-span-full">Сезонное предложение</h2>
+				<CardItem v-for="item in hits" :key="item.url" :data="item" class="md:col-span-2 col-span-4" />
+			</div>
+		</section>
+		<Banner class="md:my-15 my-10" right :data="bannerSecond" v-if="!bannersWait" />
+		<section class="wrap" v-if="!infoWait">
+			<!-- <Info v-for="(item, key) in info" :key="key" class="col-span-full" :data="item.box1" /> -->
+			<template v-for="(item, key) in info" :key="key"> <Info :data="item" class="col-span-full" /></template>
+		</section>
+
+		<div class="fixed inset-0 w-full h-full -z-30">
 			<div class="parallax">
 				<div class="parallax__mask" />
 			</div>
@@ -16,11 +37,16 @@
 <script setup>
 // import { useMq } from 'vue3-mq'
 import { storeToRefs } from 'pinia'
-import { useCategoryStore } from '@/store/category.js'
+import { useGoods } from '@/store/goods.js'
+import { useInfo } from '@/store/info.js'
 
-const { getCategory, category } = useCategoryStore()
-
+const { getCategory, getHits, category, hits } = useGoods()
+const { getBanners, getInfo, info } = useInfo()
+const { bannerMain, bannerSecond } = storeToRefs(useInfo())
 const { pending: categoryWait, data: categoryData } = await useLazyAsyncData('category', () => getCategory())
+const { pending: bannersWait, data: bannersData } = await useLazyAsyncData('banners', () => getBanners())
+const { pending: hitsWait, data: hitsData } = await useLazyAsyncData('hits', () => getHits())
+const { pending: infoWait, data: infoData } = await useLazyAsyncData('info', () => getInfo())
 </script>
 <style scoped lang="postcss">
 .parallax {
@@ -38,8 +64,9 @@ const { pending: categoryWait, data: categoryData } = await useLazyAsyncData('ca
 
 		@apply inline-block relative;
 		@apply backdrop-blur-sm;
-		@apply w-11/12;
-		@apply h-5/6;
+		@apply w-full h-full;
+		/* @apply w-11/12;
+		@apply h-5/6; */
 	}
 }
 </style>

@@ -14,7 +14,7 @@ const props = defineProps({
 		type: String,
 		default: null,
 	},
-	sec: {
+	main: {
 		type: Boolean,
 	},
 	clear: {
@@ -28,7 +28,7 @@ const isComponent = computed(() => (props.link ? NuxtLink : 'button'))
 const isType = computed(() => (isComponent != 'button' ? null : 'button'))
 const isClass = computed(() => {
 	return {
-		btn__sec: props.sec,
+		btn__main: props.main,
 		btn__clear: props.clear,
 		btn__glue: props.glue,
 	}
@@ -47,7 +47,9 @@ const isClass = computed(() => {
 	@apply focus:ring-0 focus:outline-none;
 	@apply disabled:isolate disabled:pointer-events-none;
 	-webkit-appearance: none;
-
+	&__main {
+		@apply bg-main hover:bg-main-dark;
+	}
 	&__clear {
 		@apply rounded-none;
 	}

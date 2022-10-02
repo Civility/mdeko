@@ -8,9 +8,9 @@
 
 <script setup>
 import { mapActions } from 'pinia'
-import { useMainStore } from '@/store/main.js'
-const { getMenu } = useMainStore()
-const { getMenuToggle } = mapActions(useMainStore, ['getMenuToggle'])
+import { useMain } from '@/store/main.js'
+const { getMenu } = useMain()
+const { getMenuToggle } = mapActions(useMain, ['getMenuToggle'])
 definePageMeta({
 	keepalive: true,
 })
@@ -23,7 +23,7 @@ defineProps({
 </script>
 <style lang="postcss">
 .menu {
-	@apply flex justify-between items-center gap-2;
+	@apply flex justify-between items-center gap-4;
 	&__link {
 		@apply xl:text-lg;
 	}

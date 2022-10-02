@@ -1,8 +1,9 @@
 [
 	{
 		"title": "Баннер1",
+		"order": 0,
 		"url": "category1",
-		"text": "Баннер1 text text",
+		"text": "<p> <span class='text-main'>Баннер1</span> text text</p>",
 		"img": {
 			"mini": "banner.webp",
 			"alt": "alt text"
@@ -10,8 +11,9 @@
 	},
 	{
 		"title": "Баннер2",
+		"order": 1,
 		"url": "category2",
-		"text": "Баннер2 text text",
+		"text": "<p><span class='text-main'>Баннер2</span> text text</p>",
 		"img": {
 			"mini": "banner2.webp",
 			"alt": "alt text"

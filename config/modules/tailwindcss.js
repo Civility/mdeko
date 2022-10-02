@@ -11,12 +11,11 @@ const getTailwind = () => {
 					padding: {
 						DEFAULT: '1rem',
 					},
-					// screens: {
-					// 	xl: getScreens().xxl + 'px',
-					// },
+					screens: {
+						xl: getScreens().xxl + 'px',
+					},
 				},
 				screens: {
-					xs: getScreens().xs + 'px',
 					sm: getScreens().sm + 'px',
 					md: getScreens().md + 'px',
 					lg: getScreens().lg + 'px',

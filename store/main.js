@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 const sortOrder = (a, b) => {
 	return a.order > b.order ? -1 : 1
 }
-export const useMainStore = defineStore('main', {
+export const useMain = defineStore('main', {
 	state: () => ({
 		TOGGLEMENU: false,
 		MODALOPEN: false,

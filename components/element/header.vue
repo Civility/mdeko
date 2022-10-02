@@ -6,7 +6,7 @@
 			</NuxtLink>
 			<Menu :menu="menu" />
 
-			<div>
+			<div class="flex flex-wrap gap-4">
 				<Btn class="phone !p-0 !text-white">
 					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
 					<a class="text-xl" :href="`tel:${phonespb}`">{{ phonespb }}</a>
@@ -30,11 +30,11 @@
 <script setup>
 import { useMq } from 'vue3-mq'
 import { storeToRefs, mapActions } from 'pinia'
-import { useMainStore } from '@/store/main.js'
+import { useMain } from '@/store/main.js'
 
-const { getMenu, menu, phonespb, phonemsk } = useMainStore()
-const { getMenuToggle } = mapActions(useMainStore, ['getMenuToggle'])
-const { toggleMenu } = storeToRefs(useMainStore())
+const { getMenu, menu, phonespb, phonemsk } = useMain()
+const { getMenuToggle } = mapActions(useMain, ['getMenuToggle'])
+const { toggleMenu } = storeToRefs(useMain())
 const { pending: menuWait, data: menuData } = await useLazyAsyncData('menu', () => getMenu())
 </script>
 <style scoped lang="postcss">
@@ -47,7 +47,7 @@ const { pending: menuWait, data: menuData } = await useLazyAsyncData('menu', () 
 	@apply before:content-[''] before:absolute before:w-full before:h-full before:inset-0 before:-z-20;
 	@apply before:bg-gradient-to-b before:from-some-dark/50 before:to-some/70;
 	&__wrap {
-		@apply flex justify-between items-center gap-5  xl:gap-8;
+		@apply flex justify-between items-center gap-4  xl:gap-8;
 	}
 }
 

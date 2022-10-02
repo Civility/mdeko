@@ -1,0 +1,119 @@
+[
+	{
+		"box1": {
+			"title": "object1 block1",
+			"img": {
+				"mini": "/#",
+				"alt": "alt text"
+			}
+		},
+		"box2": {
+			"title": "object1 block2",
+			"list": [
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				},
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				},
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				}
+			]
+		},
+		"box3": {
+			"title": "object1 block3",
+			"url": "category1",
+			"text": "text text text",
+			"img": {
+				"mini": "link.webp",
+				"alt": "alt text"
+			}
+		}
+	},
+	{
+		"box1": {
+			"title": "object2 block1",
+			"img": {
+				"mini": "#",
+				"alt": "alt text"
+			}
+		},
+		"box2": {
+			"title": "object2 block2",
+			"list": [
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				},
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				},
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				}
+			]
+		},
+		"box3": {
+			"title": "object2 block3",
+			"url": "category1",
+			"text": "text text text",
+			"img": {
+				"mini": "link.webp",
+				"alt": "alt text"
+			}
+		}
+	},
+	{
+		"box1": {
+			"title": "object3 block1",
+			"img": {
+				"mini": "#",
+				"alt": "alt text"
+			}
+		},
+		"box2": {
+			"title": "object3 block2",
+			"list": [
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				},
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				},
+				{
+					"icon": "garden.svg",
+					"text": "text, text, text"
+				}
+			]
+		},
+		"box3": {
+			"title": "object3 block3",
+			"text": "100% натуральный скраб для тела, созданный на основе средиземноморской соли, торфа, дёгтя и комплекса натуральных масел, отлично тонизирует и омолаживает кожу.",
+			"list": [
+				{
+					"text": "морская соль"
+				},
+				{
+					"text": "кокосовое масло"
+				},
+				{
+					"text": "касторовое масло"
+				},
+				{
+					"text": "торф"
+				},
+				{
+					"text": "дёготь березовый"
+				}
+			]
+		}
+	}
+]

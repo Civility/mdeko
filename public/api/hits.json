@@ -1,37 +1,41 @@
 [
 	{
 		"title": "Product1",
+		"category": "category1",
 		"url": "product1",
 		"price": 111,
 		"img": {
-			"mini": "product1.webp",
+			"mini": "https://picsum.photos/id/300/300/340.webp",
 			"alt": "alt img"
 		}
 	},
 	{
 		"title": "Product2",
+		"category": "category2",
 		"url": "product2",
 		"price": 222,
 		"img": {
-			"mini": "product1.webp",
+			"mini": "https://picsum.photos/id/300/300/340.webp",
 			"alt": "alt img"
 		}
 	},
 	{
 		"title": "Product3",
+		"category": "category1",
 		"url": "product3",
 		"price": 333,
 		"img": {
-			"mini": "product1.webp",
+			"mini": "https://picsum.photos/id/300/300/340.webp",
 			"alt": "alt img"
 		}
 	},
 	{
 		"title": "Product3",
+		"category": "category2",
 		"url": "product3",
 		"price": 444,
 		"img": {
-			"mini": "product1.webp",
+			"mini": "https://picsum.photos/id/300/300/340.webp",
 			"alt": "alt img"
 		}
 	}

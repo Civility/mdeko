@@ -8,6 +8,7 @@ module.exports = {
 		'./app.vue',
 		// './nuxt.config.{js,ts}',
 	],
+	safelist: ['text-main', 'text-sec', 'text-some', 'bg-main', 'bg-sec', 'bg-some'],
 	darkMode: 'media',
 	theme: {
 		colors: {
