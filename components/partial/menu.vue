@@ -25,7 +25,8 @@ defineProps({
 .menu {
 	@apply flex justify-between items-center gap-4;
 	&__link {
-		@apply xl:text-lg;
+		@apply text-2xl md:text-lg lg:text-xl xl:text-2xl;
+		@apply whitespace-nowrap;
 	}
 }
 </style>

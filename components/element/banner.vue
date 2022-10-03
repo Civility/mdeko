@@ -7,7 +7,7 @@
 			<div class="container wrap w-full h-full">
 				<div
 					class="md:col-span-5 col-span-full relative flex flex-col justify-center w-full h-full px-4 bg-dark/70"
-					:class="({ 'md:col-start-2': center }, { 'md:col-start-4': right })"
+					:class="({ 'md:col-start-2': center }, { 'md:col-start-5': right })"
 				>
 					<h3 v-text="data.title" class="!mb-12 md:text-4xl capitalize" />
 					<div v-html="data.text" />

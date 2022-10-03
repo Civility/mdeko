@@ -23,6 +23,9 @@ const props = defineProps({
 	glue: {
 		type: Boolean,
 	},
+	icon: {
+		type: Boolean,
+	},
 })
 const isComponent = computed(() => (props.link ? NuxtLink : 'button'))
 const isType = computed(() => (isComponent != 'button' ? null : 'button'))
@@ -31,6 +34,7 @@ const isClass = computed(() => {
 		btn__main: props.main,
 		btn__clear: props.clear,
 		btn__glue: props.glue,
+		btn__icon: props.icon,
 	}
 })
 </script>
@@ -55,6 +59,9 @@ const isClass = computed(() => {
 	}
 	&__glue {
 		@apply after:absolute after:inset-0 after:content-[''] after:z-10;
+	}
+	&__icon {
+		@apply gap-x-1;
 	}
 }
 </style>

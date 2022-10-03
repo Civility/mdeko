@@ -19,7 +19,7 @@
 				<span v-text="data.box3?.title" class="text-3xl py-5 mb-0 capitalize" />
 				<div v-html="data.box3?.text" v-if="data.box3?.text" />
 				<img v-if="data.box3?.img?.mini" src="https://picsum.photos/id/10/300/200.webp" :alt="data.box3.img.alt" />
-				<ul class="flex flex-col gap-5 list-disc list-inside">
+				<ul class="flex flex-col gap-5 list-disc list-inside" v-if="data.box3.list">
 					<li v-for="item in data.box3.list">
 						<span class="text-3xl capitalize" v-text="item.title" v-if="item.title" />
 						<span v-html="item?.text" />
