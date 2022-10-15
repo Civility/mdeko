@@ -1,39 +1,48 @@
 <template>
-	<footer class="footer bg-main-darker">
+	<footer class="bg-main-darker py-5">
 		<div class="container">
-			<div class="wrap">
+			<div class="footer__top">
 				<NuxtLink href="/" class="header__logo logo">
 					<img src="/assets/svg/logo.svg" width="200" height="100" alt="logo" />
 				</NuxtLink>
-				<div class="flex flex-wrap gap-x-4 gap-y-1 justify-end">
-					<div icon class="phone relative text-white w-44 flex justify-center items-center" v-for="phone in phones">
+				<div class="footer__socials flex flex-wrap gap-x-4 gap-y-1">
+					<Btn
+						v-for="social in SOCIALS"
+						:key="social.name"
+						class="footer__docs gap-2"
+						:link="
+							social.name === 'telegram'
+								? `//t.me/${social.number}`
+								: social.name === 'whatsapp'
+								? `//wa.me/${social.number}`
+								: null
+						"
+						><img :src="`/assets/svg/${social.icon}`" :alt="social.title" />{{ social.title }}</Btn
+					>
+				</div>
+				<div class="flex flex-wrap gap-x-4 gap-y-1">
+					<Btn :link="`tel:${phone.tel}`" icon v-for="phone in CONTACT.phones">
 						<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
-						<Btn glue class="md:text-xl !p-1 !leading-none" :link="`tel:${phone.tel}`">{{ phone.number }}</Btn>
-
-						<span class="block md:text-md text-center w-full !leading-none" v-text="phone.city" />
-					</div>
+						{{ phone.number }}
+						<div class="md:text-md text-center w-full !leading-none" v-text="phone.city" />
+					</Btn>
 				</div>
-				<div class="footer__copyright">
-					<div class="footer__copyright_low" v-text="COPYRIGHT.low" />
-					<div class="footer__copyright_inn" v-text="COPYRIGHT.inn" />
-				</div>
-				<div class="footer__fullyear" v-text="FULLYEAR" />
-				<div class="footer__socials relative">
-					<template v-for="social in SOCIALS">
-						<Btn glue class="footer__docs" :link="social.url"
-							><img :src="`/assets/svg/${social.icon}`" :alt="social.title"
-						/></Btn>
-					</template>
+			</div>
+			<div class="footer__bottom flex flex-wrap justify-between items-end">
+				<div class="footer__copyright flex gap-4">
+					<div class="footer__copyright_notice" v-text="COPYRIGHT.notice" />
+					<div class="footer__copyright_name" v-text="COPYRIGHT.name" />
+					<div class="footer__fullyear" v-text="new Date().getFullYear() + 'г.'" />
 				</div>
 
-				<NuxtLink class="footer__docs" :to="DOCS.url" v-text="DOCS.title" />
+				<NuxtLink class="footer__docs" :to="DOCS.url">{{ DOCS.title }}</NuxtLink>
 			</div>
 		</div>
 	</footer>
 </template>
 <script setup>
+import { storeToRefs } from 'pinia'
 import { useMain } from '@/store/main.js'
-const { phones, COPYRIGHT, FULLYEAR, SOCIALS, DOCS } = useMain()
+const { CONTACT, SOCIALS } = storeToRefs(useMain())
+const { COPYRIGHT, DOCS } = useMain()
 </script>
-<!--style lang="postcss" scoped>
-<style-->

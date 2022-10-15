@@ -12,35 +12,74 @@ export const useMain = defineStore('main', {
 		MODALOPEN: false,
 		MODALCLOSE: true,
 		MODALTOGGLE: false,
-		PHONESPB: '+7 (812) 333-33-41',
-		PHONEMSK: '+7 (812) 333-33-42',
+		PHONESPB: '8 (812) 388 71 28',
+		PHONEMSK: '8 (800) 505 4 345',
+		PHONESOCIAL: '8 (999) 635 70 45',
 		MENU: [],
-		SOCIALS: [
-			{ title: 'telegram', url: '#', icon: 'telegram.svg' },
-			{ title: 'whatsapp', url: '#', icon: 'whatsapp.svg' },
-		],
+		CONTACT: {
+			phones: [],
+			mail: 'test@test.com',
+			address: {
+				country: 'Россия, 196006',
+				city: 'г. Санкт-Петербург',
+				street: 'ул. Цветочная, д. 7, лит. Б',
+				office: 'комната 9',
+			},
+		},
+		SOCIALS: [],
+		REQUISITES: { name: 'ООО "МДЕКО"', inn: '7816543798', ogrn: '1127847412220' },
 		DOCS: { title: 'Пользовательское соглашение', url: '#' },
 		COPYRIGHT: {
-			low: '© Все права зарегистрированы.',
-			inn: 'ООО "MDEKO Финанс"',
+			notice: '© Все права зарегистрированы.',
+			name: 'ООО "МДЕКО"',
 		},
-		FULLYEAR: new Date().getFullYear(),
+		// FULLYEAR: new Date().getFullYear(),
 	}),
 	getters: {
 		menu: (s) => s.MENU,
 		phoneSpb: (s) => replaceNumber(s.PHONESPB),
 		phoneMsk: (s) => replaceNumber(s.PHONEMSK),
-		phones: (s) =>
-			(s.PHONES = [
-				{ tel: s.phoneSpb, number: replaceNumber(s.PHONESPB), city: 'СПб' },
-				{ tel: s.phoneMsk, number: replaceNumber(s.PHONEMSK), city: 'МСК' },
-			]),
+		contact: (s) => s.CONTACT,
+		phones(s) {
+			return (s.CONTACT.phones = [
+				{ tel: s.phoneSpb, number: replaceNumber(s.PHONESPB), city: 'Санкт-Петербургу' },
+				{ tel: s.phoneMsk, number: replaceNumber(s.PHONEMSK), city: 'России' },
+			])
+		},
+		socials(s) {
+			return (s.SOCIALS = [
+				{
+					name: 'telegram',
+					title: 'telegram',
+					url: '#',
+					icon: 'telegram.svg',
+					tel: s.PHONESOCIAL,
+					number: replaceNumber(s.PHONESOCIAL),
+				},
+				{
+					name: 'whatsapp',
+					title: 'whatsapp',
+					url: '#',
+					icon: 'whatsapp.svg',
+					tel: s.PHONESOCIAL,
+					number: replaceNumber(s.PHONESOCIAL),
+				},
+			])
+		},
+
 		toggleMenu: (s) => s.TOGGLEMENU,
 		modalOpen: (s) => (s.MODALOPEN = true),
 		modalClose: (s) => (s.MODALCLOSE = false),
 		modalToggle: (s) => s.MODALTOGGLE,
 	},
 	actions: {
+		// async getMainALL({ dispatch }) {
+		// 	await Promise.all([dispatch('getMenuToggle'), dispatch('getMenuToggle')])
+		// },
+		async getContactData() {
+			await this.phones
+			await this.socials
+		},
 		getMenuToggle() {
 			this.TOGGLEMENU = !this.TOGGLEMENU
 		},

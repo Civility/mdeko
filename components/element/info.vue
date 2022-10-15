@@ -4,7 +4,7 @@
 			<div class="left lg:col-span-2 col-span-full flex flex-col gap-5 items-center" v-if="data.box1">
 				<h3 v-text="data.box1?.title" class="py-5 mb-0 self-start capitalize" />
 				<!-- <img :src="data.box1.img.mini" :alt="data.box1.img.alt"> -->
-				<img v-if="data.box1?.img?.mini" src="https://picsum.photos/id/10/300/340.webp" :alt="data.box1.img.alt" />
+				<img v-if="data.box1?.img?.mini" src="/img/item.webp" :alt="data.box1.img.alt" />
 			</div>
 			<div class="center lg:col-span-2 md:col-span-4 col-span-full flex flex-col gap-5" v-if="data.box2">
 				<span v-text="data.box2?.title" class="text-3xl py-5 mb-0 capitalize" />

@@ -1,6 +1,5 @@
 <template>
 	<main>
-		<!-- https://picsum.photos/200/100.jpg -->
 		<section class="category md:my-15 my-10 container">
 			<div class="wrap">
 				<CardCategory
@@ -23,7 +22,6 @@
 		</section>
 		<Banner class="md:my-15 my-10" right :data="bannerSecond" v-if="!bannersWait" />
 		<section class="wrap" v-if="!infoWait">
-			<!-- <Info v-for="(item, key) in info" :key="key" class="col-span-full" :data="item.box1" /> -->
 			<template v-for="(item, key) in info" :key="key"> <Info :data="item" class="col-span-full" /></template>
 		</section>
 

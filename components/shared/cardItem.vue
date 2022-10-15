@@ -1,10 +1,10 @@
 <template>
 	<div class="relative flex flex-col w-full mx-auto">
 		<div class="relative rounded overflow-hidden bg-sec p-2 group shadow-lg shadow-sec">
-			<h3 class="py-6 mb-0 border-b border-dark text-dark text-center uppercase" v-text="data.title" />
+			<h3 class="py-6 mb-0 border-b border-dark text-white text-center uppercase" v-text="data.title" />
 
-			<div class="relative h-80 flex justify-center overflow-hidden rounded">
-				<img class="w-full" src="https://picsum.photos/id/511/300/340.webp" :alt="data.img.alt" />
+			<div class="relative w-32 mx-auto p-4 flex justify-center overflow-hidden rounded">
+				<img class="w-full" src="/img/item.webp" :alt="data.img.alt" />
 			</div>
 
 			<div class="flex flex-col gap-3 py-3 text-gray-600 w-full">

@@ -1,5 +1,5 @@
 <template>
-	<header class="header" :class="{ 'header-show': toggleMenu }">
+	<header class="header" :class="{ 'header-show !fixed': toggleMenu }">
 		<nav class="header__wrap container">
 			<NuxtLink href="/" class="header__logo logo">
 				<img src="/assets/svg/logo.svg" width="200" height="100" alt="logo" />
@@ -12,13 +12,17 @@
 				</button>
 			</div>
 
-			<div class="flex flex-wrap gap-x-4 gap-y-1 justify-end">
-				<div icon class="phone relative text-white w-44 flex justify-center items-center" v-for="phone in phones">
-					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
-					<Btn glue class="md:text-xl !p-1 !leading-none" :link="`tel:${phone.tel}`">{{ phone.number }}</Btn>
-
-					<span class="block md:text-md text-center w-full !leading-none" v-text="phone.city" />
-				</div>
+			<div class="flex flex-wrap gap-x-4 gap-y-1 justify-start">
+				<Btn
+					v-for="item in contact.phones"
+					:key="item.number"
+					:link="`tel:${item.number}`"
+					class="!grid grid-cols-[30px,_1fr] gap-x-1"
+				>
+					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" class="row-span-2" />
+					<div class="text-sec-lighter" v-text="item.tel" />
+					<span class="block md:text-md text-left !leading-none" v-text="`по ${item.city}`" />
+				</Btn>
 			</div>
 		</nav>
 	</header>
@@ -28,10 +32,12 @@ import { useMq } from 'vue3-mq'
 import { storeToRefs, mapActions } from 'pinia'
 import { useMain } from '@/store/main.js'
 
-const { getMenu, menu, phones } = useMain()
 const { getMenuToggle } = mapActions(useMain, ['getMenuToggle'])
-const { toggleMenu } = storeToRefs(useMain())
+
+const { getMenu, getContactData, menu } = useMain()
+const { toggleMenu, contact } = storeToRefs(useMain())
 const { pending: menuWait, data: menuData } = await useLazyAsyncData('menu', () => getMenu())
+const { pending: contactWait, data: contactData } = await useLazyAsyncData('contact', () => getContactData())
 </script>
 <style scoped lang="postcss">
 .header {
