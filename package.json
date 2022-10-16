@@ -29,6 +29,7 @@
     "@pinia/nuxt": "latest",
     "@tailwindcss/nesting": "latest",
     "autoprefixer": "^10.4.9",
+    "nuxt-icon": "^0.1.6",
     "pinia": "latest",
     "swiper": "^8.3.2",
     "vue3-mq": "latest"

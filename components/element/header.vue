@@ -1,25 +1,27 @@
 <template>
-	<header class="header" :class="{ 'header-show !fixed': toggleMenu }">
-		<nav class="header__wrap container">
-			<NuxtLink href="/" class="header__logo logo">
+	<header class="header" :class="{ 'h-screen bg-main !fixed': toggleMenu }">
+		<nav class="flex md:flex-nowrap flex-wrap justify-between items-center gap-4 container">
+			<a href="/" class="order-1">
 				<img src="/assets/svg/logo.svg" width="200" height="100" alt="logo" />
-			</NuxtLink>
+			</a>
 
-			<Menu :menu="menu" v-show="toggleMenu" class="lg:!flex hidden" />
-			<div v-if="useMq().mdMinus" class="order-1 justify-self-end self-center">
+			<Menu :menu="menu" v-show="toggleMenu" class="lg:!flex hidden order-2" />
+
+			<div v-if="useMq().mdMinus" class="justify-self-end self-center sm:order-last order-2 mr-left">
 				<button @click="getMenuToggle()" class="nav__menu" :class="{ 'nav__menu--active': toggleMenu }">
 					<span :class="'nav__menu-icon'" v-for="i in 3" />
 				</button>
 			</div>
 
-			<div class="flex flex-wrap gap-x-4 gap-y-1 justify-start">
+			<div class="flex flex-wrap gap-x-2 gap-y-1 justify-start m-auto order-3">
 				<Btn
 					v-for="item in contact.phones"
 					:key="item.number"
 					:link="`tel:${item.number}`"
-					class="!grid grid-cols-[30px,_1fr] gap-x-1"
+					class="!grid grid-cols-[40px,_1fr] gap-x-1"
 				>
-					<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" class="row-span-2" />
+					<Svg svg="phone" class="bg-sec-lighter border-sec-lighter row-span-2" />
+
 					<div class="text-sec-lighter" v-text="item.tel" />
 					<span class="block md:text-md text-left !leading-none" v-text="`по ${item.city}`" />
 				</Btn>
@@ -41,18 +43,13 @@ const { pending: contactWait, data: contactData } = await useLazyAsyncData('cont
 </script>
 <style scoped lang="postcss">
 .header {
-	@apply sticky top-0 z-50 w-full;
-	@apply bg-some/30;
-	@apply before:content-[''] before:absolute before:w-full before:h-full before:inset-0 before:-z-20;
-	@apply before:bg-gradient-to-b before:from-some-dark/50 before:to-some/70;
+	@apply sticky top-0 z-50 w-full py-2;
+	@apply bg-gradient-to-l from-main-dark  to-sec-dark/80;
+	/* @apply before:content-[''] before:absolute before:w-full before:h-full before:inset-0 before:-z-20;
+	@apply before:bg-gradient-to-b before:from-main-dark/50 before:to-main/70; */
 	@apply border-b border-white;
 	@apply transition-all;
-	&__wrap {
-		@apply flex justify-between items-center gap-4  xl:gap-8;
-	}
 	&-show {
-		@apply h-screen;
-
 		.menu {
 			@apply absolute inset-0 justify-center items-center flex-col;
 		}
@@ -64,7 +61,7 @@ const { pending: contactWait, data: contactData } = await useLazyAsyncData('cont
 		@apply -translate-y-2;
 		@apply w-8 h-4 relative;
 		&-icon {
-			@apply absolute top-0 w-full h-1 bg-main left-0 rounded-xl transition-all;
+			@apply absolute top-0 w-full h-1 bg-sec left-0 rounded-xl transition-all;
 			@apply even:top-2/4;
 			@apply last:bottom-full;
 			@apply last:top-full;

@@ -37,13 +37,11 @@ export const useMain = defineStore('main', {
 	}),
 	getters: {
 		menu: (s) => s.MENU,
-		phoneSpb: (s) => replaceNumber(s.PHONESPB),
-		phoneMsk: (s) => replaceNumber(s.PHONEMSK),
 		contact: (s) => s.CONTACT,
 		phones(s) {
 			return (s.CONTACT.phones = [
-				{ tel: s.phoneSpb, number: replaceNumber(s.PHONESPB), city: 'Санкт-Петербургу' },
-				{ tel: s.phoneMsk, number: replaceNumber(s.PHONEMSK), city: 'России' },
+				{ tel: s.PHONESPB, number: replaceNumber(s.PHONESPB), city: 'Санкт-Петербургу' },
+				{ tel: s.PHONEMSK, number: replaceNumber(s.PHONEMSK), city: 'России' },
 			])
 		},
 		socials(s) {

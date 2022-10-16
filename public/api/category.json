@@ -3,7 +3,7 @@
 		"title": "Категория1",
 		"order": 0,
 		"url": "category1",
-		"text": "text text category1",
+		"text": "text text category1 text text category1 text text category1 text text category1",
 		"img": {
 			"mini": "category1.webp",
 			"alt": "alt category1"
@@ -13,7 +13,7 @@
 		"title": "Категория2",
 		"order": 1,
 		"url": "category2",
-		"text": "text text category2",
+		"text": "text text category2 text text category2 text text category2",
 		"img": {
 			"mini": "category2.webp",
 			"alt": "alt category2"
@@ -23,7 +23,7 @@
 		"title": "Категория3",
 		"order": 2,
 		"url": "category3",
-		"text": "text text category3",
+		"text": "text text category3 text text category3 text text category3 text text category3",
 		"img": {
 			"mini": "category3.webp",
 			"alt": "alt category3"

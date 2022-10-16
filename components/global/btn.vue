@@ -1,6 +1,7 @@
 <template>
 	<component :is="isComponent" class="btn" :class="isClass" :type="isType" :to="link">
-		<slot />
+		<span v-if="main" class="inline-block bg-white hover:!bg-main-lighter py-2 px-3 text-dark rounded-full"><slot /></span>
+		<slot v-else />
 	</component>
 </template>
 
@@ -47,12 +48,12 @@ const isClass = computed(() => {
 	@apply text-white;
 	@apply text-sm xl:text-lg md:text-base;
 	@apply align-middle not-italic;
-	@apply transition duration-300;
+	@apply transition-all duration-300;
 	@apply focus:ring-0 focus:outline-none;
 	@apply disabled:isolate disabled:pointer-events-none;
 	-webkit-appearance: none;
 	&__main {
-		@apply bg-main hover:bg-main-dark;
+		@apply border-2 border-dashed !p-1.5 !w-min !rounded-full !no-underline hover:border-main-lighter;
 	}
 	&__clear {
 		@apply rounded-none;

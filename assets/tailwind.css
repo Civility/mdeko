@@ -25,6 +25,7 @@
 	h6,
 	time {
 		@apply !leading-4;
+		@apply font-bold;
 		@apply mb-5;
 	}
 	h1 {
@@ -65,7 +66,34 @@
 			@apply grid grid-cols-8 md:grid-cols-12 gap-5;
 		}
 	}
-
+	.sub-line {
+		@apply relative;
+		@apply after:bg-main-lighter;
+		@apply after:content-[''] after:absolute after:top-1/2 after:mx-2;
+		@apply after:w-10 after:h-0.5;
+	}
+	.title-b {
+		@apply after:block after:content-[''] after:w-12 after:h-1 after:bg-white after:mt-4;
+	}
+	.title-line {
+		@apply after:inline-block after:content-[''] after:w-10 after:h-1 after:bg-white after:mx-2 after:align-middle;
+		@apply before:inline-block before:content-[''] before:w-10 before:h-1 before:bg-white before:mx-2 before:align-middle;
+		/* &:before,
+		&:after {
+			display: inline-block;
+			content: '';
+			border-top: 0.3rem solid green;
+			width: 4rem;
+			margin: 0 1rem;
+		} */
+		/* @apply relative;
+		@apply after:bg-main-lighter;
+		@apply after:content-[''] after:absolute after:top-1/2 after:right-0 after:-mr-14;
+		@apply after:w-10 after:h-0.5;
+		@apply before:bg-main-lighter;
+		@apply before:content-[''] before:absolute before:top-1/2 before:left-0 before:-ml-14;
+		@apply before:w-10 before:h-0.5; */
+	}
 	.text-shadow {
 		text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0, 0, 0, 0.15);
 		&-light {
