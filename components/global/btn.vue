@@ -27,6 +27,9 @@ const props = defineProps({
 	icon: {
 		type: Boolean,
 	},
+	svg: {
+		type: Boolean,
+	},
 })
 const isComponent = computed(() => (props.link ? NuxtLink : 'button'))
 const isType = computed(() => (isComponent != 'button' ? null : 'button'))
@@ -36,6 +39,7 @@ const isClass = computed(() => {
 		btn__clear: props.clear,
 		btn__glue: props.glue,
 		btn__icon: props.icon,
+		btn__svg: props.svg,
 	}
 })
 </script>
@@ -63,6 +67,9 @@ const isClass = computed(() => {
 	}
 	&__icon {
 		@apply gap-x-1;
+	}
+	&__svg {
+		@apply border-2 border-dashed !p-1.5  w-min !rounded-full !no-underline hover:border-white;
 	}
 }
 </style>

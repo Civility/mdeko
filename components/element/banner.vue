@@ -9,11 +9,13 @@
 				<div class="info w-full py-10 px-5 flex flex-col col-span-5 lg:col-span-4">
 					<div class="border-2 border-dashed mb-auto p-4">
 						<div class="bg-sec-darker py-10 px-4">
-							<h3 v-text="data.title" class="!mb-12 md:text-4xl capitalize title-line text-center" />
+							<h3 v-text="data.title" class="!mb-12 md:text-4xl capitalize title-b w-min" />
 							<div v-html="data.text" />
 						</div>
 					</div>
-					<Btn main :link="`kategorii/${data.url}`" class="border-2 border-dashed !p-1.5 !w-min !rounded-full"> Подробнее</Btn>
+					<Btn main :link="`kategorii/${data.url}`" class="border-2 border-dashed !p-1.5 !w-min !rounded-full mt-4"
+						>Подробнее</Btn
+					>
 				</div>
 				<div class="col-span-3 place-self-center">
 					<img :src="`/img/${data.img.mini}`" :alt="data.img.alt" class="py-10 px-5" />

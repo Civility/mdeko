@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<section class="category md:my-15 my-10 container">
+		<section class="category md:py-15 py-10 container">
 			<div class="wrap">
 				<CardCategory
 					v-for="item in category"
@@ -12,20 +12,20 @@
 			</div>
 		</section>
 
-		<Banner class="md:my-15 my-10" :data="bannerMain" v-if="!bannersWait" />
+		<Banner class="md:py-15 py-10" :data="bannerMain" v-if="!bannersWait" />
 
-		<section class="container" v-if="!hitsWait">
+		<section class="container md:py-15 py-10" v-if="!hitsWait">
+			<h2 class="text-center col-span-full title-line">Сезонное предложение</h2>
 			<div class="wrap">
-				<h2 class="text-center col-span-full">Сезонное предложение</h2>
-				<CardItem v-for="item in hits" :key="item.url" :data="item" class="md:col-span-2 col-span-4" />
+				<CardItem v-for="item in hits" :key="item.url" :data="item" class="col-span-4" />
 			</div>
 		</section>
-		<aside class="wrap md:my-15 my-10 bg-dark/50" v-if="!infoWait">
-			<Info :data="item" class="col-span-full" v-for="item in infoHalf" />
+		<aside class="md:py-15 py-10 wrap md:gap-y-15" v-if="!infoWait">
+			<Info :data="item" class="container bg-dark/50 col-span-full" v-for="item in infoHalf" />
 		</aside>
-		<Banner class="md:my-15 my-10" right :data="bannerSecond" v-if="!bannersWait" />
-		<aside class="wrap md:my-15 my-10 bg-dark/50" v-if="!infoWait">
-			<Info :data="item" class="col-span-full" v-for="item in infoLast" />
+		<Banner class="md:py-15 py-10" right :data="bannerSecond" v-if="!bannersWait" />
+		<aside class="md:my-15 my-10" v-if="!infoWait">
+			<Info :data="item" class="bg-dark/50" v-for="item in infoLast" />
 		</aside>
 		<div class="fixed inset-0 w-full h-full -z-30">
 			<div class="parallax">

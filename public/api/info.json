@@ -2,8 +2,13 @@
 	{
 		"subTitle": "SubTitle",
 		"title": "Title",
-		"text": "text text text",
+		"text": "Te obtinuit ut adepto satis somno. Aliisque institoribus iter deliciae vivet vita. Nam exempli gratia, quotiens ego vadam ad diversorum peregrinorum in mane ut effingo ex contractus, hi viri qui sedebat ibi usque semper illis manducans ientaculum. Solum cum bulla ut debui; EGO youd.",
 		"list": [
+			{
+				"icon": "garden.svg",
+				"title": "Title",
+				"text": "text, text, text"
+			},
 			{
 				"icon": "garden.svg",
 				"title": "Title",
@@ -39,14 +44,23 @@
 				"icon": "garden.svg",
 				"title": "Title",
 				"text": "text, text, text"
+			},
+			{
+				"icon": "garden.svg",
+				"title": "Title",
+				"text": "text, text, text"
 			}
 		]
 	},
 	{
 		"subTitle": "SubTitle",
 		"title": "Title",
-		"text": "text text text",
 		"list": [
+			{
+				"icon": "garden.svg",
+				"title": "Title",
+				"text": "text, text, text"
+			},
 			{
 				"icon": "garden.svg",
 				"title": "Title",
