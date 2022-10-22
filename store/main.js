@@ -90,8 +90,7 @@ export const useMain = defineStore('main', {
 		async getMenu() {
 			if (!this.MENU.length) {
 				try {
-					const API = await $fetch(`http://localhost:3000/api/menu.json`)
-
+					const API = await $fetch(`${process.env.NUXT_PUBLIC_API_BASE_URL}menu`)
 					return (this.MENU = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)

@@ -6,8 +6,11 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			G_NAME: 'Akvamdeko',
+			G_BASEURL: process.env.NUXT_PUBLIC_API_BASE_URL,
+			// browserBaseURL
 		},
 	},
+
 	meta: {
 		title: 'MDeko',
 		htmlAttrs: { lang: 'ru' },
@@ -28,6 +31,7 @@ export default defineNuxtConfig({
 	set tailwindcss(value) {
 		this._tailwindcss = value
 	},
+
 	postcss: {
 		plugins: {
 			'tailwindcss/nesting': {},

@@ -6,7 +6,7 @@
 		<div class="lg:col-span-5 col-span-full wrap gap-10" v-if="data.list">
 			<dl v-for="(item, id) in data.list" :key="id" class="col-span-4 wrap">
 				<dd class="w-max col-span-1">
-					<Svg svg="tree" class="text-white bg-sec" v-if="item.icon" />
+					<Svg svg="tree" class="text-white" v-if="item.icon" />
 				</dd>
 				<dt class="col-span-7">
 					<span class="text-xl" v-text="item?.title" />

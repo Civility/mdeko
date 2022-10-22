@@ -7,7 +7,7 @@
 		@apply font-main;
 
 		@apply break-words;
-		@apply leading-5;
+		@apply leading-8;
 		@apply subpixel-antialiased;
 	}
 	body {

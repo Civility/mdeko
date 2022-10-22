@@ -15,17 +15,22 @@
 		<Banner class="md:py-15 py-10" :data="bannerMain" v-if="!bannersWait" />
 
 		<section class="container md:py-15 py-10" v-if="!hitsWait">
-			<h2 class="text-center col-span-full title-line">Сезонное предложение</h2>
+			<h2 class="text-center col-span-full py-12"><span class="title-b inline-block">Сезонное предложение</span></h2>
+
 			<div class="wrap">
 				<CardItem v-for="item in hits" :key="item.url" :data="item" class="col-span-4" />
 			</div>
 		</section>
 		<aside class="md:py-15 py-10 wrap md:gap-y-15" v-if="!infoWait">
-			<Info :data="item" class="container bg-dark/50 col-span-full" v-for="item in infoHalf" />
+			<Info
+				:data="item"
+				class="container odd:bg-gradient-to-r bg-gradient-to-l from-main/70 to-sec-dark/90 col-span-full"
+				v-for="item in infoHalf"
+			/>
 		</aside>
 		<Banner class="md:py-15 py-10" right :data="bannerSecond" v-if="!bannersWait" />
 		<aside class="md:my-15 my-10" v-if="!infoWait">
-			<Info :data="item" class="bg-dark/50" v-for="item in infoLast" />
+			<Info :data="item" class="bg-gradient-to-bl from-sec/90 to-main-dark/70" v-for="item in infoLast" />
 		</aside>
 		<div class="fixed inset-0 w-full h-full -z-30">
 			<div class="parallax">

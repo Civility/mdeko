@@ -1,8 +1,7 @@
 <template>
-	<i class="border-2 rounded-full w-10 h-10 flex items-center justify-center shadow">
-		<!-- <img :src="`/assets/svg/${svg}.svg`" width="24" height="24" :alt="svg" /> -->
-		<Icon :name="`mdi:${svg}`" size="24" />
-	</i>
+	<!-- <i class="border-b-2 border-r-2 w-10 border-white h-10 flex items-center justify-center shadow-[3px_3px]"> -->
+	<Icon :name="`mdi:${svg}`" size="24" />
+	<!-- </i> -->
 </template>
 <script setup>
 definePageMeta({

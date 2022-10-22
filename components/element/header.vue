@@ -18,9 +18,9 @@
 					v-for="item in contact.phones"
 					:key="item.number"
 					:link="`tel:${item.number}`"
-					class="!grid grid-cols-[40px,_1fr] gap-x-1"
+					class="!grid grid-cols-[40px,_1fr] gap-x-2"
 				>
-					<Svg svg="phone" class="bg-sec-lighter row-span-2" />
+					<Svg svg="phone" class="row-span-2" />
 
 					<div class="text-sec-lighter" v-text="item.tel" />
 					<span class="block md:text-md text-left !leading-none" v-text="`по ${item.city}`" />

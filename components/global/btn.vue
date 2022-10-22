@@ -1,7 +1,6 @@
 <template>
 	<component :is="isComponent" class="btn" :class="isClass" :type="isType" :to="link">
-		<span v-if="main" class="inline-block bg-white hover:!bg-main-lighter py-2 px-3 text-dark rounded-full"><slot /></span>
-		<slot v-else />
+		<slot />
 	</component>
 </template>
 
@@ -48,7 +47,7 @@ const isClass = computed(() => {
 .btn {
 	@apply inline-flex items-center justify-center;
 	@apply py-2 lg:py-3 px-2 w-auto;
-	@apply rounded;
+
 	@apply text-white;
 	@apply text-sm xl:text-lg md:text-base;
 	@apply align-middle not-italic;
@@ -57,7 +56,12 @@ const isClass = computed(() => {
 	@apply disabled:isolate disabled:pointer-events-none;
 	-webkit-appearance: none;
 	&__main {
-		@apply border-2 border-dashed !p-1.5 !w-min !rounded-full !no-underline hover:border-main-lighter;
+		/* @apply border-b-2 border-r-2 border-main-light  hover:border-main-lighter rounded-lg; */
+		/* @apply shadow-[3px_3px] shadow-main-light; */
+		@apply !no-underline;
+		@apply rounded-md !px-10 !py-2;
+		@apply bg-gradient-to-tl from-main-light/70 to-sec-light/90 hover:to-main hover:from-sec;
+		/* @apply border-main-lighter border-2 rounded-md;	 */
 	}
 	&__clear {
 		@apply rounded-none;
@@ -69,7 +73,7 @@ const isClass = computed(() => {
 		@apply gap-x-1;
 	}
 	&__svg {
-		@apply border-2 border-dashed !p-1.5  w-min !rounded-full !no-underline hover:border-white;
+		@apply border-2  !p-1.5  w-min   !no-underline hover:border-white;
 	}
 }
 </style>
