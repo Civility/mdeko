@@ -21,16 +21,13 @@
 				<CardItem v-for="item in hits" :key="item.url" :data="item" class="col-span-4" />
 			</div>
 		</section>
-		<aside class="md:py-15 py-10 wrap md:gap-y-15" v-if="!infoWait">
-			<Info
-				:data="item"
-				class="container odd:bg-gradient-to-r bg-gradient-to-l from-main/70 to-sec-dark/90 col-span-full"
-				v-for="item in infoHalf"
-			/>
-		</aside>
+
 		<Banner class="md:py-15 py-10" right :data="bannerSecond" v-if="!bannersWait" />
-		<aside class="md:my-15 my-10" v-if="!infoWait">
-			<Info :data="item" class="bg-gradient-to-bl from-sec/90 to-main-dark/70" v-for="item in infoLast" />
+
+		<aside class="md:mb-15 mb-10" v-if="!infoWait">
+			<Info :data="item" v-for="item in infoHalf" class="md:mb-15 mb-10" />
+
+			<Info :data="item" v-for="item in infoLast" />
 		</aside>
 		<div class="fixed inset-0 w-full h-full -z-30">
 			<div class="parallax">

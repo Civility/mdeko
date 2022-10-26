@@ -1,8 +1,12 @@
 <template>
 	<div class="relative group wrap">
 		<!-- <div class="w-full -z-10 flex overflow-hidden bg-fixed"> -->
-		<div class="bg row-span-full col-span-full bg-dark/30">
-			<!-- <img :src="`/img/banners/${data.img.bg}`" :alt="data.img.alt" class="w-full h-full" /> -->
+		<!-- bg-dark/30 -->
+		<div
+			class="row-span-full col-span-full -z-10 mix-blend-overlay bg-dark/30 bg-local bg-center bg-no-repeat bg-cover"
+			:style="`background-image: url(/assets/img/pattern/${data.img.bg})`"
+		>
+			<!-- <img :src="`/assets/img/pattern/${data.img.bg}`" :alt="data.img.alt" class="w-full" /> -->
 		</div>
 		<div class="container info row-span-full col-span-full wrap">
 			<div
