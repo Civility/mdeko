@@ -6,7 +6,7 @@
 					v-for="item in category"
 					:data="item"
 					:key="item.url"
-					class="lg:col-span-2 md:col-span-4 col-span-full"
+					class="xl:col-span-2 md:col-span-4 col-span-full"
 					v-if="!categoryWait"
 				/>
 			</div>
@@ -18,7 +18,7 @@
 			<h2 class="text-center col-span-full py-12"><span class="title-b inline-block">Сезонное предложение</span></h2>
 
 			<div class="wrap">
-				<CardItem v-for="item in hits" :key="item.url" :data="item" class="col-span-4" />
+				<CardItem v-for="item in hits" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
 			</div>
 		</section>
 
@@ -55,6 +55,7 @@ const infoLast = computed(() => info.filter((i, id) => id >= 2))
 <style scoped lang="postcss">
 .parallax {
 	@apply relative;
+	@apply bg-dark;
 	@apply bg-no-repeat bg-cover bg-scroll bg-center;
 	@apply bg-[url('/assets/img/bg3.webp')];
 	@apply flex justify-center items-center;
@@ -62,15 +63,13 @@ const infoLast = computed(() => info.filter((i, id) => id >= 2))
 	@apply h-screen;
 
 	&__mask {
-		@apply bg-black/5;
+		@apply bg-black/10;
 		@apply border border-solid border-white/25;
 		@apply rounded-3xl;
 
 		@apply inline-block relative;
 		@apply backdrop-blur-sm;
 		@apply w-full h-full;
-		/* @apply w-11/12;
-		@apply h-5/6; */
 	}
 }
 </style>

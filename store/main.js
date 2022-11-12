@@ -50,7 +50,7 @@ export const useMain = defineStore('main', {
 					name: 'telegram',
 					title: 'telegram',
 					url: '#',
-					icon: 'telegram.svg',
+					icon: 'baseline-telegram',
 					tel: s.PHONESOCIAL,
 					number: replaceNumber(s.PHONESOCIAL),
 				},
@@ -58,7 +58,7 @@ export const useMain = defineStore('main', {
 					name: 'whatsapp',
 					title: 'whatsapp',
 					url: '#',
-					icon: 'whatsapp.svg',
+					icon: 'baseline-whatsapp',
 					tel: s.PHONESOCIAL,
 					number: replaceNumber(s.PHONESOCIAL),
 				},
@@ -90,7 +90,7 @@ export const useMain = defineStore('main', {
 		async getMenu() {
 			if (!this.MENU.length) {
 				try {
-					const API = await $fetch(`${process.env.NUXT_PUBLIC_API_BASE_URL}menu`)
+					const API = await $fetch(`http://localhost:3000/api/menu.json`)
 					return (this.MENU = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)

@@ -1,22 +1,27 @@
 import { getModules } from './config/modules'
 import { getTailwind, getGoogleFonts } from './config/modules/configModules'
 const isDev = process.env.NODE_ENV !== 'production'
+
 export default defineNuxtConfig({
 	telemetry: false,
+	// ...(!isDev && {
+	// 	experimental: { writeEarlyHints: false },
+	// }),
 	runtimeConfig: {
 		public: {
 			G_NAME: 'Akvamdeko',
-			G_BASEURL: process.env.NUXT_PUBLIC_API_BASE_URL,
-			// browserBaseURL
+			G_IMG: `${process.env.PUBLIC_NAME}/storage/app/media/`,
+			PUBLIC_NAME: `${process.env.PUBLIC_NAME}`,
 		},
 	},
 
 	meta: {
-		title: 'MDeko',
 		htmlAttrs: { lang: 'ru' },
-		meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
-		// link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+		viewport: 'width=device-width, initial-scale=1',
+		title: 'MDeko',
+		meta: [{ name: 'description', content: 'My amazing site.' }],
 	},
+
 	components: {
 		dirs: ['~/components/element', '~/components/partial', '~/components/global'],
 	},

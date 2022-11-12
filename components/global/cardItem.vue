@@ -9,7 +9,7 @@
 			<h3 class="py-6 mb-0 text-dark uppercase title-line after:bg-dark before:bg-dark text-center" v-text="data.title" />
 			<div class="text-center">
 				<Btn svg glue link="#" class="border-dark group-hover:!border-white !w-max">
-					<Svg svg="cart" class="mr-2 text-dark group-hover:!text-white" />
+					<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:!text-white" />
 					<span class="text-dark group-hover:text-white">В корзину</span>
 				</Btn>
 			</div>

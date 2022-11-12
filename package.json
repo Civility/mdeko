@@ -1,48 +1,48 @@
 {
   "name": "akvamdeko",
   "version": "1.0.0",
-  "description": "dependencies are current as of 09/18/2022",
+  "description": "dependencies are current as of 12/11/2022",
   "author": "O.ORLOV",
   "private": true,
   "bugs": "",
   "repository": {
     "type": "git",
-    "url": " "
+    "url": "https://github.com/Civility/mdeko"
   },
   "homepage": "https://akvamdeko.ru/",
+  "comment": "1.replace .env name host. 2.rename NITRO_HOST and NITRO_PORT for scripts",
   "scripts": {
     "dev": "nuxt dev",
-    "dev:modern": "nuxt --modern=server",
     "build": "nuxt build",
+    "start": "env NITRO_HOST=127.0.4.143 NITRO_PORT=53619 node .output/server/index.mjs",
+    "iProd": "npm i --production",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "inst": "npm install",
     "analyze": "npx nuxt build --analyze",
     "del": "rm -rf node_modules package-lock.json .nuxt .output",
     "delfolder": "rm -rf .nuxt .output"
   },
   "dependencies": {
     "@nuxt/postcss8": "latest",
-    "@nuxtjs/google-fonts": "^3.0.0-0",
+    "@nuxtjs/google-fonts": "latest",
     "@nuxtjs/tailwindcss": "latest",
     "@pinia/nuxt": "latest",
     "@tailwindcss/nesting": "latest",
-    "autoprefixer": "^10.4.9",
-    "nuxt-icon": "^0.1.6",
+    "defu": "^6.1.0",
+    "nuxt": "3.0.0-rc.10",
+    "nuxt-icon": "latest",
+    "nuxt-swiper": "latest",
     "pinia": "latest",
-    "swiper": "^8.3.2",
     "vue3-mq": "latest"
   },
   "devDependencies": {
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/stylelint-module": "^4.1.0",
-    "defu": "^6.1.0",
     "eslint": "^8.0.0-rc.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.5.0",
-    "nuxt": "3.0.0-rc.10",
     "prettier": "^2.6.1"
   }
 }

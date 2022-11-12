@@ -1,14 +1,14 @@
 <template>
 	<header class="header" :class="{ 'h-screen bg-main !fixed': toggleMenu }">
 		<nav class="flex md:flex-nowrap flex-wrap justify-between items-center gap-4 container">
-			<a href="/" class="order-1">
+			<NuxtLink to="/" class="order-1" exact>
 				<img src="/assets/svg/logo.svg" width="200" height="100" alt="logo" />
-			</a>
+			</NuxtLink>
 
 			<Menu :menu="menu" v-show="toggleMenu" class="lg:!flex hidden order-2" />
 
 			<div v-if="useMq().mdMinus" class="justify-self-end self-center sm:order-last order-2 mr-left">
-				<button @click="getMenuToggle()" class="nav__menu" :class="{ 'nav__menu--active': toggleMenu }">
+				<button @click="useMain().getMenuToggle" class="nav__menu" :class="{ 'nav__menu--active': toggleMenu }">
 					<span :class="'nav__menu-icon'" v-for="i in 3" />
 				</button>
 			</div>
@@ -18,12 +18,12 @@
 					v-for="item in contact.phones"
 					:key="item.number"
 					:link="`tel:${item.number}`"
-					class="!grid grid-cols-[40px,_1fr] gap-x-2"
+					class="!grid grid-cols-[40px,_1fr] gap-x-2 !py-0"
 				>
-					<Svg svg="phone" class="row-span-2" />
+					<Svg svg="baseline-local-phone" class="row-span-2" />
 
 					<div class="text-sec-lighter" v-text="item.tel" />
-					<span class="block md:text-md text-left !leading-none" v-text="`по ${item.city}`" />
+					<span class="block text-sm text-left !leading-none" v-text="`по ${item.city}`" />
 				</Btn>
 			</div>
 		</nav>
@@ -34,10 +34,10 @@ import { useMq } from 'vue3-mq'
 import { storeToRefs, mapActions } from 'pinia'
 import { useMain } from '@/store/main.js'
 
-const { getMenuToggle } = mapActions(useMain, ['getMenuToggle'])
+// const { getMenuToggle } = mapActions(useMain, ['getMenuToggle'])
 
 const { getMenu, getContactData, menu } = useMain()
-const { toggleMenu, contact } = storeToRefs(useMain())
+const { toggleMenu, contact, getMenuToggle } = storeToRefs(useMain())
 const { pending: menuWait, data: menuData } = await useLazyAsyncData('menu', () => getMenu())
 const { pending: contactWait, data: contactData } = await useLazyAsyncData('contact', () => getContactData())
 </script>

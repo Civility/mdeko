@@ -1,11 +1,29 @@
 <template>
 	<footer class="bg-main-darker py-5">
 		<div class="container">
-			<div class="footer__top">
-				<NuxtLink href="/" class="header__logo logo">
+			<address class="footer__top wrap items-center">
+				<NuxtLink to="/" class="footer__logo logo col-span-2" exact>
 					<img src="/assets/svg/logo.svg" width="200" height="100" alt="logo" />
 				</NuxtLink>
-				<div class="footer__socials flex flex-wrap gap-x-4 gap-y-1">
+
+				<div class="flex flex-wrap gap-x-4 gap-y-1 md:col-span-4 col-span-6">
+					<Btn icon :link="`tel:${phone.number}`" v-for="phone in CONTACT.phones" class="!grid grid-cols-[40px,_1fr] gap-x-2">
+						<Svg svg="baseline-local-phone" class="row-span-2" />
+						<div class="text-sec-lighter" v-text="phone.tel" />
+						<div class="block text-sm text-left !leading-none" v-text="phone.city" />
+					</Btn>
+				</div>
+				<div class="col-span-2">
+					<Btn main class="gap-2 !w-full" @click="openModal('map')">
+						<Svg svg="twotone-place" />
+						Карта
+					</Btn>
+					<Modal refName="map" :show="showModal === 'map'" @isClickShow="(val) => isShow(val)">
+						<template #body> <img src="~/assets/img/bg.webp" alt="map" /> </template>
+					</Modal>
+				</div>
+
+				<div class="footer__socials flex flex-wrap gap-x-4 gap-y-1 md:col-span-2">
 					<Btn
 						v-for="social in SOCIALS"
 						:key="social.name"
@@ -17,25 +35,42 @@
 								? `//wa.me/${social.number}`
 								: null
 						"
-						><img :src="`/assets/svg/${social.icon}`" :alt="social.title" />{{ social.title }}</Btn
 					>
-				</div>
-				<div class="flex flex-wrap gap-x-4 gap-y-1">
-					<Btn :link="`tel:${phone.tel}`" icon v-for="phone in CONTACT.phones">
-						<img src="/assets/svg/call.svg" width="24" height="24" alt="phone" />
-						{{ phone.number }}
-						<div class="md:text-md text-center w-full !leading-none" v-text="phone.city" />
+						<Svg :svg="social.icon" :alt="social.title" />
 					</Btn>
 				</div>
-			</div>
-			<div class="footer__bottom flex flex-wrap justify-between items-end">
-				<div class="footer__copyright flex gap-4">
-					<div class="footer__copyright_notice" v-text="COPYRIGHT.notice" />
-					<div class="footer__copyright_name" v-text="COPYRIGHT.name" />
-					<div class="footer__fullyear" v-text="new Date().getFullYear() + 'г.'" />
+
+				<NuxtLink :to="`mailto:${CONTACT.mail}`" class="col-span-2">
+					<Svg svg="baseline-mail" alt="mail" />
+					{{ CONTACT.mail }}
+				</NuxtLink>
+
+				<div class="pay flex flex-wrap gap-4 justify-end col-span-4">
+					<Btn icon link="#">
+						<img src="/assets/svg/mastercard.svg" alt="mastercard" />
+					</Btn>
+					<Btn icon link="#">
+						<img src="/assets/svg/visa.svg" alt="visa" />
+					</Btn>
+					<Btn icon link="#">
+						<Svg svg="baseline-account-balance-wallet" alt="wallet" />
+					</Btn>
 				</div>
 
-				<NuxtLink class="footer__docs" :to="DOCS.url">{{ DOCS.title }}</NuxtLink>
+				<!-- <div class="col-span-6">
+					{{ CONTACT.address.city }}
+					{{ CONTACT.address.street }}
+					{{ CONTACT.address.office }}
+				</div> -->
+			</address>
+			<div class="footer__bottom flex flex-wrap justify-between items-end mt-4">
+				<div class="footer__copyright flex gap-4">
+					<div class="footer__copyright_notice text-sm" v-text="COPYRIGHT.notice" />
+					<div class="footer__copyright_name text-sm" v-text="COPYRIGHT.name" />
+					<div class="footer__fullyear text-sm" v-text="new Date().getFullYear() + 'г.'" />
+				</div>
+
+				<NuxtLink class="footer__docs text-sm" :to="DOCS.url">{{ DOCS.title }}</NuxtLink>
 			</div>
 		</div>
 	</footer>
@@ -45,4 +80,9 @@ import { storeToRefs } from 'pinia'
 import { useMain } from '@/store/main.js'
 const { CONTACT, SOCIALS } = storeToRefs(useMain())
 const { COPYRIGHT, DOCS } = useMain()
+
+const showModal = shallowRef(null)
+
+const isShow = (val) => (showModal.value = val)
+const openModal = (modalRefName) => (showModal.value = modalRefName)
 </script>
