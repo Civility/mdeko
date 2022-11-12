@@ -1,5 +1,5 @@
 <template>
-	<component :is="isComponent" class="btn" :class="isClass" :type="isType" :to="link">
+	<component :is="isComponent" class="btn" :class="isClass" :type="isType" :to="to">
 		<slot />
 	</component>
 </template>
@@ -10,7 +10,7 @@ definePageMeta({
 	keepalive: true,
 })
 const props = defineProps({
-	link: {
+	to: {
 		type: String,
 		default: null,
 	},
@@ -30,7 +30,7 @@ const props = defineProps({
 		type: Boolean,
 	},
 })
-const isComponent = computed(() => (props.link ? NuxtLink : 'button'))
+const isComponent = computed(() => (props.to ? NuxtLink : 'button'))
 const isType = computed(() => (isComponent != 'button' ? null : 'button'))
 const isClass = computed(() => {
 	return {

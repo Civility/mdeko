@@ -14,12 +14,12 @@
 			>
 				<h2 v-text="data.title" class="text-2xl lg:translate-y-8 lg:group-hover:translate-y-0 transition-all h-6 mb-auto title-b" />
 				<p v-text="data.text" class="lg:opacity-0 lg:group-hover:opacity-100 transition-all mb-4" />
-				<Btn glue :link="`kategorii/${data.url}`" class="lg:opacity-0 lg:group-hover:opacity-100">
+				<Btn glue :to="`kategorii/${data.url}`" class="lg:opacity-0 lg:group-hover:opacity-100">
 					Подробнее
 					<!-- <Svg svg="arrow-right-bold" class="border-white" /> -->
 
 					<!-- <Btn
-						:link="`kategorii/${data.url}`"
+						:to="`kategorii/${data.url}`"
 						glue
 						class="lg:!hidden group-hover:!flex border-2 border-dashed !rounded-full !p-1.5 !transition-all mt-4"
 					>

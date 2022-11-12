@@ -3,6 +3,7 @@
 		"title": "Категория1",
 		"order": 0,
 		"url": "category1",
+		"icon": "baseline-auto-awesome",
 		"text": "text text category1 text text category1 text text category1 text text category1",
 		"img": {
 			"mini": "category1.webp",
@@ -13,6 +14,7 @@
 		"title": "Категория2",
 		"order": 1,
 		"url": "category2",
+		"icon": "baseline-cloud-sync",
 		"text": "text text category2 text text category2 text text category2",
 		"img": {
 			"mini": "category2.webp",
@@ -23,6 +25,7 @@
 		"title": "Категория3",
 		"order": 2,
 		"url": "category3",
+		"icon": "baseline-electric-bolt",
 		"text": "text text category3 text text category3 text text category3 text text category3",
 		"img": {
 			"mini": "category3.webp",
@@ -33,6 +36,7 @@
 		"title": "Категория4",
 		"order": 3,
 		"url": "category4",
+		"icon": "baseline-eco",
 		"text": "text text category4",
 		"img": {
 			"mini": "category4.webp",

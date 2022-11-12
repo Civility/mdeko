@@ -15,7 +15,7 @@
 						<h3 v-text="data.title" class="!mb-12 md:text-4xl capitalize title-b w-min" />
 						<div v-html="data.text" class="text-gray md:ml-6 lg:ml-10" />
 					</div>
-					<Btn main :link="`kategorii/${data.url}`" class="!p-1.5 !w-min !mt-4">Подробнее</Btn>
+					<Btn main :to="`kategorii/${data.url}`" class="!p-1.5 !w-min !mt-4">Подробнее</Btn>
 				</div>
 				<div class="col-span-3 place-self-center">
 					<img :src="`/img/${data.img.mini}`" :alt="data.img.alt" class="py-10 px-5" />

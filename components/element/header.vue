@@ -17,7 +17,7 @@
 				<Btn
 					v-for="item in contact.phones"
 					:key="item.number"
-					:link="`tel:${item.number}`"
+					:to="`tel:${item.number}`"
 					class="!grid grid-cols-[40px,_1fr] gap-x-2 !py-0"
 				>
 					<Svg svg="baseline-local-phone" class="row-span-2" />
@@ -43,7 +43,7 @@ const { pending: contactWait, data: contactData } = await useLazyAsyncData('cont
 </script>
 <style scoped lang="postcss">
 .header {
-	@apply sticky top-0 z-50 w-full py-2 lg:mb-15;
+	@apply sticky top-0 z-50 w-full py-2;
 	@apply bg-gradient-to-l from-main-dark  to-sec-dark/80;
 	/* @apply before:content-[''] before:absolute before:w-full before:h-full before:inset-0 before:-z-20;
 	@apply before:bg-gradient-to-b before:from-main-dark/50 before:to-main/70; */

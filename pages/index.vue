@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<section class="category md:py-15 py-10 container">
+		<section class="category md:py-15 py-10 container h-[90vh] flex justify-center items-center">
 			<div class="wrap">
 				<CardCategory
 					v-for="item in category"
@@ -12,10 +12,10 @@
 			</div>
 		</section>
 
-		<Banner class="md:py-15 py-10" :data="bannerMain" v-if="!bannersWait" />
+		<Banner class="md:pb-15 pb-10" :data="bannerMain" v-if="!bannersWait" />
 
 		<section class="container md:py-15 py-10" v-if="!hitsWait">
-			<h2 class="text-center col-span-full py-12"><span class="title-b inline-block">Сезонное предложение</span></h2>
+			<h2 class="text-center col-span-full"><span class="title-b inline-block">Сезонное предложение</span></h2>
 
 			<div class="wrap">
 				<CardItem v-for="item in hits" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
@@ -29,11 +29,7 @@
 
 			<Info :data="item" v-for="item in infoLast" />
 		</aside>
-		<div class="fixed inset-0 w-full h-full -z-30">
-			<div class="parallax">
-				<div class="parallax__mask" />
-			</div>
-		</div>
+		<span class="parallax" style="background-image: url(/assets/img/bg3.webp);" />
 	</main>
 </template>
 <script setup>
@@ -52,24 +48,3 @@ const { pending: infoWait, data: infoData } = await useLazyAsyncData('info', () 
 const infoHalf = computed(() => info.filter((i, id) => id < 2))
 const infoLast = computed(() => info.filter((i, id) => id >= 2))
 </script>
-<style scoped lang="postcss">
-.parallax {
-	@apply relative;
-	@apply bg-dark;
-	@apply bg-no-repeat bg-cover bg-scroll bg-center;
-	@apply bg-[url('/assets/img/bg3.webp')];
-	@apply flex justify-center items-center;
-	@apply bg-fixed;
-	@apply h-screen;
-
-	&__mask {
-		@apply bg-black/10;
-		@apply border border-solid border-white/25;
-		@apply rounded-3xl;
-
-		@apply inline-block relative;
-		@apply backdrop-blur-sm;
-		@apply w-full h-full;
-	}
-}
-</style>
