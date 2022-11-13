@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<section class="category md:py-15 py-10 container h-[90vh] flex justify-center items-center">
+		<section class="category md:py-15 py-10 container flex justify-center items-center">
 			<div class="wrap">
 				<CardCategory
 					v-for="item in category"
@@ -17,8 +17,8 @@
 		<section class="container md:py-15 py-10" v-if="!hitsWait">
 			<h2 class="text-center col-span-full"><span class="title-b inline-block">Сезонное предложение</span></h2>
 
-			<div class="wrap">
-				<CardItem v-for="item in hits" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
+			<div class="wrap-full">
+				<CardItem v-for="item in hits.splice(0, 3)" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
 			</div>
 		</section>
 

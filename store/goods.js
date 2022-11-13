@@ -7,10 +7,12 @@ export const useGoods = defineStore('goods', {
 	state: () => ({
 		CATEGORY: [],
 		HITS: [],
+		TOVARI: [],
 	}),
 	getters: {
 		category: (s) => s.CATEGORY,
 		hits: (s) => s.HITS,
+		tovari: (s) => s.TOVARI,
 	},
 	actions: {
 		async getCategory() {
@@ -30,6 +32,16 @@ export const useGoods = defineStore('goods', {
 					const API = await $fetch(`http://localhost:3000/api/hits.json`)
 
 					return (this.HITS = API.sort(sortOrder))
+				} catch (err) {
+					console.log(err)
+				}
+			}
+		},
+		async getTovari() {
+			if (!this.TOVARI.length) {
+				try {
+					const API = await $fetch(`http://localhost:3000/api/tovari.json`)
+					return (this.TOVARI = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)
 				}

@@ -3,9 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+	::-webkit-scrollbar-thumb {
+		@apply bg-white;
+		@apply rounded-full border-2 border-dark;
+	}
+	::-webkit-scrollbar-track {
+		@apply bg-sec-light;
+	}
 	html {
 		@apply font-main;
-
 		@apply break-words;
 		@apply leading-8;
 		@apply subpixel-antialiased;
@@ -63,6 +69,9 @@
 	}
 	small {
 		@apply text-small;
+	}
+	[v-cloak] {
+		@apply hidden;
 	}
 }
 
