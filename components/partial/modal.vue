@@ -1,8 +1,39 @@
-<template
-	><Teleport to="body">
+<script setup>
+defineEmits(['isClickShow'])
+
+const props = defineProps({
+	bgclass: String,
+	show: {
+		type: Boolean,
+		default: false,
+	},
+	refName: {
+		type: String,
+		required: true,
+	},
+})
+const showModal = ref(false)
+
+watch(
+	() => props.show,
+	(show) => {
+		showModal.value = show
+	}
+)
+const closeModal = () => (showModal.value = false)
+
+useHead({
+	bodyAttrs: {
+		class: showModal.value ? 'over-hidden' : false,
+	},
+})
+</script>
+
+<template>
+	<Teleport to="body">
 		<div
 			:class="`modal-${refName}`"
-			class="modal"
+			class="fixed z-30 inset-0 overflow-y-auto bg-main/70 bg-opacity-50"
 			:ref="refName"
 			v-if="showModal"
 			aria-modal="true"
@@ -28,57 +59,12 @@
 								</i>
 							</Btn>
 						</div>
-						<div class="modal__body" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+						<div class="modal__body">
 							<slot name="body" />
 						</div>
-						<div class="modal__footer">
-							<slot name="footer" />
-						</div>
-					</div></div
-			></transition></div
-	></Teleport>
+					</div>
+				</div>
+			</transition>
+		</div>
+	</Teleport>
 </template>
-<script setup>
-import { mapActions, storeToRefs } from 'pinia'
-import { useMain } from '@/store/main'
-const { modaltoggle } = storeToRefs(useMain())
-const { getModalToggle } = mapActions(useMain, ['getModalToggle'])
-
-defineEmits(['isClickShow'])
-definePageMeta({
-	keepalive: true,
-})
-const props = defineProps({
-	bgclass: String,
-	show: {
-		type: Boolean,
-		default: false,
-	},
-	refName: {
-		type: String,
-		required: true,
-	},
-})
-const showModal = ref(false)
-
-watch(
-	() => props.show,
-	(show) => {
-		showModal.value = show
-	}
-)
-function closeModal() {
-	showModal.value = false
-}
-useHead({
-	bodyAttrs: {
-		class: showModal.value ? 'over-hidden' : null,
-	},
-})
-</script>
-
-<style lang="postcss" scoped>
-.modal {
-	@apply fixed z-30 inset-0 overflow-y-auto bg-main/70 bg-opacity-50;
-}
-</style>

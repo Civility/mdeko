@@ -1,5 +1,6 @@
 [
 	{
+		"order": 3,
 		"title": "Product1",
 		"category": "category1",
 		"url": "product1",
@@ -10,6 +11,7 @@
 		}
 	},
 	{
+		"order": 0,
 		"title": "Product2",
 		"category": "category2",
 		"url": "product2",
@@ -20,20 +22,11 @@
 		}
 	},
 	{
+		"order": 0,
 		"title": "Product3",
 		"category": "category1",
 		"url": "product3",
 		"price": 333,
-		"img": {
-			"mini": "https://picsum.photos/id/300/300/340.webp",
-			"alt": "alt img"
-		}
-	},
-	{
-		"title": "Product3",
-		"category": "category2",
-		"url": "product3",
-		"price": 444,
 		"img": {
 			"mini": "https://picsum.photos/id/300/300/340.webp",
 			"alt": "alt img"

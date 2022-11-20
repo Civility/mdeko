@@ -1,8 +1,16 @@
+<script setup>
+const props = defineProps({
+	data: Object,
+	right: Boolean,
+	center: Boolean,
+})
+</script>
+
 <template>
 	<div class="relative group wrap">
 		<div
 			class="row-span-full col-span-full -z-10 mix-blend-overlay bg-dark/30 bg-local bg-center bg-no-repeat bg-cover"
-			:style="`background-image: url(/assets/img/pattern/${data.img.bg})`"
+			:style="`background-image: url(/img/pattern/${data.img.bg})`"
 		/>
 
 		<div class="container row-span-full col-span-full wrap">
@@ -24,11 +32,3 @@
 		</div>
 	</div>
 </template>
-
-<script setup>
-const props = defineProps({
-	data: Object,
-	right: Boolean,
-	center: Boolean,
-})
-</script>

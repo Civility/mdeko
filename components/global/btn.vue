@@ -6,9 +6,8 @@
 
 <script setup>
 const NuxtLink = resolveComponent('NuxtLink')
-definePageMeta({
-	keepalive: true,
-})
+
+
 const props = defineProps({
 	to: {
 		type: String,

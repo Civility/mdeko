@@ -6,9 +6,6 @@
 	</Swiper>
 </template>
 <script setup>
-definePageMeta({
-	keepalive: true,
-})
 defineProps({
 	data: {
 		type: Array,

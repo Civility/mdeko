@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 const sortOrder = (a, b) => {
-	return a.order < b.order ? -1 : 1
+	return a.order > b.order ? -1 : 1
 }
 export const useGoods = defineStore('goods', {
 	state: () => ({
@@ -30,8 +30,7 @@ export const useGoods = defineStore('goods', {
 			if (!this.HITS.length) {
 				try {
 					const API = await $fetch(`http://localhost:3000/api/hits.json`)
-
-					return (this.HITS = API.sort(sortOrder))
+					return (this.HITS = await API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)
 				}

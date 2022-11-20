@@ -1,16 +1,38 @@
+import { getScreens } from './config/screens'
+import { fileURLToPath } from 'node:url'
+
+const srcDir = fileURLToPath(new URL('../', import.meta.url))
 module.exports = {
-	mode: 'jit',
 	content: [
-		'./components/**/*.{vue,js}',
-		'./layouts/**/*.vue',
-		'./pages/**/*.vue',
-		'./plugins/**/*.{vue,js}',
-		'./app.vue',
-		// './nuxt.config.{js,ts}',
+		`${srcDir}/components/**/*.{vue,js,ts}`,
+		`${srcDir}/layouts/**/*.vue`,
+		`${srcDir}/pages/**/*.vue`,
+		`${srcDir}/composables/**/*.{js,ts}`,
+		`${srcDir}/plugins/**/*.{js,ts}`,
+		`${srcDir}/App.{js,ts,vue}`,
+		`${srcDir}/app.{js,ts,vue}`,
+		`${srcDir}/Error.{js,ts,vue}`,
+		`${srcDir}/error.{js,ts,vue}`,
 	],
 	safelist: ['text-main', 'text-sec', 'text-some', 'bg-main', 'bg-sec', 'bg-some'],
 	darkMode: 'media',
 	theme: {
+		container: {
+			center: true,
+			padding: {
+				DEFAULT: '1rem',
+			},
+			screens: {
+				xl: getScreens().xxl + 'px',
+			},
+		},
+		screens: {
+			sm: getScreens().sm + 'px',
+			md: getScreens().md + 'px',
+			lg: getScreens().lg + 'px',
+			xl: getScreens().xl + 'px',
+			xxl: getScreens().xxl + 'px',
+		},
 		colors: {
 			white: '#FFF',
 			black: '#000',

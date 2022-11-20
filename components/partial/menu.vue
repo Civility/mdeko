@@ -17,9 +17,8 @@ import { storeToRefs } from 'pinia'
 import { useMain } from '@/store/main.js'
 // const { getMenu } = useMain()
 const { getMenuClosed } = storeToRefs(useMain())
-definePageMeta({
-	keepalive: true,
-})
+
+
 defineProps({
 	menu: {
 		type: Array,

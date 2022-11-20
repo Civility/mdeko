@@ -2,13 +2,8 @@
 	<div class="relative mx-auto lg:w-full w-auto min-w-[300px] rounded overflow-hidden group shadow-lg">
 		<div class="relative h-96 flex justify-center overflow-hidden rounded">
 			<img class="md:w-full h-full" :src="`/img/categories/${data.img.mini}`" :alt="data.img.alt" />
-			<!-- <div
-				class="w-full h-full bg-fixed bg-origin-border bg-center bg-no-repeat bg-cover"
-				:style="`background-image: url(/img/categories/${data.img.mini})`"
-			/> -->
 		</div>
 		<div class="absolute inset-0 p-6 bg-dark/30">
-			<!-- <div class="lg:group-hover:border-2 lg:group-hover:border-solid p-4 h-full transition-all relative border-sec-lighter"> -->
 			<div
 				class="flex flex-col justify-center items-center h-full w-full group-hover:bg-gradient-to-l from-main/70 to-main-dark/90 p-6 transition-all"
 			>
@@ -16,18 +11,8 @@
 				<p v-text="data.text" class="lg:opacity-0 lg:group-hover:opacity-100 transition-all mb-4" />
 				<Btn glue :to="`kategorii/${data.url}`" class="lg:opacity-0 lg:group-hover:opacity-100">
 					Подробнее
-					<!-- <Svg svg="arrow-right-bold" class="border-white" /> -->
-
-					<!-- <Btn
-						:to="`kategorii/${data.url}`"
-						glue
-						class="lg:!hidden group-hover:!flex border-2 border-dashed !rounded-full !p-1.5 !transition-all mt-4"
-					>
-						<span class="inline-block bg-white py-2 px-3 text-dark rounded-full">Подробнее</span>
-					</Btn> -->
 				</Btn>
 			</div>
-			<!-- </div> -->
 		</div>
 	</div>
 </template>

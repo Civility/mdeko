@@ -1,7 +1,7 @@
 <template>
 	<div class="relative group wrap bg-gradient-to-l from-main/60 to-sec-dark/70" :class="{ '!bg-gradient-to-r': data.order === 2 }">
 		<div
-			style="background-image: url(/assets/img/pattern/pattern2-down.webp);"
+			style="background-image: url(/img/pattern/pattern2-down.webp);"
 			class="row-span-full col-span-full -z-10 mix-blend-overlay bg-local bg-center bg-no-repeat bg-cover transform group-even:-scale-x-[1]"
 		/>
 		<div class="container md:py-15 py-10 row-span-full col-span-full wrap">

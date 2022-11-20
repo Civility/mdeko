@@ -1,48 +1,43 @@
 {
-  "name": "akvamdeko",
-  "version": "1.0.0",
-  "description": "dependencies are current as of 12/11/2022",
-  "author": "O.ORLOV",
-  "private": true,
-  "bugs": "",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Civility/mdeko"
-  },
-  "homepage": "https://akvamdeko.ru/",
-  "comment": "1.replace .env name host. 2.rename NITRO_HOST and NITRO_PORT for scripts",
-  "scripts": {
-    "dev": "nuxt dev",
-    "build": "nuxt build",
-    "start": "env NITRO_HOST=127.0.4.143 NITRO_PORT=53619 node .output/server/index.mjs",
-    "iProd": "npm i --production",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "analyze": "npx nuxt build --analyze",
-    "del": "rm -rf node_modules package-lock.json .nuxt .output",
-    "delfolder": "rm -rf .nuxt .output"
-  },
-  "dependencies": {
-    "@nuxt/postcss8": "latest",
-    "@nuxtjs/google-fonts": "latest",
-    "@nuxtjs/tailwindcss": "latest",
-    "@pinia/nuxt": "latest",
-    "@tailwindcss/nesting": "latest",
-    "defu": "^6.1.0",
-    "nuxt": "3.0.0-rc.10",
-    "nuxt-icon": "latest",
-    "nuxt-swiper": "latest",
-    "pinia": "latest",
-    "vue3-mq": "latest"
-  },
-  "devDependencies": {
-    "@nuxtjs/eslint-module": "^3.0.2",
-    "@nuxtjs/stylelint-module": "^4.1.0",
-    "eslint": "^8.0.0-rc.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.5.0",
-    "prettier": "^2.6.1"
-  }
+	"name": "akvamdeko",
+	"version": "1.0.0",
+	"private": true,
+	"author": "O.ORLOV",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Civility/mdeko"
+	},
+	"homepage": "https://akvamdeko.ru/",
+	"comment": "1.replace .env name host. 2.rename NITRO_HOST and NITRO_PORT for scripts",
+	"scripts": {
+		"dev": "nuxt dev",
+		"build": "nuxt build",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"analyze": "npx nuxt build --analyze",
+		"del": "rm -rf node_modules package-lock.json .nuxt .output",
+		"start": "env NITRO_HOST=127.0.4.143 NITRO_PORT=53619 node .output/server/index.mjs",
+		"iProd": "npm i --production"
+	},
+	"dependencies": {
+		"@nuxtjs/tailwindcss": "^6.1.3",
+		"@pinia/nuxt": "^0.4.4",
+		"@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+		"autoprefixer": "^10.4.13",
+		"defu": "^6.1.1",
+		"nuxt": "3.0.0",
+		"nuxt-icon": "^0.1.7",
+		"nuxt-swiper": "^0.1.6",
+		"pinia": "^2.0.24"
+	},
+	"devDependencies": {
+		"@nuxtjs/eslint-module": "^3.1.0",
+		"@nuxtjs/stylelint-module": "^4.1.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-vue": "^9.7.0",
+		"prettier": "^2.7.1"
+	}
 }
