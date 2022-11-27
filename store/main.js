@@ -87,10 +87,10 @@ export const useMain = defineStore('main', {
 		getMenuClosed() {
 			this.TOGGLEMENU = false
 		},
-		async getMenu() {
+		async getMenu(PUBLIC_NAME) {
 			if (!this.MENU.length) {
 				try {
-					const API = await $fetch(`http://localhost:3000/api/menu.json`)
+					const API = await $fetch(`${PUBLIC_NAME}/menu.json`)
 					return (this.MENU = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)

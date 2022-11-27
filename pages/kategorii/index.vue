@@ -1,14 +1,15 @@
 <script setup>
+const config = useRuntimeConfig()
 import { storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 const { getCategory, getTovari } = useGoods()
 const { category, tovari } = storeToRefs(useGoods())
-const { pending: categoryWait, data: categoryData } = await useLazyAsyncData('category', () => getCategory())
-const { pending: tovariWait, data: tovariData } = await useLazyAsyncData('tovari', () => getTovari())
+const { pending: categoryWait, data: categoryData } = await useLazyAsyncData('category', () => getCategory(config.public.PUBLIC_NAME))
+const { pending: tovariWait, data: tovariData } = await useLazyAsyncData('tovari', () => getTovari(config.public.PUBLIC_NAME))
 // watchEffect(() => refresh(), getTovari())
 const arrTovari = ref(tovari.value)
 
-const typeActiveCategory = shallowRef(null)
+const typeActiveCategory = ref(null)
 // if (process.client) {
 const isTovari = (url) => {
 	typeActiveCategory.value = url

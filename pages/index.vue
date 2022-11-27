@@ -2,14 +2,14 @@
 import { storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 import { useInfo } from '@/store/info.js'
-
+const config = useRuntimeConfig()
 const { getCategory, getHits, category, hits, HITS } = useGoods()
 const { getBanners, getInfo, info } = useInfo()
 const { bannerMain, bannerSecond } = storeToRefs(useInfo())
-const { pending: categoryWait, data: categoryData } = await useLazyAsyncData('category', () => getCategory())
-const { pending: bannersWait, data: bannersData } = await useLazyAsyncData('banners', () => getBanners())
-const { pending: hitsWait, data: hitsData } = await useLazyAsyncData('hits', () => getHits())
-const { pending: infoWait, data: infoData } = await useLazyAsyncData('info', () => getInfo())
+const { pending: categoryWait, data: categoryData } = await useLazyAsyncData('category', () => getCategory(config.public.PUBLIC_NAME))
+const { pending: bannersWait, data: bannersData } = await useLazyAsyncData('banners', () => getBanners(config.public.PUBLIC_NAME))
+const { pending: hitsWait, data: hitsData } = await useLazyAsyncData('hits', () => getHits(config.public.PUBLIC_NAME))
+const { pending: infoWait, data: infoData } = await useLazyAsyncData('info', () => getInfo(config.public.PUBLIC_NAME))
 const infoHalf = computed(() => info.filter((i, id) => id < 2))
 const infoLast = computed(() => info.filter((i, id) => id >= 2))
 </script>
@@ -47,6 +47,6 @@ const infoLast = computed(() => info.filter((i, id) => id >= 2))
 
 			<Info :data="item" v-for="item in infoLast" />
 		</aside>
-		<span class="parallax" style="background-image: url(/img/bg3.webp);" />
+		<span class="parallax" style="background-image: url(/img/bg3.webp)" />
 	</main>
 </template>

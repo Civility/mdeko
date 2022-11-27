@@ -16,20 +16,20 @@ export const useInfo = defineStore('info', {
 		bannerSecond: (s) => s.BANNERS.find((banner) => banner.order === 1),
 	},
 	actions: {
-		async getBanners() {
+		async getBanners(PUBLIC_NAME) {
 			if (!this.BANNERS.length) {
 				try {
-					const API = await $fetch(`http://localhost:3000/api/banners.json`)
+					const API = await $fetch(`${PUBLIC_NAME}/banners.json`)
 					return (this.BANNERS = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)
 				}
 			}
 		},
-		async getInfo() {
+		async getInfo(PUBLIC_NAME) {
 			if (!this.INFO.length) {
 				try {
-					this.INFO = await $fetch(`http://localhost:3000/api/info.json`)
+					this.INFO = await $fetch(`${PUBLIC_NAME}/info.json`)
 				} catch (err) {
 					console.log(err)
 				}

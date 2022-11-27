@@ -7,7 +7,6 @@
 <script setup>
 const NuxtLink = resolveComponent('NuxtLink')
 
-
 const props = defineProps({
 	to: {
 		type: String,
@@ -72,7 +71,7 @@ const isClass = computed(() => {
 		@apply gap-x-1;
 	}
 	&__svg {
-		@apply border-2  !p-1.5  w-min   !no-underline hover:border-white;
+		@apply border-2 !p-1.5 w-min !no-underline hover:border-white;
 	}
 }
 </style>

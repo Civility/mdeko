@@ -1,9 +1,10 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMain } from '@/store/main.js'
+const config = useRuntimeConfig()
 const { getMenu, getContactData, menu } = useMain()
 const { toggleMenu, contact, getMenuToggle } = storeToRefs(useMain())
-const { pending: menuWait, data: menuData } = await useLazyAsyncData('menu', () => getMenu())
+const { pending: menuWait, data: menuData } = await useLazyAsyncData('menu', () => getMenu(config.public.PUBLIC_NAME))
 const { pending: contactWait, data: contactData } = await useLazyAsyncData('contact', () => getContactData())
 const togglePhones = ref(true)
 const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
