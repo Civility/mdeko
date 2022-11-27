@@ -9,7 +9,7 @@ const { pending: tovariWait, data: tovariData } = await useLazyAsyncData('tovari
 const arrTovari = ref(tovari.value)
 
 const typeActiveCategory = shallowRef(null)
-
+// if (process.client) {
 const isTovari = (url) => {
 	typeActiveCategory.value = url
 
@@ -18,7 +18,7 @@ const isTovari = (url) => {
 </script>
 <template>
 	<main class="wrap container gap-x-12">
-		<nav class="md:col-span-2 col-span-full md:h-full bg-gradient-to-tl from-main-dark to-sec-dark flex flex-col gap-4 py-10 -mx-4">
+		<nav class="lg:col-span-2 col-span-full md:h-full bg-gradient-to-tl from-main-dark to-sec-dark flex flex-col gap-4 py-10 -mx-4">
 			<div class="sticky top-1/4 flex flex-col gap-4">
 				<Btn
 					main
@@ -26,7 +26,7 @@ const isTovari = (url) => {
 					v-for="nav in category"
 					:key="nav.url"
 					class="mx-4"
-					@click.native="isTovari(nav.url)"
+					@click.passive="isTovari(nav.url)"
 					:class="{ '!to-sec !from-main': typeActiveCategory === nav.url }"
 				>
 					{{ nav.title }}
@@ -34,7 +34,7 @@ const isTovari = (url) => {
 				</Btn>
 			</div>
 		</nav>
-		<section	 class="col-span-6 wrap-full my-4">
+		<section class="lg:col-span-6 col-span-full wrap-full my-4">
 			<LazyCardItem
 				v-for="item in tovariData"
 				:key="item.url"
@@ -44,6 +44,6 @@ const isTovari = (url) => {
 			/>
 			<LazyCardItem v-for="item in arrTovari" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" v-else />
 		</section>
-		<span class="parallax" style="background-image: url(/img/bg2.webp);" />
+		<span class="parallax" style="background-image: url(/img/bg2.webp)" />
 	</main>
 </template>

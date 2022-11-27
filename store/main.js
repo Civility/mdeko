@@ -18,7 +18,7 @@ export const useMain = defineStore('main', {
 		MENU: [],
 		CONTACT: {
 			phones: [],
-			mail: 'test@test.com',
+			mail: 'info@akvamdeko.ru',
 			address: {
 				country: 'Россия, 196006',
 				city: 'г. Санкт-Петербург',

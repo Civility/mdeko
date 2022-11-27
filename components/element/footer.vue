@@ -79,8 +79,7 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 			<div class="footer__bottom flex flex-wrap justify-between items-end mt-4">
 				<div class="footer__copyright flex gap-4">
 					<div class="footer__copyright_notice text-sm" v-text="COPYRIGHT.notice" />
-					<div class="footer__copyright_name text-sm" v-text="COPYRIGHT.name" />
-					<div class="footer__fullyear text-sm" v-text="new Date().getFullYear() + 'г.'" />
+					<div class="footer__copyright_name text-sm">{{ COPYRIGHT.name }} {{ new Date().getFullYear() + 'г.' }}</div>
 				</div>
 
 				<div class="pay flex flex-wrap gap-4">

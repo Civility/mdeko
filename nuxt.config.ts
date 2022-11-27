@@ -23,6 +23,7 @@ export default defineNuxtConfig({
 		plugins: {
 			'tailwindcss/nesting': {},
 			autoprefixer: {},
+			'postcss-responsive-type': {}
 		},
 	},
 

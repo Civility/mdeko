@@ -1,0 +1,19 @@
+{
+	"title": "Name",
+	"text": "<p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, consectetur. A minima sequi consequatur quibusdam labore obcaecati deserunt alias temporibus iure illo, dolorum repellat ipsum aperiam consectetur, quia numquam! Delectus! <span> text</span></p>",
+	"sostav": "<p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, consectetur. A minima sequi consequatur quibusdam labore obcaecati deserunt alias temporibus iure illo, dolorum repellat ipsum aperiam consectetur, quia numquam! Delectus!</p>",
+	"primeneniye": "<p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, consectetur. A minima sequi consequatur quibusdam labore obcaecati deserunt alias temporibus iure illo, dolorum repellat ipsum aperiam consectetur, quia numquam! Delectus!</p>",
+	"khraneniye": "<p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, consectetur. A minima sequi consequatur quibusdam labore obcaecati deserunt alias temporibus iure illo, dolorum repellat ipsum aperiam consectetur, quia numquam! Delectus!</p>",
+	"ogranicheniye": "<p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, consectetur. A minima sequi consequatur quibusdam labore obcaecati deserunt alias temporibus iure illo, dolorum repellat ipsum aperiam consectetur, quia numquam! Delectus!</p>",
+	"obiyom": "0.25мл.",
+	"slider": [
+		"/img/categories/kategorii.webp",
+		"/img/categories/kategorii2.webp",
+		"/img/categories/kategorii3.webp",
+		"/img/categories/kategorii4.webp"
+	],
+	"cena": 2343,
+	"link_wildberries": "wildberries.ru/me/name1",
+	"description": "<p> text <span> text</span></p>",
+	"hit": true
+}

@@ -11,18 +11,28 @@
 		@apply bg-sec-light;
 	}
 	html {
+		font-size: responsive;
+		lower-font-range: 420px;
+		upper-font-range: 1440px;
 		@apply font-main;
 		@apply break-words;
 		@apply leading-8;
 		@apply subpixel-antialiased;
+		/* @apply h-full; */
 	}
 	body {
 		@apply text-white;
 		@apply text-base;
+		/* @apply h-full; */
 	}
+	/* #__nuxt {
+		@apply h-full flex flex-col;
+	} */
+	
 	main {
 		@apply relative;
 	}
+ 
 	img {
 		@apply object-cover;
 	}
@@ -72,6 +82,9 @@
 	}
 	[v-cloak] {
 		@apply hidden;
+	}
+	dt {
+		@apply font-bold;
 	}
 }
 

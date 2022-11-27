@@ -4,11 +4,8 @@ module.exports = {
 		browser: true,
 		node: true,
 	},
-	parserOptions: {
-		parser: 'babel-eslint',
-	},
 	plugins: ['prettier'],
-	extends: ['eslint:recommended', 'plugin:nuxt/recommended', 'prettier'],
+	extends: ['eslint:recommended', 'prettier'],
 	rules: {
 		semi: [2, 'never'],
 		'comma-dangle': ['error', 'always-multiline'],

@@ -1,19 +1,17 @@
-import { getScreens } from './config/screens'
-import { fileURLToPath } from 'node:url'
-
-const srcDir = fileURLToPath(new URL('../', import.meta.url))
+// import { fileURLToPath } from 'node:url'
+// const srcDir = fileURLToPath(new URL('../', import.meta.url))
 module.exports = {
-	content: [
-		`${srcDir}/components/**/*.{vue,js,ts}`,
-		`${srcDir}/layouts/**/*.vue`,
-		`${srcDir}/pages/**/*.vue`,
-		`${srcDir}/composables/**/*.{js,ts}`,
-		`${srcDir}/plugins/**/*.{js,ts}`,
-		`${srcDir}/App.{js,ts,vue}`,
-		`${srcDir}/app.{js,ts,vue}`,
-		`${srcDir}/Error.{js,ts,vue}`,
-		`${srcDir}/error.{js,ts,vue}`,
-	],
+	// content: [
+	// 	`${srcDir}/components/**/*.{vue,js,ts}`,
+	// 	`${srcDir}/layouts/**/*.vue`,
+	// 	`${srcDir}/pages/**/*.vue`,
+	// 	`${srcDir}/composables/**/*.{js,ts}`,
+	// 	`${srcDir}/plugins/**/*.{js,ts}`,
+	// 	`${srcDir}/App.{js,ts,vue}`,
+	// 	`${srcDir}/app.{js,ts,vue}`,
+	// 	`${srcDir}/Error.{js,ts,vue}`,
+	// 	`${srcDir}/error.{js,ts,vue}`,
+	// ],
 	safelist: ['text-main', 'text-sec', 'text-some', 'bg-main', 'bg-sec', 'bg-some'],
 	darkMode: 'media',
 	theme: {
@@ -23,15 +21,15 @@ module.exports = {
 				DEFAULT: '1rem',
 			},
 			screens: {
-				xl: getScreens().xxl + 'px',
+				xl: '1536px',
 			},
 		},
 		screens: {
-			sm: getScreens().sm + 'px',
-			md: getScreens().md + 'px',
-			lg: getScreens().lg + 'px',
-			xl: getScreens().xl + 'px',
-			xxl: getScreens().xxl + 'px',
+			sm: '640px',
+			md: '768px',
+			lg: '1024px',
+			xl: '1280px',
+			xxl: '1536px',
 		},
 		colors: {
 			white: '#FFF',
@@ -43,12 +41,6 @@ module.exports = {
 			gray: '#e3e3e3',
 			transparent: 'transparent',
 			main: {
-				// lighter: '#9CB4A5',
-				// light: '#94B4A0',
-				// // DEFAULT: '#929C53',
-				// DEFAULT: '#506959',
-				// dark: '#414F46',
-				// darker: '#1A442A',
 				lighter: '#77C88F',
 				light: '#59C87B',
 				DEFAULT: '#269046',
@@ -84,9 +76,9 @@ module.exports = {
 				'5xl': ['2.875rem'], // 46px
 			},
 			spacing: {
-				'1.5': '0.375rem', // 6px
-				'7.5': '1.875rem', // 30px
-				'15': '3.75rem', // 60px
+				1.5: '0.375rem', // 6px
+				7.5: '1.875rem', // 30px
+				15: '3.75rem', // 60px
 			},
 			borderRadius: {
 				circle: '50%',

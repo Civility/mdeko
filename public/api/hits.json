@@ -1,9 +1,9 @@
 [
 	{
-		"order": 3,
-		"title": "Product1",
-		"category": "category1",
-		"url": "product1",
+		"order": 1,
+		"title": "Tovar1",
+		"category": "kategorii",
+		"url": "tovar1",
 		"price": 111,
 		"img": {
 			"mini": "https://picsum.photos/id/300/300/340.webp",
@@ -13,7 +13,7 @@
 	{
 		"order": 0,
 		"title": "Product2",
-		"category": "category2",
+		"category": "kategorii2",
 		"url": "product2",
 		"price": 222,
 		"img": {
@@ -22,10 +22,10 @@
 		}
 	},
 	{
-		"order": 0,
-		"title": "Product3",
-		"category": "category1",
-		"url": "product3",
+		"order": 2,
+		"title": "Tovar1",
+		"category": "kategorii",
+		"url": "tovar1",
 		"price": 333,
 		"img": {
 			"mini": "https://picsum.photos/id/300/300/340.webp",

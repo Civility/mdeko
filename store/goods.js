@@ -8,13 +8,24 @@ export const useGoods = defineStore('goods', {
 		CATEGORY: [],
 		HITS: [],
 		TOVARI: [],
+		PRODUCT: {},
 	}),
 	getters: {
 		category: (s) => s.CATEGORY,
 		hits: (s) => s.HITS,
 		tovari: (s) => s.TOVARI,
+		product: (s) => s.PRODUCT,
 	},
 	actions: {
+				async getProduct(path) {
+			if (!this.PRODUCT.length) {
+				try {
+					 this.PRODUCT = await $fetch(`http://localhost:3000/api${path}.json`)
+				} catch (err) {
+					console.log(err)
+				}
+			}
+		},
 		async getCategory() {
 			if (!this.CATEGORY.length) {
 				try {
