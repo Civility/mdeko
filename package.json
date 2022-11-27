@@ -18,7 +18,7 @@
 		"analyze": "npx nuxt build --analyze",
 		"instProd": "npm i --production",
 		"del": "rm -rf node_modules package-lock.json .nuxt .output",
-		"startDev": "env NITRO_HOST=127.0.0.1 node .output/server/index.mjs",
+		"devPROD": "env NITRO_HOST=127.0.0.1 node .output/server/index.mjs",
 		"start": "env NITRO_HOST=127.0.4.127 NITRO_PORT=52085 node .output/server/index.mjs",
 		"iProd": "npm i --production"
 	},
