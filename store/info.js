@@ -19,7 +19,7 @@ export const useInfo = defineStore('info', {
 		async getBanners(PUBLIC_NAME) {
 			if (!this.BANNERS.length) {
 				try {
-					const API = await $fetch(`${PUBLIC_NAME}/banners.json`)
+					const API = await $fetch(`${PUBLIC_NAME}/banners`)
 					return (this.BANNERS = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)
@@ -29,7 +29,7 @@ export const useInfo = defineStore('info', {
 		async getInfo(PUBLIC_NAME) {
 			if (!this.INFO.length) {
 				try {
-					this.INFO = await $fetch(`${PUBLIC_NAME}/info.json`)
+					this.INFO = await $fetch(`${PUBLIC_NAME}/info`)
 				} catch (err) {
 					console.log(err)
 				}

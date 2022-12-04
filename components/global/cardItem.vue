@@ -14,6 +14,7 @@
 				shadow-lg
 				flex flex-col
 				py-8
+				h-full
 			"
 		>
 			<div class="relative w-32 p-8 mx-auto flex justify-center overflow-hidden rounded">
@@ -35,7 +36,7 @@
 				"
 				v-text="data.title"
 			/>
-			<div class="text-center">
+			<div class="text-center mt-auto">
 				<Btn svg glue :to="`/${data.category}/${data.url}`" class="border-dark group-hover:!border-white !w-max">
 					<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:!text-white" />
 					<span class="text-dark group-hover:text-white">В корзину</span>

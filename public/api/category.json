@@ -6,6 +6,7 @@
 		"icon": "baseline-auto-awesome",
 		"text": "text text category1 text text category1 text text category1 text text category1",
 		"img": {
+			"big": "kategorii.webp",
 			"mini": "kategorii.webp",
 			"alt": "alt category1"
 		}
@@ -17,6 +18,7 @@
 		"icon": "baseline-cloud-sync",
 		"text": "text text category2 text text category2 text text category2",
 		"img": {
+			"big": "kategorii2.webp",
 			"mini": "kategorii2.webp",
 			"alt": "alt category2"
 		}
@@ -28,6 +30,7 @@
 		"icon": "baseline-electric-bolt",
 		"text": "text text category3 text text category3 text text category3 text text category3",
 		"img": {
+			"big": "kategorii3.webp",
 			"mini": "kategorii3.webp",
 			"alt": "alt category3"
 		}
@@ -39,6 +42,7 @@
 		"icon": "baseline-eco",
 		"text": "text text category4",
 		"img": {
+			"big": "kategorii4.webp",
 			"mini": "kategorii4.webp",
 			"alt": "alt category4"
 		}

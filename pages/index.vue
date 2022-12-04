@@ -3,10 +3,12 @@ import { storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 import { useInfo } from '@/store/info.js'
 const config = useRuntimeConfig()
-const { getCategory, getHits, category, hits, HITS } = useGoods()
+const { getCategories, getHits, categories, hits, HITS } = useGoods()
 const { getBanners, getInfo, info } = useInfo()
 const { bannerMain, bannerSecond } = storeToRefs(useInfo())
-const { pending: categoryWait, data: categoryData } = await useLazyAsyncData('category', () => getCategory(config.public.PUBLIC_NAME))
+const { pending: categoriesWait, data: categoriesData } = await useLazyAsyncData('categories', () =>
+	getCategories(config.public.PUBLIC_NAME)
+)
 const { pending: bannersWait, data: bannersData } = await useLazyAsyncData('banners', () => getBanners(config.public.PUBLIC_NAME))
 const { pending: hitsWait, data: hitsData } = await useLazyAsyncData('hits', () => getHits(config.public.PUBLIC_NAME))
 const { pending: infoWait, data: infoData } = await useLazyAsyncData('info', () => getInfo(config.public.PUBLIC_NAME))
@@ -19,18 +21,18 @@ const infoLast = computed(() => info.filter((i, id) => id >= 2))
 		<section class="category md:py-15 py-10 container flex justify-center items-center">
 			<div class="wrap">
 				<CardCategory
-					v-for="item in category"
+					v-for="item in categories"
 					:data="item"
 					:key="item.url"
 					class="xl:col-span-2 md:col-span-4 col-span-full"
-					v-if="!categoryWait"
+					v-if="!categoriesWait"
 				/>
 			</div>
 		</section>
 
 		<Banner class="md:pb-15 pb-10" :data="bannerMain" v-if="!bannersWait" />
 
-		<section class="container md:py-15 py-10" v-if="!hitsWait">
+		<section class="container md:py-15 py-10" v-if="!hitsWait && hits.length">
 			<h2 class="text-center col-span-full"><span class="title-b inline-block">Сезонное предложение</span></h2>
 
 			<div class="wrap-full">
