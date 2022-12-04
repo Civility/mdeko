@@ -13,7 +13,6 @@ module.exports = {
 	// 	`${srcDir}/error.{js,ts,vue}`,
 	// ],
 	safelist: ['text-main', 'text-sec', 'text-some', 'bg-main', 'bg-sec', 'bg-some'],
-	darkMode: 'media',
 	theme: {
 		container: {
 			center: true,

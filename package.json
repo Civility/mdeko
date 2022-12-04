@@ -27,7 +27,6 @@
 		"@pinia/nuxt": "^0.4.4",
 		"@tailwindcss/nesting": "latest",
 		"autoprefixer": "^10.4.13",
-		"defu": "^6.1.1",
 		"nuxt": "3.0.0",
 		"nuxt-icon": "^0.1.7",
 		"nuxt-swiper": "^0.1.6",
@@ -35,10 +34,10 @@
 		"postcss-responsive-type": "^1.0.0"
 	},
 	"devDependencies": {
-		"babel-eslint": "^10.1.0",
 		"@nuxtjs/eslint-config": "^12.0.0",
 		"@nuxtjs/eslint-module": "^3.1.0",
 		"@nuxtjs/stylelint-module": "^4.1.0",
+		"babel-eslint": "^10.1.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-nuxt": "^4.0.0",

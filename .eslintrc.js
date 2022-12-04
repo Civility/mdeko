@@ -3,9 +3,14 @@ module.exports = {
 	env: {
 		browser: true,
 		node: true,
+		// es2021: true,
+	},
+	parserOptions: {
+		sourceType: 'module',
+		parser: 'babel-eslint',
 	},
 	plugins: ['prettier'],
-	extends: ['eslint:recommended', 'prettier'],
+	extends: ['eslint:recommended', 'plugin:eslint-plugin-nuxt', 'prettier'],
 	rules: {
 		semi: [2, 'never'],
 		'comma-dangle': ['error', 'always-multiline'],
