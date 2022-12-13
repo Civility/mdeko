@@ -37,7 +37,7 @@
 				v-text="data.title"
 			/>
 			<div class="text-center mt-auto">
-				<Btn svg glue :to="`/${data.category}/${data.url}`" class="border-dark group-hover:!border-white !w-max">
+				<Btn svg glue :to="`/kategorii/${data.category}/${data.url}`" class="border-dark group-hover:!border-white !w-max">
 					<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:!text-white" />
 					<span class="text-dark group-hover:text-white">В корзину</span>
 				</Btn>
@@ -52,5 +52,5 @@ const props = defineProps({
 })
 
 // const href = shallowRef()
-const isHref = computed(() => `kategorii/${props.data.category}/${props.data.url}`)
+// const isHref = computed(() => `kategorii/${props.data.category}/${props.data.url}`)
 </script>
