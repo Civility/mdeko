@@ -1,8 +1,8 @@
 <script setup>
-const config = useRuntimeConfig()
-const route = useRoute()
 import { storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
+const config = useRuntimeConfig()
+const route = useRoute()
 const { getProduct } = useGoods()
 const { product } = storeToRefs(useGoods())
 console.log(route)
@@ -40,7 +40,7 @@ const addCart = ref('#')
 			>
 				<template #content="{ slider }">
 					<!-- ${config.public.G_IMG} -->
-					<img :src="`${slider}`" :alt="slider" class="block w-full h-full object-cover max-h-[700px] mb-8" />
+					<img :src="`${slider}`" :alt="slider" class="block object-cover max-h-[700px] mb-8" />
 				</template>
 			</Slider>
 			<Slider
@@ -56,7 +56,7 @@ const addCart = ref('#')
 				:direction="'horizontal'"
 			>
 				<template #content="{ slider }">
-					<img :src="`${slider}`" :alt="slider" class="w-full h-full object-cover max-h-[300px]" />
+					<div class="w-10"><img :src="`${slider}`" :alt="slider" class="object-cover" /></div>
 				</template>
 			</Slider>
 		</div>

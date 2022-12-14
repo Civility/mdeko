@@ -1,7 +1,7 @@
 <script setup>
-const config = useRuntimeConfig()
 import { storeToRefs, mapActions } from 'pinia'
 import { useGoods } from '@/store/goods.js'
+const config = useRuntimeConfig()
 const { getCategories, getTovari } = useGoods()
 const { categories, categoryactive, tovari } = storeToRefs(useGoods())
 
@@ -73,7 +73,7 @@ watchEffect(() => refresh(categoryactive.value))
 					<img :src="category.img.mini" :alt="category.img.alt" v-if="category.img.mini" class="h-64" />
 				</div>
 			</article>
-			<NuxtPage :data="tovari" v-else />
+			<NuxtPage v-else />
 		</section>
 		<span class="parallax" style="background-image: url(/img/bg2.webp)" />
 	</main>

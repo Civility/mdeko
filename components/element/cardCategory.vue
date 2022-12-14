@@ -19,16 +19,29 @@
 					transition-all
 				"
 			>
+				<!-- $route.params.slug -->
+
 				<h2 v-text="data.name" class="text-2xl lg:translate-y-8 lg:group-hover:translate-y-0 transition-all h-6 mb-auto title-b" />
 				<p v-text="data.text" class="lg:opacity-0 lg:group-hover:opacity-100 transition-all mb-4" />
-				<Btn glue :to="`/kategorii/${data.url}`" class="lg:opacity-0 lg:group-hover:opacity-100"> Подробнее </Btn>
+				<Btn
+					glue
+					:to="`/kategorii/${data.url}`"
+					class="lg:opacity-0 lg:group-hover:opacity-100"
+					@click="useGoods().getCategoryActive(data.url)"
+				>
+					Подробнее
+				</Btn>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
+import { storeToRefs, mapActions } from 'pinia'
+import { useGoods } from '@/store/goods.js'
 const props = defineProps({
 	data: Object,
 })
+
+const { getCategoryActive } = mapActions(useGoods(), ['getCategoryActive'])
 </script>

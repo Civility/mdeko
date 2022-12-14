@@ -9,7 +9,7 @@ export const useGoods = defineStore('goods', {
 		HITS: [],
 		TOVARI: [],
 		PRODUCT: {},
-		CATEGORYACTIVE: '', // активнй пункт меню в категории
+		CATEGORYACTIVE: useRoute().params.url, // активнй пункт меню в категории
 	}),
 	getters: {
 		categories: (s) => s.CATEGORIES,
@@ -24,12 +24,10 @@ export const useGoods = defineStore('goods', {
 		},
 		// /category/item
 		async getProduct(PUBLIC_NAME, path) {
-			if (!this.PRODUCT.length) {
-				try {
-					this.PRODUCT = await $fetch(`${PUBLIC_NAME}/categories/${path}`)
-				} catch (err) {
-					console.log(err)
-				}
+			try {
+				this.PRODUCT = await $fetch(`${PUBLIC_NAME}/categories/${path}`)
+			} catch (err) {
+				console.log(err)
 			}
 		},
 		async getCategories(PUBLIC_NAME) {

@@ -20,10 +20,14 @@
 			<div class="relative w-32 p-8 mx-auto flex justify-center overflow-hidden rounded">
 				<img class="w-full" src="/img/item.webp" :alt="data.img.alt" />
 			</div>
-			<h3
+			<strong
 				class="
 					my-3
 					py-3
+					px-2
+					text-base
+					md:text-lg
+					xl:text-xl
 					text-dark
 					uppercase
 					after:bg-dark
