@@ -7,14 +7,14 @@
 		"meta_desc": "kategorii meta_desc"
 	},
 	{
-		"title": "Наша история",
-		"url": "istoriya",
+		"title": "О компании",
+		"url": "kompaniya",
 		"order": 6,
 		"meta_title": "Наша история",
 		"meta_desc": "Наша история 123"
 	},
 	{
-		"title": "Оплата и доставка",
+		"title": "Доставка и оплата",
 		"url": "informatsiya",
 		"order": 4,
 		"meta_title": "meta_title",

@@ -12,9 +12,9 @@ export const useMain = defineStore('main', {
 		MODALOPEN: false,
 		MODALCLOSE: true,
 		MODALTOGGLE: false,
-		PHONESPB: '8 (812) 388 71 28',
-		PHONEMSK: '8 (800) 505 4 345',
-		PHONESOCIAL: '8 (999) 635 70 45',
+		PHONESPB: '8 (812) 388-71-28',
+		PHONEMSK: '8 (800) 505-4-345',
+		PHONESOCIAL: '8 (999) 635-70-45',
 		MENU: [],
 		CONTACT: {
 			phones: [],
@@ -97,5 +97,6 @@ export const useMain = defineStore('main', {
 				}
 			}
 		},
+ 
 	},
 })

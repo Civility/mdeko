@@ -18,12 +18,12 @@ const infoLast = computed(() => info.filter((i, id) => id >= 2))
 <template>
 	<main>
 		<section class="category md:py-15 py-10 container flex justify-center items-center">
-			<div class="wrap">
+			<div class="wrap-full">
 				<CardCategory
 					v-for="item in categories"
 					:data="item"
 					:key="item.url"
-					class="xl:col-span-2 md:col-span-4 col-span-full"
+					class="xl:col-span-4 md:col-span-6 col-span-full"
 					v-if="!categoriesWait"
 				/>
 			</div>

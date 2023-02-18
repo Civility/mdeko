@@ -11,7 +11,7 @@ export default defineNuxtConfig({
 		public: {
 			G_NAME: 'Akvamdeko',
 			G_IMG: `${process.env.PUBLIC_NAME}/storage/app/media/`,
-			PUBLIC_NAME:  isDev ? process.env.DEV : isHost ? process.env.DEVPROD : process.env.PUBLIC_NAME,
+			PUBLIC_NAME:  isDev ? process.env.DEV : isHost ? process.env.DEV : process.env.PUBLIC_NAME,
 		},
 	},
 	components: {

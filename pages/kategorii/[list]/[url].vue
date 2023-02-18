@@ -5,12 +5,11 @@ const config = useRuntimeConfig()
 const route = useRoute()
 const { getProduct } = useGoods()
 const { product } = storeToRefs(useGoods())
-console.log(route)
 const {
 	pending: productWait,
 	data: productData,
 	refresh,
-} = await useLazyAsyncData('product', () => getProduct(config.public.PUBLIC_NAME, route.path))
+} = await useLazyAsyncData('product', () => getProduct(config.public.PUBLIC_NAME, route.params.list, route.params.url))
 
 const thumbsSwiper = ref(null)
 const setThumbsSwiper = (swiper) => (thumbsSwiper.value = swiper)
@@ -39,7 +38,6 @@ const addCart = ref('#')
 				}"
 			>
 				<template #content="{ slider }">
-					<!-- ${config.public.G_IMG} -->
 					<img :src="`${slider}`" :alt="slider" class="block object-cover max-h-[700px] mb-8" />
 				</template>
 			</Slider>

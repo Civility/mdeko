@@ -8,7 +8,7 @@ const { pending: contactWait, data: contactData } = await useLazyAsyncData('cont
 		<div class="lg:col-span-3 col-span-full flex flex-col gap-4 text-dark">
 			<dl class="bg-white/50 p-4">
 				<dt class="mb-2">Адрес офиса:</dt>
-				<dd>Россия, 196006, г. Санкт-Петербург, ул. Цветочная, д. 7, лит. Б, КОМНАТА 9</dd>
+				<dd>Россия, 196006, г. Санкт-Петербург, ул. Цветочная, д. 7, лит. Б, комната 9</dd>
 			</dl>
 			<dl class="bg-white/50 p-4">
 				<dt class="mb-2">Телефоны:</dt>
@@ -46,10 +46,15 @@ const { pending: contactWait, data: contactData } = await useLazyAsyncData('cont
 					</dd>
 				</div>
 			</dl>
-			<div class="lg:col-span-5 col-span-full flex flex-wrap justify-between">
-				<div class="border border-dark p-4 flex justify-center items-center bg-white/50">ООО "МДЕКО"</div>
+			<div class="lg:col-span-5 col-span-full">
+				<!-- <div class="border border-dark p-4 flex justify-center items-center bg-white/50">ООО "МДЕКО"</div>
 				<div class="border border-dark p-4 flex justify-center items-center bg-white/50">ИНН 7816543798</div>
-				<div class="border border-dark p-4 flex justify-center items-center bg-white/50">ОГРН 1127847412220</div>
+				<div class="border border-dark p-4 flex justify-center items-center bg-white/50">ОГРН 1127847412220</div> -->
+				<dl class="border border-dark p-4 flex justify-between items-center bg-white/50 h-full">
+					<span>ООО "МДЕКО"</span>
+					<span>ИНН 7816543798</span>
+					<span>ОГРН 1127847412220</span>
+				</dl>
 			</div>
 		</div>
 		<span class="parallax" style="background-image: url(/img/bg3.webp)" />

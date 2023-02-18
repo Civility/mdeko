@@ -23,9 +23,9 @@ export const useGoods = defineStore('goods', {
 			this.CATEGORYACTIVE = url
 		},
 		// /category/item
-		async getProduct(PUBLIC_NAME, path) {
+		async getProduct(PUBLIC_NAME, category, path) {
 			try {
-				this.PRODUCT = await $fetch(`${PUBLIC_NAME}/categories/${path}`)
+				this.PRODUCT = await $fetch(`${PUBLIC_NAME}/categories/${category}/${path}`)
 			} catch (err) {
 				console.log(err)
 			}

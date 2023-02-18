@@ -4,15 +4,17 @@ const props = defineProps({
 	right: Boolean,
 	center: Boolean,
 })
+const bgPattern = ['pattern3-top', 'pattern3-down', 'pattern3-crop', 'pattern3-center']
+const rand = Math.floor(Math.random() * bgPattern.length)
 </script>
 
 <template>
 	<div class="relative group wrap">
 		<div
 			class="row-span-full col-span-full -z-10 mix-blend-overlay bg-dark/30 bg-local bg-center bg-no-repeat bg-cover"
-			:style="`background-image: url(${data.img.bg})`"
+			:style="`background-image: url(/img/pattern/${bgPattern[rand]}.webp)`"
 		/>
-
+		<!-- :style="`background-image: url(${data.img.bg})`" -->
 		<div class="container row-span-full col-span-full wrap">
 			<div
 				class="lg:col-span-5 col-span-full bg-gradient-to-tl from-main-darker/70 to-sec/90 wrap"
