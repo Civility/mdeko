@@ -8,23 +8,20 @@ const replaceNumber = (number) => {
 }
 export const useMain = defineStore('main', {
 	state: () => ({
+		PUBLIC_NAME: '',
 		TOGGLEMENU: false,
 		MODALOPEN: false,
 		MODALCLOSE: true,
 		MODALTOGGLE: false,
-		PHONESPB: '8 (812) 388-71-28',
-		PHONEMSK: '8 (800) 505-4-345',
+		PHONESPB: '', // 8 (812) 388-71-28
+		PHONEMSK: '', // 8 (800) 505-4-345
 		PHONESOCIAL: '8 (999) 635-70-45',
 		MENU: [],
+		CONTACTS: [],
 		CONTACT: {
 			phones: [],
-			mail: 'info@akvamdeko.ru',
-			address: {
-				country: 'Россия, 196006',
-				city: 'г. Санкт-Петербург',
-				street: 'ул. Цветочная, д. 7, лит. Б',
-				office: 'комната 9',
-			},
+			mail: [], // info@akvamdeko.ru
+			address: '',
 		},
 		SOCIALS: [],
 		REQUISITES: { name: 'ООО "МДЕКО"', inn: '7816543798', ogrn: '1127847412220' },
@@ -38,6 +35,18 @@ export const useMain = defineStore('main', {
 	getters: {
 		menu: (s) => s.MENU,
 		contact: (s) => s.CONTACT,
+		contacts(s) {
+			s.CONTACTS.map((item) => {
+				if (item.address == '') {
+					s.PHONEMSK = item.phone
+				}
+				if (item.address.indexOf('Цветочная')) {
+					s.PHONESPB = item.phone
+					s.CONTACT.address = item.address
+				}
+				s.CONTACT.mail.push(item.email)
+			})
+		},
 		phones(s) {
 			return (s.CONTACT.phones = [
 				{ tel: s.PHONESPB, number: replaceNumber(s.PHONESPB), city: 'Санкт-Петербургу' },
@@ -88,6 +97,7 @@ export const useMain = defineStore('main', {
 			this.TOGGLEMENU = false
 		},
 		async getMenu(PUBLIC_NAME) {
+			this.PUBLIC_NAME = PUBLIC_NAME
 			if (!this.MENU.length) {
 				try {
 					const API = await $fetch(`${PUBLIC_NAME}/menu`)
@@ -97,6 +107,30 @@ export const useMain = defineStore('main', {
 				}
 			}
 		},
- 
+
+		async getСontacts(PUBLIC_NAME) {
+			if (!this.CONTACTS.length) {
+				try {
+					this.CONTACTS = await $fetch(`${PUBLIC_NAME}/contacts`)
+					await this.contacts
+				} catch (err) {
+					console.log(err)
+				}
+			}
+		},
+		async sendForm(params) {
+			try {
+				console.log('start send')
+				await $fetch(`${this.PUBLIC_NAME}/feedback`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					// headers: { 'Content-Type': 'multipart/form-data' },
+					body: JSON.stringify(params),
+				})
+				console.log('finish send')
+			} catch (err) {
+				console.log(err)
+			}
+		},
 	},
 })

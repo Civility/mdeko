@@ -52,6 +52,7 @@ const isClass = computed(() => {
 	@apply transition-all duration-300;
 	@apply focus:ring-0 focus:outline-none;
 	@apply disabled:isolate disabled:pointer-events-none;
+	@apply disabled:opacity-70;
 	-webkit-appearance: none;
 	&__main {
 		/* @apply border-b-2 border-r-2 border-main-light  hover:border-main-lighter rounded-lg; */

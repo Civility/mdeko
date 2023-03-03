@@ -18,9 +18,9 @@ const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
 			<NuxtLink to="/" class="order-1" exact>
 				<img src="/svg/logo.svg" width="200" height="100" alt="logo" />
 			</NuxtLink>
-
-			<Menu :menu="menu" v-show="toggleMenu" class="lg:!flex hidden order-2" />
-
+			<ClientOnly>
+				<Menu :menu="menu" v-show="toggleMenu" class="lg:!flex hidden order-2" />
+			</ClientOnly>
 			<div class="sm:order-last order-2 mr-left lg:hidden block">
 				<button
 					@click="useMain().getMenuToggle"
@@ -28,19 +28,7 @@ const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
 					:class="{ 'nav__menu--active': toggleMenu }"
 				>
 					<span
-						class="
-							nav__menu-icon
-							absolute
-							top-0
-							w-full
-							h-1
-							bg-sec
-							left-0
-							rounded-xl
-							transition-all
-							even:top-2/4
-							last:bottom-full last:top-full
-						"
+						class="nav__menu-icon absolute top-0 w-full h-1 bg-sec left-0 rounded-xl transition-all even:top-2/4 last:bottom-full last:top-full"
 						v-for="i in 3"
 					/>
 				</button>

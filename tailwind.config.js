@@ -69,7 +69,7 @@ module.exports = {
 
 		extend: {
 			fontSize: {
-				small: ['50%'],
+				small: ['0.625rem'],
 				'3xl': ['1.625rem'], // 26px
 				'4xl': ['2.5rem'], // 40px
 				'5xl': ['2.875rem'], // 46px
