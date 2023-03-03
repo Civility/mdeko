@@ -118,10 +118,10 @@ export const useMain = defineStore('main', {
 				}
 			}
 		},
-		async sendForm(params) {
+		async sendForm(params, PUBLIC_NAME) {
 			try {
 				console.log('start send')
-				await $fetch(`${this.PUBLIC_NAME}/feedback`, {
+				await $fetch(`${PUBLIC_NAME}/feedback`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					// headers: { 'Content-Type': 'multipart/form-data' },

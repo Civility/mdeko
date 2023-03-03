@@ -5,7 +5,7 @@ import { useMain } from '@/store/main.js'
 // import { storeToRefs } from 'pinia'
 // const { contacts } = storeToRefs(useMain())
 const config = useRuntimeConfig()
-const { getContactData, getСontacts, contact } = useMain()
+const { getContactData, getСontacts, contact, sendForm } = useMain()
 await useAsyncData('contacts', async () => getСontacts(config.public.PUBLIC_NAME))
 await useLazyAsyncData('contact', async () => getContactData())
 
@@ -56,16 +56,19 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, state)
 const isSendForm = async (name, phone, email, message) => {
 	let result = await v$.value.$validate()
-	result ? console.log('Form Ok ', result) : console.log('Form Failed ', result)
+	result ? console.log('Form validate Ok ', result) : console.log('Form validate Failed ', result)
 	if (!v$.value.$error) {
-		useAsyncData('sendForm', () =>
-			sendForm({
-				name,
-				phone,
-				email,
-				message,
-				agreement: true,
-			})
+		await useAsyncData('sendForm', () =>
+			sendForm(
+				{
+					name,
+					phone,
+					email,
+					message,
+					agreement: true,
+				},
+				config.public.PUBLIC_NAME
+			)
 		)
 		state.name = ''
 		state.phone = ''
