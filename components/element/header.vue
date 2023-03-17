@@ -21,10 +21,11 @@ const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
 			<ClientOnly>
 				<Menu :menu="menu" v-show="toggleMenu" class="lg:!flex hidden order-2" />
 			</ClientOnly>
-			<div class="sm:order-last order-2 mr-left lg:hidden block">
+
+			<div class="sm:order-last order-2 mr-left">
 				<button
 					@click="useMain().getMenuToggle"
-					class="nav__menu -translate-y-2 w-8 h-4 relative"
+					class="nav__menu -translate-y-2 w-8 h-4 relative lg:hidden block"
 					:class="{ 'nav__menu--active': toggleMenu }"
 				>
 					<span
@@ -32,6 +33,7 @@ const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
 						v-for="i in 3"
 					/>
 				</button>
+				<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:!text-white" />
 			</div>
 
 			<div class="order-3 w-auto relative" @mouseover="togglePhones = false" @mouseleave="togglePhones = true">

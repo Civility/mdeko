@@ -38,11 +38,10 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 						<Svg svg="twotone-place" />
 						Карта
 					</Btn>
-					<ClientOnly>
-						<Modal refName="map" :show="showModal === 'map'" @isClickShow="(val) => isShow(val)">
-							<template #body> <img src="/img/bg.webp" alt="map" /> </template>
-						</Modal>
-					</ClientOnly>
+
+					<Modal refName="map" :show="showModal === 'map'" @isClickShow="(val) => isShow(val)">
+						<div class="w-[500px] h-[370px] bg-gray min-w-full min-h-full flex justify-center items-center text-dark">MAP</div>
+					</Modal>
 				</div>
 
 				<!-- <div class="footer__socials flex flex-wrap gap-x-4 gap-y-1 col-auto">

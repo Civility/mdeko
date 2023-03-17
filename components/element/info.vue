@@ -1,15 +1,17 @@
+
+<script setup>
+const props = defineProps({
+	data: Object,
+})
+</script>
 <template>
 	<div class="relative group wrap bg-gradient-to-l from-main/60 to-sec-dark/70" :class="{ '!bg-gradient-to-r': data.order === 2 }">
 		<div
-			style="background-image: url(/img/pattern/pattern2-down.webp);"
+			style="background-image: url(/img/pattern/pattern2-down.webp)"
 			class="row-span-full col-span-full -z-10 mix-blend-overlay bg-local bg-center bg-no-repeat bg-cover transform group-even:-scale-x-[1]"
 		/>
 		<div class="container md:py-15 py-10 row-span-full col-span-full wrap">
-			<h3
-				class="subtitle text-center title-line before:bg-sec after:bg-sec col-span-full"
-				v-text="data.subTitle"
-				v-if="data.subTitle"
-			/>
+			<h3 class="subtitle text-center title-line before:bg-sec after:bg-sec col-span-full" v-text="data.subTitle" v-if="data.subTitle" />
 			<h2 class="subtitle text-center col-span-full" v-text="data.title" v-if="data.title" />
 			<div class="col-span-full">
 				<div class="py-4" v-html="data.text" v-if="data.text" />
@@ -28,9 +30,3 @@
 		</div>
 	</div>
 </template>
-
-<script setup>
-const props = defineProps({
-	data: Object,
-})
-</script>
