@@ -4,8 +4,8 @@ import { useMain } from '@/store/main.js'
 const config = useRuntimeConfig()
 const { getMenu, getContactData, menu } = useMain()
 const { toggleMenu, contact, getMenuToggle } = storeToRefs(useMain())
-const { pending: menuWait, data: menuData } = await useLazyAsyncData('menu', () => getMenu(config.public.PUBLIC_NAME))
-const { pending: contactWait, data: contactData } = await useLazyAsyncData('contact', () => getContactData())
+const { pending: menuWait, data: menuData } = useLazyAsyncData('menu', () => getMenu(config.public.PUBLIC_NAME))
+const { pending: contactWait, data: contactData } = useLazyAsyncData('contact', () => getContactData())
 const togglePhones = ref(true)
 const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
 </script>
@@ -33,7 +33,9 @@ const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
 						v-for="i in 3"
 					/>
 				</button>
-				<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:!text-white" />
+				<Btn clear to="/cart">
+					<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:!text-white" />
+				</Btn>
 			</div>
 
 			<div class="order-3 w-auto relative" @mouseover="togglePhones = false" @mouseleave="togglePhones = true">

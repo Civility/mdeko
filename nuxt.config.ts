@@ -1,6 +1,6 @@
 import { getModules } from './config/modules'
 const isDev = process.env.NODE_ENV !== 'production'
-const isHost = require('os').type() !== 'Linux'
+// const isHost = require('os').type() !== 'Linux'
 import { resolve } from 'path'
 export default defineNuxtConfig({
 	telemetry: false,
@@ -11,7 +11,7 @@ export default defineNuxtConfig({
 		public: {
 			G_NAME: 'Akvamdeko',
 			G_IMG: `${process.env.PUBLIC_NAME}/storage/app/media/`,
-			PUBLIC_NAME:  isDev ? process.env.DEV : isHost ? process.env.DEV : process.env.PUBLIC_NAME,
+			PUBLIC_NAME:  process.env.PUBLIC_NAME,
 		},
 	},
 	components: {

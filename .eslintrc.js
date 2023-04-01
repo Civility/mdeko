@@ -1,23 +1,35 @@
 module.exports = {
-	root: true,
+	 root: true,
 	env: {
-		browser: true,
-		node: true,
-		// es2021: true,
-	},
+			browser: true,
+        node: true
+    },
+	extends: [
+		 'eslint:recommended',
+		'plugin:prettier/recommended',
+		'plugin:eslint-plugin-nuxt',
+		'prettier'
+	],
+	  parser: 'vue-eslint-parser',
 	parserOptions: {
-		sourceType: 'module',
-		parser: 'babel-eslint',
+		'parser': '@babel/eslint-parser',
+		'requireConfigFile': false,
+		'ecmaVersion': 'latest',
+		'sourceType': 'module'
 	},
-	plugins: ['prettier'],
-	extends: ['eslint:recommended', 'plugin:eslint-plugin-nuxt', 'prettier'],
+	plugins: [
+		'prettier',
+		'nuxt'
+	],
 	rules: {
-		semi: [2, 'never'],
+		'prettier/prettier': [
+			'error'
+		],
+			semi: [2, 'never'],
 		'comma-dangle': ['error', 'always-multiline'],
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'vue/custom-event-name-casing': 'off',
-		'prettier/prettier': ['error', { semi: false, endOfLine: 'auto' }],
 		'vue/prop-name-casing': 'off',
-	},
+	}
 }

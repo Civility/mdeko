@@ -63,7 +63,7 @@ const isClass = computed(() => {
 		/* @apply border-main-lighter border-2 rounded-md;	 */
 	}
 	&__clear {
-		@apply rounded-none;
+		@apply rounded-none p-0;
 	}
 	&__glue {
 		@apply after:absolute after:inset-0 after:content-[''] after:z-10;
