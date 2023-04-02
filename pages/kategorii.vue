@@ -2,8 +2,8 @@
 import { storeToRefs, mapActions } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 const config = useRuntimeConfig()
-const { getCategories, getTovari, categories } = useGoods()
-const { categoryactive, tovari } = storeToRefs(useGoods())
+const { getCategories, getTovari } = useGoods()
+const { categoryactive, categories } = storeToRefs(useGoods())
 
 const { getCategoryActive } = mapActions(useGoods(), ['getCategoryActive'])
 
@@ -16,24 +16,6 @@ const {
 	refresh,
 } = await useAsyncData('tovari', () => getTovari(config.public.PUBLIC_NAME, categoryactive.value))
 watchEffect(() => refresh(categoryactive.value))
-
-// watch(
-// 	() => categoryactive.value,
-// 	() => refresh()
-// )
-
-// useGoods().$subscribe(() => {
-// 	getTovari()
-// })
-// function isCategory() {
-// 	return computed(() => categories.value.find((item) => item.url === categoryactive.value))
-// }
-
-// const isCategory = computed(() => categories.value.find((item) => item.url === categoryactive.value))
-
-// const isCategory = () => {
-// 	categories.value.find((item) => item.url === categoryactive.value)
-// }
 </script>
 <template>
 	<main class="wrap gap-x-12">
@@ -60,7 +42,7 @@ watchEffect(() => refresh(categoryactive.value))
 			class="container lg:col-span-6 col-span-full wrap-full my-4"
 			v-if="$route.name === 'kategorii' || $route.name === 'kategorii-list' || $route?.params?.list === categoryactive"
 		>
-			<NuxtPage v-if="$route.params?.list" />
+			<NuxtPage v-if="$route?.params?.list === categoryactive" />
 			<ClientOnly>
 				<template v-for="category in categories" :key="category.url">
 					<article

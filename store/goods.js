@@ -10,9 +10,6 @@ export const useGoods = defineStore('goods', {
 		HITS: [],
 		TOVARI: [],
 		PRODUCT: {},
-		CART: 0,
-		CARTS: [],
-		ITEMSORDER: [],
 		CATEGORYACTIVE: '', // активнй пункт меню в категории
 	}),
 	getters: {
@@ -21,41 +18,9 @@ export const useGoods = defineStore('goods', {
 		tovari: (s) => s.TOVARI,
 		product: (s) => s.PRODUCT,
 		categoryactive: (s) => s.CATEGORYACTIVE,
-		// itemsorder(s, url) {
-		// 	const item = s.TOVARI.find((i) => i.url === url)
-		// 	return this.ITEMSORDER.push({ item })
-		// }
 	},
 	actions: {
-		setCartPlus(url, total) {
-			if (this.CARTS.length) {
-				const result = this.CARTS.find((i) => {
-					if (i.url === url) {
-						// console.log(1111)
-						return { ...i, total: ++i.total }
-					}
-				})
-				if (result) {
-					// console.log(2222)
-					return result
-				} else {
-					// console.log(3333)
-					return this.CARTS.push({ url, total })
-				}
-			} else {
-				// console.log('item ', item)
-				this.setItemOrder(url)
-				this.CARTS.push({ url, total })
-			}
-		},
-		setItemOrder(url) {
-			const item = this.TOVARI.find((i) => i.url === url)
-			return this.ITEMSORDER.push({ item })
-		},
-		setCartMinus(url, total) {
-			console.log('setCartMinus ', url)
-			console.log('setCartMinus ', total)
-		},
+
 		getCategoryActive(url) {
 			this.CATEGORYACTIVE = url
 		},
