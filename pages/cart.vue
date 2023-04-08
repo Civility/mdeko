@@ -23,12 +23,13 @@ const { pending: hitsWait } = await useLazyAsyncData('hits', () => getHits(confi
 			</ClientOnly>
 		</div>
 		<div class="flex flex-col gap-6" v-else>
-			<div class="relative p-6 wrap-full bg-white/70 text-dark" v-for="(item, index) in CARTS" :key="index">
+			<div class="relative p-6 wrap-full bg-main/70 text-dark" v-for="(item, index) in CARTS" :key="index">
 				<Btn
 					@click="useCart().setCartDel(index)"
-					class="!absolute !top-0 !right-0 m-2 !text-main-dark hover:!text-main border rounded-full border-main-dark w-7 h-7 hover:border-main"
+					class="!absolute !top-0 !right-0 m-2 !text-white hover:!text-white/70 border rounded-full border-white w-7 h-7 hover:border-white/70"
 					>x</Btn
 				>
+
 				<div class="md:col-span-1 col-span-1">
 					<img class="w-full" :src="item.product.img" :alt="item.product.title" />
 				</div>
@@ -46,6 +47,7 @@ const { pending: hitsWait } = await useLazyAsyncData('hits', () => getHits(confi
 					</div>
 				</div>
 			</div>
+			<Btn main to="/checkout">Перейти к оформлению</Btn>
 		</div>
 		<span class="parallax" style="background-image: url(/img/bg3.webp)" />
 	</main>
