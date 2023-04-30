@@ -10,8 +10,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			G_NAME: 'Akvamdeko',
-			G_IMG: `${process.env.PUBLIC_NAME}/storage/app/media/`,
-			PUBLIC_NAME:  process.env.PUBLIC_NAME,
+			G_IMG: `${process.env.API}/storage/app/media/`,
+			API: process.env.API
 		},
 	},
 	components: {
