@@ -4,10 +4,11 @@ import { required, email, minLength, maxLength, helpers } from '@vuelidate/valid
 import { useMain } from '@/store/main.js'
 // import { storeToRefs } from 'pinia'
 // const { contacts } = storeToRefs(useMain())
-const config = useRuntimeConfig()
-const { getContactData, getСontacts, contact, sendForm } = useMain()
-await useAsyncData('contacts', async () => getСontacts(config.public.PUBLIC_NAME))
+
+const { getContactData, getСontacts, getSocials, socials, contact, sendForm } = useMain()
+await useAsyncData('contacts', async () => getСontacts())
 await useLazyAsyncData('contact', async () => getContactData())
+await useLazyAsyncData('contact', async () => getSocials())
 
 const showModal = shallowRef(null)
 
@@ -59,16 +60,13 @@ const isSendForm = async (name, phone, email, message) => {
 	result ? console.log('Form validate Ok ', result) : console.log('Form validate Failed ', result)
 	if (!v$.value.$error) {
 		await useAsyncData('sendForm', () =>
-			sendForm(
-				{
-					name,
-					phone,
-					email,
-					message,
-					agreement: true,
-				},
-				config.public.PUBLIC_NAME
-			)
+			sendForm({
+				name,
+				phone,
+				email,
+				message,
+				agreement: true,
+			})
 		)
 		state.name = ''
 		state.phone = ''
@@ -106,9 +104,14 @@ const isSendForm = async (name, phone, email, message) => {
 				</dl>
 				<dl class="bg-white/50 p-4">
 					<dt class="mb-2">Социальные сети:</dt>
+
 					<dd>
-						<Btn to="#"> <Svg svg="twotone-whatsapp" color="#68ad57" size="32" /></Btn>
-						<Btn to="#"> <Svg svg="baseline-telegram" color="#609cd3" size="32" /></Btn>
+						<Btn :to="social.url" v-for="social in socials" :key="social.id">
+							<Svg v-if="social.name === 'watsapp'" svg="twotone-whatsapp" color="#68ad57" size="32" />
+							<Svg v-if="social.name === 'telegram'" svg="baseline-telegram" color="#609cd3" size="32" />
+						</Btn>
+						<!-- <Btn to="#"> <Svg svg="twotone-whatsapp" color="#68ad57" size="32" /></Btn>
+						<Btn to="#"> <Svg svg="baseline-telegram" color="#609cd3" size="32" /></Btn> -->
 					</dd>
 				</dl>
 			</div>

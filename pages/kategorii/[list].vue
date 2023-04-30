@@ -2,17 +2,11 @@
 import { mapActions, storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 const route = useRoute()
-const config = useRuntimeConfig()
+
 const { getTovari } = useGoods()
 const { categoryactive, getCategoryActive, TOVARI } = storeToRefs(useGoods())
-// const { getCategoryActive } = mapActions(useGoods(), ['getCategoryActive'])
-// const {
-// 	pending: tovariWait,
-// 	data: tovariData,
-// 	refresh,
-// } = await useAsyncData('tovari', () => getTovari(config.public.PUBLIC_NAME, categoryactive.value))
-// watchEffect(() => refresh(categoryactive.value))
-watchEffect(() => getTovari(config.public.PUBLIC_NAME, categoryactive.value))
+
+watchEffect(() => getTovari(categoryactive.value))
 </script>
 
 <template>

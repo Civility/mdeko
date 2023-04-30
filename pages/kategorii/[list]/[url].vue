@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
-const config = useRuntimeConfig()
+
 const route = useRoute()
 const { getProduct } = useGoods()
 const { product } = storeToRefs(useGoods())
@@ -9,7 +9,7 @@ const {
 	pending: productWait,
 	data: productData,
 	refresh,
-} = await useLazyAsyncData('product', () => getProduct(config.public.PUBLIC_NAME, route.params.list, route.params.url))
+} = await useLazyAsyncData('product', () => getProduct(route.params.list, route.params.url))
 
 const thumbsSwiper = ref(null)
 const setThumbsSwiper = (swiper) => (thumbsSwiper.value = swiper)

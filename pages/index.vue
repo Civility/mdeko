@@ -2,15 +2,15 @@
 import { storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 import { useInfo } from '@/store/info.js'
-const config = useRuntimeConfig()
-const { getCategories, getHits, categories, hits } = useGoods()
-// const { HITS } = storeToRefs(useGoods())
+
+const { getCategories, getHits, categories } = useGoods()
+const { hits } = storeToRefs(useGoods())
 const { getBanners, getInfo, info } = useInfo()
 const { bannerMain, bannerSecond } = storeToRefs(useInfo())
-const { pending: categoriesWait } = await useLazyAsyncData('categories', () => getCategories(config.public.PUBLIC_NAME))
-const { pending: bannersWait } = await useLazyAsyncData('banners', () => getBanners(config.public.PUBLIC_NAME))
-const { pending: hitsWait } = await useLazyAsyncData('hits', () => getHits(config.public.PUBLIC_NAME))
-const { pending: infoWait } = await useLazyAsyncData('info', () => getInfo(config.public.PUBLIC_NAME))
+const { pending: categoriesWait } = await useLazyAsyncData('categories', () => getCategories())
+const { pending: bannersWait } = await useLazyAsyncData('banners', () => getBanners())
+const { pending: hitsWait } = await useLazyAsyncData('hits', () => getHits())
+const { pending: infoWait } = await useLazyAsyncData('info', () => getInfo())
 const infoHalf = computed(() => info.filter((i, id) => id < 2))
 const infoLast = computed(() => info.filter((i, id) => id >= 2))
 </script>
@@ -35,7 +35,7 @@ const infoLast = computed(() => info.filter((i, id) => id >= 2))
 		</ClientOnly>
 		<section class="container md:py-15 py-10" v-if="hits.length">
 			<h2 class="text-center col-span-full"><span class="title-b inline-block">Сезонное предложение</span></h2>
-			<div class="wrap-full">
+			<div class="wrap-full" v-if="!hitsWait">
 				<CardItem v-for="item in hits" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
 			</div>
 		</section>

@@ -6,8 +6,6 @@ const { getCategoryActive } = storeToRefs(useGoods())
 const props = defineProps({
 	data: Object,
 })
-
-// const { getCategoryActive } = mapActions(useGoods(), ['getCategoryActive'])
 </script>
 <template>
 	<div class="relative mx-auto lg:w-full w-auto min-w-[300px] rounded overflow-hidden group shadow-lg">

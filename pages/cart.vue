@@ -5,8 +5,7 @@ import { useGoods } from '@/store/goods.js'
 const { CARTS } = storeToRefs(useCart())
 const { getHits, hits } = useGoods()
 
-const config = useRuntimeConfig()
-const { pending: hitsWait } = await useLazyAsyncData('hits', () => getHits(config.public.PUBLIC_NAME))
+await useLazyAsyncData('hits', () => getHits())
 </script>
  <template>
 	<main class="cart md:py-15 py-10 container">
@@ -31,19 +30,28 @@ const { pending: hitsWait } = await useLazyAsyncData('hits', () => getHits(confi
 				>
 
 				<div class="md:col-span-1 col-span-1">
-					<img class="w-full" :src="item.product.img" :alt="item.product.title" />
+					<img v-if="item.product.img.mini" class="w-full" :src="item.product.img.mini" :alt="item.product.title" />
 				</div>
 				<div class="md:col-span-11 col-span-7 wrap gap-4">
-					<NuxtLink :to="`kategorii/${item.product.category}/${item.product.url}`" class="col-span-3">{{ item.product.title }}</NuxtLink>
-
-					<div class="relative flex justify-center items-center border border-sec col-span-2 self-center max-w-[4rem]">
-						<Btn :disabled="item.total <= 1" @click="useCart().setCartMinus(item.product.url, 1)">-</Btn>
+					<div class="col-span-3 flex flex-col">
+						<NuxtLink :to="`kategorii/${item.product.category}/${item.product.url}`">
+							<span class="font-bold">{{ item.product.title }}</span>
+						</NuxtLink>
+						<span class="text-gray">{{ item.product.category }}</span>
+					</div>
+					<div class="text-dark col-span-2 text-lg">{{ item.product.price }}<Svg svg="baseline-currency-ruble" /></div>
+					<div class="relative flex justify-center items-center col-span-2 self-center max-w-[5rem]">
+						<Btn :disabled="item.total <= 1" @click="useCart().setCartMinus(item.product.url, 1)"
+							><span class="bg-main-darker w-4 h-4 flex justify-center items-center"><Svg svg="baseline-minus" /></span
+						></Btn>
 						<input
 							type="text"
 							class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-basecursor-default flex items-center text-gray-700 max-w-[2rem] bg-transparent"
 							:value="item.total"
 						/>
-						<Btn @click="useCart().setCartPlus(item.product.url)">+</Btn>
+						<Btn @click="useCart().setCartPlus(item.product.url)"
+							><span class="bg-main-darker w-4 h-4 flex justify-center items-center text-lg"><Svg svg="baseline-plus" /></span
+						></Btn>
 					</div>
 				</div>
 			</div>

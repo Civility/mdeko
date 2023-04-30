@@ -1,10 +1,13 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMain } from '@/store/main.js'
-const config = useRuntimeConfig()
+import { useCart } from '@/store/cart.js'
+
 const { getMenu, getContactData, menu } = useMain()
+
+const { cartsLength } = storeToRefs(useCart())
 const { toggleMenu, contact, getMenuToggle } = storeToRefs(useMain())
-const { pending: menuWait, data: menuData } = useLazyAsyncData('menu', () => getMenu(config.public.PUBLIC_NAME))
+const { pending: menuWait, data: menuData } = useLazyAsyncData('menu', () => getMenu())
 const { pending: contactWait, data: contactData } = useLazyAsyncData('contact', () => getContactData())
 const togglePhones = ref(true)
 const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
@@ -33,11 +36,15 @@ const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
 						v-for="i in 3"
 					/>
 				</button>
-				<Btn clear to="/cart">
+				<Btn clear to="/cart" class="relative">
 					<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:!text-white" />
+					<span
+						v-if="cartsLength"
+						v-text="cartsLength"
+						class="absolute right-0 bottom-2 text-small shadow p-1 rounded-circle border-2 border-main-lighter bg-some w-4 h-4 inline-flex justify-center items-center"
+					/>
 				</Btn>
 			</div>
-
 			<div class="order-3 w-auto relative" @mouseover="togglePhones = false" @mouseleave="togglePhones = true">
 				<Btn class="!bg-white/50"> <Svg svg="baseline-local-phone" /><Svg svg="baseline-keyboard-arrow-down" size="32" /> </Btn>
 				<div class="bg-white shadow-lg absolute -translate-x-24" :class="{ hidden: togglePhones }">

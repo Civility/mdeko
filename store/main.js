@@ -53,26 +53,27 @@ export const useMain = defineStore('main', {
 				{ tel: s.PHONEMSK, number: replaceNumber(s.PHONEMSK), city: 'России' },
 			])
 		},
-		socials(s) {
-			return (s.SOCIALS = [
-				{
-					name: 'telegram',
-					title: 'telegram',
-					url: '#',
-					icon: 'baseline-telegram',
-					tel: s.PHONESOCIAL,
-					number: replaceNumber(s.PHONESOCIAL),
-				},
-				{
-					name: 'whatsapp',
-					title: 'whatsapp',
-					url: '#',
-					icon: 'baseline-whatsapp',
-					tel: s.PHONESOCIAL,
-					number: replaceNumber(s.PHONESOCIAL),
-				},
-			])
-		},
+		socials: (s) => s.SOCIALS,
+		// socials(s) {
+		// 	return (s.SOCIALS = [
+		// 		{
+		// 			name: 'telegram',
+		// 			title: 'telegram',
+		// 			url: '#',
+		// 			icon: 'baseline-telegram',
+		// 			tel: s.PHONESOCIAL,
+		// 			number: replaceNumber(s.PHONESOCIAL),
+		// 		},
+		// 		{
+		// 			name: 'whatsapp',
+		// 			title: 'whatsapp',
+		// 			url: '#',
+		// 			icon: 'baseline-whatsapp',
+		// 			tel: s.PHONESOCIAL,
+		// 			number: replaceNumber(s.PHONESOCIAL),
+		// 		},
+		// 	])
+		// },
 
 		toggleMenu: (s) => s.TOGGLEMENU,
 		modalOpen: (s) => (s.MODALOPEN = true),
@@ -85,7 +86,7 @@ export const useMain = defineStore('main', {
 		// },
 		async getContactData() {
 			await this.phones
-			await this.socials
+			// await this.socials
 		},
 		getMenuToggle() {
 			this.TOGGLEMENU = !this.TOGGLEMENU
@@ -96,11 +97,11 @@ export const useMain = defineStore('main', {
 		getMenuClosed() {
 			this.TOGGLEMENU = false
 		},
-		async getMenu(PUBLIC_NAME) {
-			this.PUBLIC_NAME = PUBLIC_NAME
+		async getMenu() {
+
 			if (!this.MENU.length) {
 				try {
-					const API = await $fetch(`${PUBLIC_NAME}/menu`)
+					const API = await $fetch(`${useRuntimeConfig().public.API}/menu`)
 					return (this.MENU = API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)
@@ -108,20 +109,29 @@ export const useMain = defineStore('main', {
 			}
 		},
 
-		async getСontacts(PUBLIC_NAME) {
+		async getСontacts() {
 			if (!this.CONTACTS.length) {
 				try {
-					this.CONTACTS = await $fetch(`${PUBLIC_NAME}/contacts`)
+					this.CONTACTS = await $fetch(`${useRuntimeConfig().public.API}/contacts`)
 					await this.contacts
 				} catch (err) {
 					console.log(err)
 				}
 			}
 		},
-		async sendForm(params, PUBLIC_NAME) {
+		async getSocials() {
+			if (!this.SOCIALS.length) {
+				try {
+					this.SOCIALS = await $fetch(`${useRuntimeConfig().public.API}/socials`)
+				} catch (err) {
+					console.log(err)
+				}
+			}
+		},
+		async sendForm(params) {
 			try {
 				console.log('start send')
-				await $fetch(`${PUBLIC_NAME}/feedback`, {
+				await $fetch(`${useRuntimeConfig().public.API}/feedback`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					// headers: { 'Content-Type': 'multipart/form-data' },

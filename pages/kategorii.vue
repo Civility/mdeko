@@ -1,20 +1,14 @@
 <script setup>
 import { storeToRefs, mapActions } from 'pinia'
 import { useGoods } from '@/store/goods.js'
-const config = useRuntimeConfig()
+
 const { getCategories, getTovari } = useGoods()
 const { categoryactive, categories } = storeToRefs(useGoods())
 
 const { getCategoryActive } = mapActions(useGoods(), ['getCategoryActive'])
 
-const { pending: categoriesWait, data: categoriesData } = await useLazyAsyncData('categories', () =>
-	getCategories(config.public.PUBLIC_NAME)
-)
-const {
-	pending: tovariWait,
-	data: tovariData,
-	refresh,
-} = await useAsyncData('tovari', () => getTovari(config.public.PUBLIC_NAME, categoryactive.value))
+const { pending: categoriesWait, data: categoriesData } = await useLazyAsyncData('categories', () => getCategories())
+const { pending: tovariWait, data: tovariData, refresh } = await useAsyncData('tovari', () => getTovari(categoryactive.value))
 watchEffect(() => refresh(categoryactive.value))
 </script>
 <template>

@@ -1,7 +1,30 @@
 
 <script setup>
 import useVuelidate from '@vuelidate/core'
+
 import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
+import { storeToRefs } from 'pinia'
+import { useCart } from '@/store/cart.js'
+
+const { DATADELIVERY } = useCart()
+const { cartTotal, DELIVERY, cartsLength } = storeToRefs(useCart())
+
+// const test = ref(cartsLength)
+// console.log(test.value)
+
+definePageMeta({
+	middleware: ['cartroute'],
+})
+// definePageMeta({
+// 	middleware: [
+// 		function (to, from) {
+// 			// if (cartTotal.value === 0) {
+// 			// 	return navigateTo('/')
+// 			// }
+// 			console.log(test.value)
+// 		},
+// 	],
+// })
 
 const state = reactive({
 	name: '',
@@ -11,7 +34,8 @@ const state = reactive({
 	city: '',
 	street: '',
 	houseNumber: '',
-	online_payment: '',
+	online_payment: false,
+	delivery: DELIVERY.value,
 })
 const rules = computed(() => {
 	let requiredText = 'Поле обязательно для заполнения'
@@ -43,7 +67,7 @@ const rules = computed(() => {
 			minLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не менее ${$params.min} символов.`, minLength(1)),
 			maxLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не более ${$params.max} символов.`, maxLength(5)),
 		},
-		online_payment: {},
+		online_payment: { required },
 	}
 })
 const v$ = useVuelidate(rules, state)
@@ -51,24 +75,7 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 	let result = await v$.value.$validate()
 	result ? console.log('Form validate Ok ', result) : console.log('Form validate Failed ', result)
 	if (!v$.value.$error) {
-		await useAsyncData(
-			'sendFormChekout',
-			() => console.log('TRUE')
-			// sendFormChekout(
-			// 	{
-			// 		name,
-			// 		phone,
-			// 		email,
-			// 		message,
-			// 		city,
-			// 		street,
-			// 		houseNumber,
-			// 		online_payment,
-			// 		agreement: true,
-			// 	},
-			// 	config.public.PUBLIC_NAME
-			// )
-		)
+		await useAsyncData('sendFormChekout', () => console.log('TRUE'))
 		state.name = ''
 		state.phone = ''
 		state.email = ''
@@ -77,6 +84,7 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 		state.street = ''
 		state.houseNumber = ''
 		state.online_payment = ''
+		state.delivery = ''
 		console.log('Form not error ', v$.value.$error)
 	} else {
 		console.log('Form error ', v$.value.$error)
@@ -84,7 +92,7 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 }
 </script>
 <template>
-	<main class="checkout md:py-15 py-10 container wrap">
+	<main class="checkout md:py-15 py-10 container wrap text-dark">
 		<form class="wrap col-span-full col-start-3">
 			<div class="col-span-5 mb-6 relative">
 				<label for="name" class="block mb-2 text-sm font-medium text-main">Вашe Имя</label>
@@ -124,32 +132,6 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 			</div>
 
 			<div class="col-span-5 mb-6 relative">
-				<h6 class="text-dark">Способ получения</h6>
-				<fieldset>
-					<div class="flex items-center mb-4">
-						<input
-							id="delivery-option-1"
-							type="radio"
-							name="delivery"
-							value="deliveryDefault"
-							class="w-4 h-4 border-gray focus:ring-2 focus:ring-main"
-							checked
-						/>
-						<label for="delivery-option-1" class="block ml-2 text-sm font-medium text-dark">Самовывоз с пункта выдачи</label>
-					</div>
-					<div class="flex items-center mb-4">
-						<input
-							id="delivery-option-2"
-							type="radio"
-							name="delivery"
-							value="deliveryExpress"
-							class="w-4 h-4 border-gray focus:ring-2 focus:ring-main"
-						/>
-						<label for="delivery-option-2" class="block ml-2 text-sm font-medium text-dark">Доставка до двери</label>
-					</div>
-				</fieldset>
-			</div>
-			<div class="col-span-5 mb-6 relative">
 				<label for="name" class="block mb-2 text-sm font-medium text-main">Ваш Город</label>
 				<input
 					v-model.trim="state.city"
@@ -162,7 +144,7 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 				<small class="text-some absolute right-0 -bottom-4.5" v-if="v$.city.$error" v-text="v$.city.$errors[0].$message" />
 			</div>
 			<div class="col-span-4 mb-6 relative">
-				<label for="name" class="block mb-2 text-sm font-medium text-main">Адрес доставки</label>
+				<label for="name" class="block mb-2 text-sm font-medium text-main">Адрес Доставки</label>
 				<input
 					v-model.trim="state.street"
 					@change="v$.street.$touch"
@@ -187,17 +169,6 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 			</div>
 
 			<div class="col-span-5 mb-6 relative">
-				<!-- <h6 class="text-dark">Способ оплаты</h6> -->
-				<label class="relative inline-flex items-center cursor-pointer">
-					<input type="checkbox" value="" class="sr-only peer" />
-					<div
-						v-model="state.online_payment"
-						class="w-11 h-6 bg-gray rounded-full peer peer-focus:ring-4 peer-focus:ring-sec-lighter peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sec-dark"
-					></div>
-					<span class="ml-3 text-sm font-medium text-dark">Оплата онлайн</span>
-				</label>
-			</div>
-			<div class="col-span-5 mb-6 relative">
 				<label for="name" class="block mb-2 text-sm font-medium text-main">Примечание</label>
 				<textarea
 					v-model.trim="state.message"
@@ -208,6 +179,67 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 					placeholder="Текст сообщения"
 				/>
 				<small class="text-some absolute right-0 -bottom-4.5" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
+			</div>
+			<div class="col-span-5 mb-6 relative">
+				<h6 class="">Способ получения</h6>
+				<fieldset>
+					<div class="flex items-center mb-4" v-for="(deliveryItem, id) in DATADELIVERY" :key="id">
+						<input
+							:id="`delivery-option-${id}`"
+							type="radio"
+							name="delivery"
+							:value="deliveryItem.price"
+							v-model="state.delivery"
+							@click.passive="useCart().setDelivery(deliveryItem.price)"
+							class="w-4 h-4 border-gray focus:ring-2 focus:ring-main accent-main"
+							:checked="state.delivery === deliveryItem.price"
+						/>
+						<label :for="`delivery-option-${id}`" class="block ml-2 text-sm font-medium text-dark">{{ deliveryItem.text }} </label>
+						<span class="ml-2 text-sm border py-1 px-2 bg-gray">
+							от {{ deliveryItem.price }}<Svg svg="baseline-currency-ruble" size="18"
+						/></span>
+					</div>
+				</fieldset>
+			</div>
+			<div class="col-span-5 mb-6 relative">
+				<span class="block mb-2 text-sm text-main">Способ оплаты</span>
+				<!-- <label class="relative inline-flex items-center cursor-pointer">
+					<input type="checkbox" value="" class="sr-only peer" />
+					<div
+						class="w-11 h-6 bg-gray rounded-full peer peer-focus:ring-4 peer-focus:ring-sec-lighter peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sec-dark"
+					></div>
+					<span class="ml-3 text-sm font-medium ">Оплата онлайн</span>
+				</label> -->
+
+				<!-- <label class="">
+					<input type="checkbox" class="w-4 h-4 border-main-lighter rounded bg-dark focus:ring-3 focus:ring-main" /> Browser default
+				</label> -->
+
+				<div class="flex items-start">
+					<div class="flex items-center h-5">
+						<input
+							id="online_payment"
+							aria-describedby="online_payment"
+							v-model="state.online_payment"
+							name="online_payment"
+							type="checkbox"
+							class="w-4 h-4 border-main-lighter rounded bg-dark focus:ring-3 focus:ring-main accent-main cursor-pointer"
+							required
+						/>
+					</div>
+					<div class="ml-3 text-sm">
+						<label for="online_payment" class="font-medium cursor-pointer">Оплата онлайн </label>
+					</div>
+				</div>
+			</div>
+			<div class="col-span-5">
+				<h6>Сумма</h6>
+				<dl>
+					<dt>Всего</dt>
+					<dd>{{ cartTotal }}<Svg svg="baseline-currency-ruble" /></dd>
+					<dt>Доставка</dt>
+					<dd>{{ DELIVERY }}<Svg svg="baseline-currency-ruble" /></dd>
+				</dl>
 			</div>
 			<Btn
 				type="submit"
@@ -220,7 +252,8 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 						state.city,
 						state.street,
 						state.houseNumber,
-						state.online_payment
+						state.online_payment,
+						state.delivery
 					),
 						v$.$reset()
 				"

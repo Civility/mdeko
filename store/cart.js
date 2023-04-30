@@ -7,16 +7,32 @@ const sortOrder = (a, b) => {
 export const useCart = defineStore('cart', {
 	state: () => ({
 		CART: 0,
-		CARTS: []
+		CARTS: [],
+		DELIVERY: 185,
+		DATADELIVERY: [
+			{ price: 185, text: 'Самовывоз с пункта выдачи' },
+			{ price: 320, text: 'Доставка до двери' }
+		]
 	}),
 	getters: {
-
+		cartsLength: (s) => s.CARTS.length,
+		cartTotal(s) {
+			const totalList = s.CARTS.map(i => {
+				return i.product.price * i.total
+			})
+			return totalList.reduce((partialSum, a) => partialSum + a, 0);
+		},
+		// delivery: (s, data) => s.DELIVERY = data
 	},
 	actions: {
-		setCartPlus(url, total = 1) {
-			const product = useGoods().TOVARI.find((i) => i.url === url)
+
+		async setCartPlus(url, category) {
+			await useGoods().getTovari(category)
+			const total = 1
+			const product = await useGoods().TOVARI.find((i) => i.url === url)
+
 			if (this.CARTS.length) {
-				const result = this.CARTS.find((i) => {
+				const result = await this.CARTS.find((i) => {
 					if (i.product.url === url) return ++i.total
 				})
 				return result ? result : this.CARTS.push({ product, total: total })
@@ -49,17 +65,10 @@ export const useCart = defineStore('cart', {
 			}
 		},
 		setCartDel(index) {
-			// const indexItem = this.CARTS.find((i) => {
-			// 	return i.product.url === url
-			// })
-			// const item = this.CARTS.indexOf(index)
-
-			// if (item >= 0) {
-			// 	this.CARTS.splice(item, 1)
-			// }
 			this.CARTS.splice(index, 1);
+		},
+		setDelivery(data) {
+			this.DELIVERY = data
 		}
-
-
 	}
 })

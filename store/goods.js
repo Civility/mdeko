@@ -25,17 +25,17 @@ export const useGoods = defineStore('goods', {
 			this.CATEGORYACTIVE = url
 		},
 		// /category/item
-		async getProduct(PUBLIC_NAME, category, path) {
+		async getProduct(category, path) {
 			try {
-				this.PRODUCT = await $fetch(`${PUBLIC_NAME}/categories/${category}/${path}`)
+				this.PRODUCT = await $fetch(`${useRuntimeConfig().public.API}/categories/${category}/${path}`)
 			} catch (err) {
 				console.log(err)
 			}
 		},
-		async getCategories(PUBLIC_NAME) {
+		async getCategories() {
 			if (!this.CATEGORIES.length) {
 				try {
-					const API = await $fetch(`${PUBLIC_NAME}/categories`)
+					const API = await $fetch(`${useRuntimeConfig().public.API}/categories`)
 					const maxOrder = API.map((item) => item.order)
 					// const categoryURL = API.find(item => item.order === Math.max(...maxOrder)  )
 					// this.CATEGORYACTIVE = categoryURL.url
@@ -45,10 +45,10 @@ export const useGoods = defineStore('goods', {
 				}
 			}
 		},
-		async getHits(PUBLIC_NAME) {
+		async getHits() {
 			if (!this.HITS.length) {
 				try {
-					const API = await $fetch(`${PUBLIC_NAME}/products/hits`)
+					const API = await $fetch(`${useRuntimeConfig().public.API}/products/hits`)
 					return (this.HITS = await API.sort(sortOrder))
 				} catch (err) {
 					console.log(err)
@@ -56,9 +56,9 @@ export const useGoods = defineStore('goods', {
 			}
 		},
 
-		async getTovari(PUBLIC_NAME, categoryUrlActive) {
+		async getTovari(categoryUrlActive) {
 			try {
-				const API = await $fetch(`${PUBLIC_NAME}/categories/${categoryUrlActive}`)
+				const API = await $fetch(`${useRuntimeConfig().public.API}/categories/${categoryUrlActive}`)
 
 				this.TOVARI = API.sort(sortOrder)
 			} catch (err) {
