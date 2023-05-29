@@ -12,13 +12,13 @@ export const useGoods = defineStore('goods', {
 		PRODUCT: {},
 		CATEGORYACTIVE: '', // активнй пункт меню в категории
 	}),
-	getters: {
-		categories: (s) => s.CATEGORIES,
-		hits: (s) => s.HITS,
-		tovari: (s) => s.TOVARI,
-		product: (s) => s.PRODUCT,
-		categoryactive: (s) => s.CATEGORYACTIVE,
-	},
+	// getters: {
+	// categories: (s) => s.CATEGORIES,
+	// hits: (s) => s.HITS,
+	// tovari: (s) => s.TOVARI,
+	// product: (s) => s.PRODUCT,
+	// categoryactive: (s) => s.CATEGORYACTIVE,
+	// },
 	actions: {
 
 		getCategoryActive(url) {
@@ -57,12 +57,14 @@ export const useGoods = defineStore('goods', {
 		},
 
 		async getTovari(categoryUrlActive) {
-			try {
-				const API = await $fetch(`${useRuntimeConfig().public.API}/categories/${categoryUrlActive}`)
+			if (!this.TOVARI.length) {
+				try {
+					const API = await $fetch(`${useRuntimeConfig().public.API}/categories/${categoryUrlActive}`)
 
-				this.TOVARI = API.sort(sortOrder)
-			} catch (err) {
-				console.log(err)
+					this.TOVARI = API.sort(sortOrder)
+				} catch (err) {
+					console.log(err)
+				}
 			}
 		},
 	},

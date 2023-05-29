@@ -8,11 +8,12 @@ export const useCart = defineStore('cart', {
 	state: () => ({
 		CART: 0,
 		CARTS: [],
-		DELIVERY: 185,
+		DELIVERY: false,
 		DATADELIVERY: [
-			{ price: 185, text: 'Самовывоз с пункта выдачи' },
-			{ price: 320, text: 'Доставка до двери' }
-		]
+			{ price: 185, text: 'Самовывоз с пункта выдачи', data: false },
+			{ price: 320, text: 'Доставка до двери', data: true }
+		],
+
 	}),
 	getters: {
 		cartsLength: (s) => s.CARTS.length,
@@ -22,45 +23,48 @@ export const useCart = defineStore('cart', {
 			})
 			return totalList.reduce((partialSum, a) => partialSum + a, 0);
 		},
-		// delivery: (s, data) => s.DELIVERY = data
 	},
 	actions: {
 
 		async setCartPlus(url, category) {
 			await useGoods().getTovari(category)
+
 			const total = 1
 			const product = await useGoods().TOVARI.find((i) => i.url === url)
-
 			if (this.CARTS.length) {
 				const result = await this.CARTS.find((i) => {
 					if (i.product.url === url) return ++i.total
 				})
-				return result ? result : this.CARTS.push({ product, total: total })
+				result ? result : this.CARTS.push({ product, total: total })
 			} else {
-				return this.CARTS.push({ product, total: total })
+				await this.CARTS.push({ product, total: total })
 			}
-			// if (this.CARTS.length) {
-			// 	const result = this.CARTS.find((i) => {
-			// 		if (i.url === url) {
-			// 			return { ...i, total: ++i.total }
-			// 		}
-			// 	})
-			// 	if (result) {
-			// 		return result
-			// 	} else {
-			// 		this.setItemOrder(url)
-			// 		return this.CARTS.push({ url, total })
-			// 	}
-			// } else {
-			// 	this.setItemOrder(url)
-			// 	this.CARTS.push({ url, total })
-			// }
-		},
 
+		},
+		async sendOrder(params) {
+			try {
+				console.log('start send')
+				if (this.cartsLength) {
+					// console.log('order ', JSON.stringify(params))
+
+					await $fetch(`${useRuntimeConfig().public.API}/order`, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(params),
+					})
+
+				}
+				console.log('finish send')
+			} catch (err) {
+				console.log(err)
+			}
+		},
 		setCartMinus(url) {
 			if (this.CARTS.length) {
-				return this.CARTS.find((i) => {
-					if (i.product.url === url) return --i.total
+				this.CARTS.find((i) => {
+					if (i.product.url === url) --i.total
+					if (i.product.url === url) this.CARTITEMTOTAL = --i.total
+
 				})
 			}
 		},
@@ -69,6 +73,10 @@ export const useCart = defineStore('cart', {
 		},
 		setDelivery(data) {
 			this.DELIVERY = data
-		}
+		},
+		// cartItemTotal(url) {
+		// 	return this.CARTITEMTOTAL = this.CARTS.map((i) => { if (i.product.url === url) return i.total }
+		// 	)
+		// }
 	}
 })

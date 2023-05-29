@@ -20,10 +20,10 @@ const modules = [SwiperAutoplay, SwiperFreeMode, SwiperNavigation, SwiperPaginat
 }
 .secbullets {
 	.swiper-pagination-bullet {
-		@apply before:border-sec;
+		@apply before:border-gray;
 		&-active {
-			@apply border-sec;
-			@apply before:bg-sec;
+			@apply border-gray;
+			@apply before:bg-gray;
 		}
 	}
 }
@@ -33,12 +33,12 @@ const modules = [SwiperAutoplay, SwiperFreeMode, SwiperNavigation, SwiperPaginat
 		@apply relative z-10;
 		@apply border border-solid rounded-circle border-transparent;
 		@apply flex justify-center items-center;
-		@apply before:content-[''] before:w-2 before:h-2 before:opacity-60 before:border before:border-solid before:border-main    before:rounded-circle;
+		@apply before:content-[''] before:w-2 before:h-2 before:opacity-60 before:border before:border-solid before:border-main before:rounded-circle;
 		@apply w-4 h-4;
 		@apply mx-3;
 		@apply cursor-pointer;
 		&-active {
-			@apply border-sec;
+			@apply border-gray bg-main-lighter;
 			@apply before:bg-main  before:opacity-100;
 		}
 	}

@@ -3,13 +3,13 @@ import { storeToRefs, mapActions } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 
 const { getCategories, getTovari } = useGoods()
-const { categoryactive, categories } = storeToRefs(useGoods())
+const { CATEGORYACTIVE, CATEGORIES, TOVARI } = storeToRefs(useGoods())
 
 const { getCategoryActive } = mapActions(useGoods(), ['getCategoryActive'])
 
-const { pending: categoriesWait, data: categoriesData } = await useLazyAsyncData('categories', () => getCategories())
-const { pending: tovariWait, data: tovariData, refresh } = await useAsyncData('tovari', () => getTovari(categoryactive.value))
-watchEffect(() => refresh(categoryactive.value))
+const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () => getCategories())
+const { pending: tovariWait, refresh } = await useAsyncData('setTovari', () => getTovari(CATEGORYACTIVE.value))
+watchEffect(() => refresh(CATEGORYACTIVE.value))
 </script>
 <template>
 	<main class="wrap gap-x-12">
@@ -19,11 +19,11 @@ watchEffect(() => refresh(categoryactive.value))
 					<Btn
 						main
 						icon
-						v-for="nav in categories"
+						v-for="nav in CATEGORIES"
 						:key="nav.url"
 						class="mx-4"
 						:to="`/kategorii/${nav.url}`"
-						:class="{ '!to-sec !from-main': categoryactive === nav.url }"
+						:class="{ '!to-sec !from-main': CATEGORYACTIVE === nav.url }"
 						@click="useGoods().getCategoryActive(nav.url)"
 					>
 						{{ nav.name }}
@@ -34,23 +34,37 @@ watchEffect(() => refresh(categoryactive.value))
 		</ClientOnly>
 		<section
 			class="container lg:col-span-6 col-span-full wrap-full my-4"
-			v-if="$route.name === 'kategorii' || $route.name === 'kategorii-list' || $route?.params?.list === categoryactive"
+			v-if="$route.name === 'kategorii' || $route.name === 'kategorii-list' || $route?.params?.list === CATEGORYACTIVE"
 		>
-			<NuxtPage v-if="$route?.params?.list === categoryactive" />
+			<!-- <pre v-if="$route?.params?.list === CATEGORYACTIVE">{{ $route?.params?.list }}</pre> -->
+			<!-- <NuxtPage /> -->
+			<CardItem
+				v-if="$route?.params?.list === CATEGORYACTIVE"
+				v-for="item in TOVARI"
+				:key="item.url"
+				:data="item"
+				class="sm:col-span-4 col-span-full"
+			/>
 			<ClientOnly>
-				<template v-for="category in categories" :key="category.url">
-					<article
-						v-if="$route.name === 'kategorii' || $route.params.list === category.url"
-						class="col-span-full bg-local bg-center bg-no-repeat bg-cover relative"
-						style="background-image: url(/img/pattern/pattern3-down.webp)"
-						:class="{ 'md:col-span-6': $route.name === 'kategorii' }"
-					>
-						<div class="flex justify-between gap-4 py-10 px-5 bg-gradient-to-tl from-main-darker/70 to-sec/90">
+				<template v-for="category in CATEGORIES" :key="category.url">
+					<!-- bg-local bg-center bg-no-repeat bg-cover  -->
+					<!-- style="background-image: url(/img/pattern/pattern3-down.webp)" -->
+					<!-- :class="{ 'md:col-span-6': $route.name === 'kategorii' }" -->
+					<article v-if="$route.name === 'kategorii' || $route.params.list === category.url" class="col-span-full relative">
+						<!-- bg-gradient-to-tl from-main-darker/70 to-sec/90 -->
+						<div class="flex justify-between gap-4 py-10 px-5 border border-main">
 							<div class="flex flex-col w-full">
-								<Btn clear glue :to="`/kategorii/${category.url}`" @click="useGoods().getCategoryActive(category.url)" class="!p-0">
+								<Btn
+									v-if="$route.params.list != category.url"
+									clear
+									glue
+									:to="`/kategorii/${category.url}`"
+									@click="useGoods().getCategoryActive(category.url)"
+									class="!p-0"
+								>
 									<h4 v-text="category.name"
 								/></Btn>
-
+								<h4 v-else v-text="category.name" class="mx-auto" />
 								<div v-html="category.text" />
 							</div>
 

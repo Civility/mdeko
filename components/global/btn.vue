@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const NuxtLink = resolveComponent('NuxtLink')
+const NuxtTO = resolveComponent('NuxtLink')
 
 const props = defineProps({
 	to: {
@@ -28,7 +28,7 @@ const props = defineProps({
 		type: Boolean,
 	},
 })
-const isComponent = computed(() => (props.to ? NuxtLink : 'button'))
+const isComponent = computed(() => (props.to ? NuxtTO : 'button'))
 const isType = computed(() => (isComponent != 'button' ? null : 'button'))
 const isClass = computed(() => {
 	return {
@@ -58,8 +58,9 @@ const isClass = computed(() => {
 		/* @apply border-b-2 border-r-2 border-main-light  hover:border-main-lighter rounded-lg; */
 		/* @apply shadow-[3px_3px] shadow-main-light; */
 		@apply !no-underline;
-		@apply rounded-md !px-10 !py-2;
-		@apply bg-gradient-to-tl from-main-light/70 to-sec-light/90 hover:to-main hover:from-sec;
+		@apply !px-10 !py-2;
+		@apply border;
+		/* @apply bg-gradient-to-tl from-main-light/70 to-sec-light/90 hover:to-main hover:from-sec; */
 		/* @apply border-main-lighter border-2 rounded-md;	 */
 	}
 	&__clear {

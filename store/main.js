@@ -33,8 +33,8 @@ export const useMain = defineStore('main', {
 		// FULLYEAR: new Date().getFullYear(),
 	}),
 	getters: {
-		menu: (s) => s.MENU,
-		contact: (s) => s.CONTACT,
+		// menu: (s) => s.MENU,
+		// contact: (s) => s.CONTACT,
 		contacts(s) {
 			s.CONTACTS.map((item) => {
 				if (item.address == '') {

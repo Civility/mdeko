@@ -7,33 +7,24 @@ import { storeToRefs } from 'pinia'
 import { useCart } from '@/store/cart.js'
 
 const { DATADELIVERY } = useCart()
-const { cartTotal, DELIVERY, cartsLength } = storeToRefs(useCart())
+const { cartTotal, DELIVERY, cartsLength, CARTS } = storeToRefs(useCart())
+const { sendOrder } = useCart()
 
-// const test = ref(cartsLength)
-// console.log(test.value)
+const searchDELIVERY = DATADELIVERY.find((i) => i.data == false)
+const deliveryDATA = ref(searchDELIVERY.price)
 
 definePageMeta({
 	middleware: ['cartroute'],
 })
-// definePageMeta({
-// 	middleware: [
-// 		function (to, from) {
-// 			// if (cartTotal.value === 0) {
-// 			// 	return navigateTo('/')
-// 			// }
-// 			console.log(test.value)
-// 		},
-// 	],
-// })
 
 const state = reactive({
-	name: '',
-	phone: '',
-	email: '',
-	message: '',
-	city: '',
-	street: '',
-	houseNumber: '',
+	name: 'Oleg',
+	phone: '+7 (950)-030-78-34',
+	email: 'civilitys@gmail.com',
+	message: 'message message message',
+	city: 'Санкт-Петербург',
+	street: 'цуекцук',
+	houseNumber: '123в',
 	online_payment: false,
 	delivery: DELIVERY.value,
 })
@@ -57,8 +48,8 @@ const rules = computed(() => {
 			email: helpers.withMessage('Проверьте правильность заполения', email),
 		},
 		message: {
-			required: helpers.withMessage(requiredText, required),
-			minLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не менее ${$params.min} символов.`, minLength(20)),
+			// required: helpers.withMessage(requiredText, required),
+			// minLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не менее ${$params.min} символов.`, minLength(20)),
 			maxLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не более ${$params.max} символов.`, maxLength(300)),
 		},
 		city: { required: helpers.withMessage(requiredText, required) },
@@ -71,11 +62,33 @@ const rules = computed(() => {
 	}
 })
 const v$ = useVuelidate(rules, state)
-const isSendForm = async (name, phone, email, message, city, street, houseNumber, online_payment) => {
+const isSendOrder = async (name, phone, email, message, city, street, houseNumber, online_payment, delivery) => {
 	let result = await v$.value.$validate()
 	result ? console.log('Form validate Ok ', result) : console.log('Form validate Failed ', result)
 	if (!v$.value.$error) {
-		await useAsyncData('sendFormChekout', () => console.log('TRUE'))
+		await useLazyAsyncData('setHits', () => getHits())
+		const mainObjCarts = computed(() =>
+			CARTS.value.map((item) => {
+				const id = item.product.id
+				const count = item.total
+				return { id, count }
+			})
+		)
+		console.log('mainObjCarts.value ', mainObjCarts.value)
+		await useAsyncData('sendOrder', () =>
+			sendOrder({
+				name,
+				phone,
+				email,
+				message,
+				city,
+				street,
+				houseNumber,
+				online_payment,
+				delivery,
+				cart: mainObjCarts.value,
+			})
+		)
 		state.name = ''
 		state.phone = ''
 		state.email = ''
@@ -83,8 +96,8 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 		state.city = ''
 		state.street = ''
 		state.houseNumber = ''
-		state.online_payment = ''
-		state.delivery = ''
+		state.online_payment = false
+		state.delivery = DELIVERY.value
 		console.log('Form not error ', v$.value.$error)
 	} else {
 		console.log('Form error ', v$.value.$error)
@@ -158,7 +171,7 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 			<div class="col-span-1 mb-6 relative">
 				<label for="name" class="block mb-2 text-sm font-medium text-main">Квартира</label>
 				<input
-					v-model.trim="state.street"
+					v-model.trim="state.houseNumber"
 					@change="v$.houseNumber.$touch"
 					type="text"
 					id="houseNumber"
@@ -188,16 +201,16 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 							:id="`delivery-option-${id}`"
 							type="radio"
 							name="delivery"
-							:value="deliveryItem.price"
+							:value="deliveryItem.data"
 							v-model="state.delivery"
-							@click.passive="useCart().setDelivery(deliveryItem.price)"
+							@click.passive="useCart().setDelivery(deliveryItem.data), (deliveryDATA = deliveryItem.price)"
 							class="w-4 h-4 border-gray focus:ring-2 focus:ring-main accent-main"
-							:checked="state.delivery === deliveryItem.price"
+							:checked="state.delivery === deliveryItem.data"
 						/>
-						<label :for="`delivery-option-${id}`" class="block ml-2 text-sm font-medium text-dark">{{ deliveryItem.text }} </label>
-						<span class="ml-2 text-sm border py-1 px-2 bg-gray">
-							от {{ deliveryItem.price }}<Svg svg="baseline-currency-ruble" size="18"
-						/></span>
+						<label :for="`delivery-option-${id}`" class="block ml-2 text-sm font-medium text-dark"
+							>от {{ deliveryItem.price }}<Svg svg="baseline-currency-ruble" size="18" />
+						</label>
+						<span class="ml-2 text-sm border py-1 px-2"> {{ deliveryItem.text }}</span>
 					</div>
 				</fieldset>
 			</div>
@@ -224,7 +237,6 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 							name="online_payment"
 							type="checkbox"
 							class="w-4 h-4 border-main-lighter rounded bg-dark focus:ring-3 focus:ring-main accent-main cursor-pointer"
-							required
 						/>
 					</div>
 					<div class="ml-3 text-sm">
@@ -233,21 +245,20 @@ const isSendForm = async (name, phone, email, message, city, street, houseNumber
 				</div>
 			</div>
 			<div class="col-span-5">
-				<h6>Сумма</h6>
 				<dl>
 					<dt>Всего</dt>
 					<dd>{{ cartTotal }}<Svg svg="baseline-currency-ruble" /></dd>
 					<dt>Доставка</dt>
-					<dd>{{ DELIVERY }}<Svg svg="baseline-currency-ruble" /></dd>
+					<dd>{{ deliveryDATA }}<Svg svg="baseline-currency-ruble" /></dd>
 				</dl>
 			</div>
 			<Btn
 				type="submit"
 				@click.native="
-					isSendForm(
+					isSendOrder(
 						state.name,
-						state.email,
 						state.phone,
+						state.email,
 						state.message,
 						state.city,
 						state.street,

@@ -48,7 +48,7 @@ useHead({
 									<div
 										class="border border-main rounded-full w-7 h-7 flex items-center justify-center relative group-hover:bg-main group-hover:text-white text-main"
 									>
-										x
+										<Svg svg="round-close" />
 									</div>
 								</Btn>
 							</div>

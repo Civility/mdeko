@@ -4,9 +4,9 @@ import { useGoods } from '@/store/goods.js'
 const route = useRoute()
 
 const { getTovari } = useGoods()
-const { categoryactive, getCategoryActive, TOVARI } = storeToRefs(useGoods())
+const { CATEGORYACTIVE, getCategoryActive, TOVARI } = storeToRefs(useGoods())
 
-watchEffect(() => getTovari(categoryactive.value))
+watchEffect(() => getTovari(CATEGORYACTIVE.value))
 </script>
 
 <template>

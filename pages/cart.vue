@@ -3,20 +3,20 @@ import { storeToRefs } from 'pinia'
 import { useCart } from '@/store/cart.js'
 import { useGoods } from '@/store/goods.js'
 const { CARTS } = storeToRefs(useCart())
-const { getHits, hits } = useGoods()
+const { getHits, HITS } = useGoods()
 
-await useLazyAsyncData('hits', () => getHits())
+await useLazyAsyncData('setHits', () => getHits())
 </script>
  <template>
 	<main class="cart md:py-15 py-10 container">
-		<h1 class="capitalize title-b">Корзина</h1>
+		<h1 class="capitalize">Корзина</h1>
 		<div v-if="!CARTS.length">
 			<ClientOnly>
 				<h3 class="mb-12 md:mb-20">Ваша корзина пуста</h3>
-				<section v-if="hits.length">
-					<h2 class="text-center col-span-full"><span class="title-b inline-block">Сезонное предложение</span></h2>
+				<section v-if="HITS.length">
+					<h2 class="text-center col-span-full"><span class="inline-block">Сезонное предложение</span></h2>
 					<div class="wrap-full">
-						<CardItem v-for="item in hits" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
+						<CardItem v-for="item in HITS" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
 					</div>
 				</section>
 			</ClientOnly>
@@ -26,22 +26,24 @@ await useLazyAsyncData('hits', () => getHits())
 				<Btn
 					@click="useCart().setCartDel(index)"
 					class="!absolute !top-0 !right-0 m-2 !text-white hover:!text-white/70 border rounded-full border-white w-7 h-7 hover:border-white/70"
-					>x</Btn
 				>
+					<Svg svg="round-close" />
+				</Btn>
 
 				<div class="md:col-span-1 col-span-1">
 					<img v-if="item.product.img.mini" class="w-full" :src="item.product.img.mini" :alt="item.product.title" />
 				</div>
 				<div class="md:col-span-11 col-span-7 wrap gap-4">
 					<div class="col-span-3 flex flex-col">
-						<NuxtLink :to="`kategorii/${item.product.category}/${item.product.url}`">
+						<!-- ${item.product.category}/ -->
+						<NuxtLink :to="`/kategorii/${item.product.category}/${item.product.url}`">
 							<span class="font-bold">{{ item.product.title }}</span>
 						</NuxtLink>
 						<span class="text-gray">{{ item.product.category }}</span>
 					</div>
 					<div class="text-dark col-span-2 text-lg">{{ item.product.price }}<Svg svg="baseline-currency-ruble" /></div>
 					<div class="relative flex justify-center items-center col-span-2 self-center max-w-[5rem]">
-						<Btn :disabled="item.total <= 1" @click="useCart().setCartMinus(item.product.url, 1)"
+						<Btn :disabled="item.total <= 1" @click="useCart().setCartMinus(item.product.url)"
 							><span class="bg-main-darker w-4 h-4 flex justify-center items-center"><Svg svg="baseline-minus" /></span
 						></Btn>
 						<input

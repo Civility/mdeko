@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia'
 import { useMain } from '@/store/main.js'
 const { SOCIALS } = storeToRefs(useMain())
-const { COPYRIGHT, DOCS, contact } = useMain()
+const { COPYRIGHT, DOCS, CONTACT } = useMain()
 
 const showModal = shallowRef(null)
 
@@ -23,7 +23,7 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 						<Btn
 							icon
 							:to="`tel:${phone.number}`"
-							v-for="phone in contact.phones"
+							v-for="phone in CONTACT.phones"
 							:key="phone.number"
 							class="!grid grid-cols-[40px,_1fr] gap-x-2"
 						>
@@ -40,40 +40,16 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 					</Btn>
 
 					<Modal refName="map" :show="showModal === 'map'" @isClickShow="(val) => isShow(val)">
-						<div class="w-[500px] h-[370px] bg-gray min-w-full min-h-full flex justify-center items-center text-dark">MAP</div>
+						<div class="w-[500px] h-[370px] bg-gray min-w-full min-h-full flex justify-center items-center text-dark">
+							<iframe
+								src="https://yandex.ru/map-widget/v1/?um=constructor%3A31e5016da115367de16aac4834ae21ab40bc2e21ced4e1305fd85e7bef6ed376&amp;source=constructor"
+								width="100%"
+								height="100%"
+								frameborder="0"
+							></iframe>
+						</div>
 					</Modal>
 				</div>
-
-				<!-- <div class="footer__socials flex flex-wrap gap-x-4 gap-y-1 col-auto">
-					<Btn
-						v-for="social in SOCIALS"
-						:key="social.name"
-						class="footer__docs gap-2"
-						:to="
-							social.name === 'telegram'
-								? `//t.me/${social.number}`
-								: social.name === 'whatsapp'
-								? `//wa.me/${social.number}`
-								: null
-						"
-					>
-						<Svg :svg="social.icon" :alt="social.title" />
-					</Btn>
-				</div> -->
-
-				<!-- <NuxtLink :to="`mailto:${contact.mail}`" class="col-span-5 w-fit">
-					<Svg svg="baseline-mail" alt="mail" />
-					{{ contact.mail }}
-				</NuxtLink>
-				<div class="col-span-2">
-					<Btn main class="gap-2 !w-full" @click="openModal('feedback')">
-						<Svg svg="round-feedback" />
-						Обратная связь
-					</Btn>
-					<Modal refName="map" :show="showModal === 'feedback'" @isClickShow="(val) => isShow(val)">
-						<template #body> <h3>Feedback</h3> </template>
-					</Modal>
-				</div> -->
 			</address>
 			<div class="footer__bottom flex flex-wrap justify-between items-end mt-4">
 				<div class="footer__copyright flex gap-4">

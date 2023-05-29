@@ -21,18 +21,19 @@
 		/* @apply h-full; */
 	}
 	body {
-		@apply text-white;
+		@apply text-dark;
 		@apply text-base;
+		@apply bg-gray-light;
 		/* @apply h-full; */
 	}
 	/* #__nuxt {
 		@apply h-full flex flex-col;
 	} */
-	
+
 	main {
 		@apply relative;
 	}
- 
+
 	img {
 		@apply object-cover;
 	}
@@ -101,7 +102,7 @@
 		@apply after:content-[''] after:absolute after:top-1/2 after:mx-2;
 		@apply after:w-10 after:h-0.5;
 	}
-	.title-b {
+	. {
 		@apply after:block after:content-[''] after:w-12 after:h-1 after:bg-white after:mt-4;
 	}
 	.title-line {
@@ -148,13 +149,30 @@
 			@apply absolute inset-0 content-[''] z-10;
 		}
 	}
+	.rotateY {
+		&-180 {
+			transform: rotateY(180deg);
+		}
+		&-360deg {
+			transform: rotateY(360deg);
+		}
+	}
+	.parallax_bg {
+		@apply bg-fixed w-full h-full flex items-center justify-center absolute inset-0 -z-30 bg-no-repeat bg-cover;
+		&:before {
+			@apply absolute inset-0 content-[''];
+			@apply bg-black/30;
+			@apply inline-block relative;
+			/* @apply backdrop-blur-sm; */
+			@apply w-full h-full;
+		}
+	}
 	.parallax {
-		@apply fixed inset-0 w-full h-full -z-30;
+		@apply fixed inset-0 w-full  h-screen -z-30;
 		@apply bg-dark;
-		@apply bg-no-repeat bg-cover bg-scroll bg-center;
+		@apply bg-no-repeat bg-cover bg-center;
 		@apply flex justify-center items-center;
 		@apply bg-fixed;
-		@apply h-screen;
 
 		&:before {
 			@apply absolute inset-0 content-[''];

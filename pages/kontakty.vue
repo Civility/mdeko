@@ -5,10 +5,10 @@ import { useMain } from '@/store/main.js'
 // import { storeToRefs } from 'pinia'
 // const { contacts } = storeToRefs(useMain())
 
-const { getContactData, getСontacts, getSocials, socials, contact, sendForm } = useMain()
+const { getContactData, getСontacts, getSocials, socials, CONTACT, sendForm } = useMain()
 await useAsyncData('contacts', async () => getСontacts())
 await useLazyAsyncData('contact', async () => getContactData())
-await useLazyAsyncData('contact', async () => getSocials())
+await useLazyAsyncData('social', async () => getSocials())
 
 const showModal = shallowRef(null)
 
@@ -84,12 +84,12 @@ const isSendForm = async (name, phone, email, message) => {
 			<div class="lg:col-span-3 col-span-full flex flex-col gap-4 text-dark">
 				<dl class="bg-white/50 p-4">
 					<dt class="mb-2">Адрес офиса:</dt>
-					<dd v-text="contact.address" />
+					<dd v-text="CONTACT.address" />
 				</dl>
 				<dl class="bg-white/50 p-4">
 					<dt class="mb-2">Телефоны:</dt>
 					<dd>
-						<Btn v-for="item in contact.phones" :key="item.number" :to="`tel:${item.number}`" class="flex gap-2 !text-dark !p-0">
+						<Btn v-for="item in CONTACT.phones" :key="item.number" :to="`tel:${item.number}`" class="flex gap-2 !text-dark !p-0">
 							<Svg svg="baseline-local-phone" class="row-span-2" />
 							{{ item.tel }}
 							<span v-text="`по ${item.city}`" class="text-sm" />
@@ -98,7 +98,7 @@ const isSendForm = async (name, phone, email, message) => {
 				</dl>
 				<dl class="bg-white/50 p-4">
 					<dt class="mb-2">E-mail:</dt>
-					<dd v-for="email in contact.mail">
+					<dd v-for="email in CONTACT.mail">
 						<a :href="`mailto:${email}`" v-text="email" />
 					</dd>
 				</dl>
@@ -117,7 +117,14 @@ const isSendForm = async (name, phone, email, message) => {
 			</div>
 		</ClientOnly>
 		<div class="lg:col-span-5 col-span-full">
-			<div class="w-[500px] h-[370px] bg-gray min-w-full min-h-full flex justify-center items-center text-dark">MAP</div>
+			<div class="w-[500px] h-[370px] max-h-[370px] bg-gray min-w-full min-h-full flex justify-center items-center text-dark">
+				<iframe
+					src="https://yandex.ru/map-widget/v1/?um=constructor%3A31e5016da115367de16aac4834ae21ab40bc2e21ced4e1305fd85e7bef6ed376&amp;source=constructor"
+					width="100%"
+					height="100%"
+					frameborder="0"
+				></iframe>
+			</div>
 		</div>
 		<div class="gap-4 text-dark col-span-full wrap">
 			<dl class="lg:col-span-3 col-span-full">

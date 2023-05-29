@@ -8,30 +8,21 @@ const props = defineProps({
 </script>
 <template>
 	<div class="relative flex flex-col w-full mx-auto">
-		<div
-			class="relative rounded overflow-hidden bg-gradient-to-r even:from-main-dark/70 from-main-light/50 odd:to-main-light/50 70 shadow-lg flex flex-col py-8 h-full"
-		>
-			<div class="relative w-32 p-8 mx-auto flex justify-center overflow-hidden rounded">
-				<!-- <img class="w-full" src="/img/item.webp" :alt="data.title" /> -->
-				<img v-if="data.img.mini" class="w-full" :src="data.img.mini" :alt="data.img.alt" />
-				<!-- <img v-if="data.img" class="w-full" :src="data.img" :alt="data.title" /> -->
+		<Btn clear glue :to="`/kategorii/${data.category}/${data.url}`" class="bg-main-lighter mb-4">
+			<div class="relative w-24 px-4 py-8 mx-auto overflow-hidden">
+				<img v-if="data.img.mini" :src="data.img.mini" :alt="data.img.alt" class="w-full" />
 			</div>
-
-			<Btn
-				clear
-				:to="`/kategorii/${data.category}/${data.url}`"
-				class="my-3 !py-3 px-2 text-base md:text-lg xl:text-xl text-dark uppercase after:bg-dark before:bg-dark text-center box-decoration-clone bg-gradient-to-r from-main to-sec hover:!text-dark"
-				>{{ data.title }}</Btn
-			>
-
-			<div class="mt-auto flex justify-between mx-6">
-				<span class="text-xl self-center">{{ data.price }}<Svg svg="baseline-currency-ruble" /></span>
-				<Btn svg @click="useCart().setCartPlus(data.url, data.category)" class="group border-dark hover:!border-white !w-max">
-					<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:!text-white" />
-					<span class="text-dark group-hover:text-white">В корзину</span>
-				</Btn>
-			</div>
+		</Btn>
+		<div class="flex gap-px flex-col items-start text-dark mb-2 lg:text-sm text-xl">
+			<span class="text-dark" v-text="data.title" />
+			<strong class=" ">{{ data.price }}<Svg svg="baseline-currency-ruble" /></strong>
 		</div>
+
+		<Btn svg @click="useCart().setCartPlus(data.url, data.category)" class="!w-full border-dark mt-auto z-10">
+			<Svg svg="sharp-shopping-cart" class="mr-2 text-dark" />
+			<span class="text-dark lg:text-sm text-xl">В корзину</span>
+		</Btn>
+		<!-- <pre>{{ data }}</pre> -->
 	</div>
 </template>
 
