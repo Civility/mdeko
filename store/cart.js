@@ -63,7 +63,7 @@ export const useCart = defineStore('cart', {
 			if (this.CARTS.length) {
 				this.CARTS.find((i) => {
 					if (i.product.url === url) --i.total
-					if (i.product.url === url) this.CARTITEMTOTAL = --i.total
+					if (i.product.url === url) this.CARTITEMTOTAL = i.total
 
 				})
 			}

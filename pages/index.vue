@@ -14,10 +14,11 @@ const { pending: infoWait } = await useLazyAsyncData('setInfo', () => getInfo())
 </script>
 
 <template>
-	<main class="pt-[20vh]">
+	<main>
 		<!-- bg-fixed inset-0 stretch after:bg-black/30 style="background-image: url(/img/bg_main.webp)"-->
 		<!-- lg:h-screen h-auto  lg:pb-[15vh] lg:pt-[20vh] md:pt-[15vh] -->
-		<section class="category w-full relative pb-15">
+		<!-- -->
+		<section class="category w-full lg:h-screen h-full relative py-15 flex items-center">
 			<div class="wrap-full md:gap-2 gap-5 container px-0 border-14 shadow border-gray-light bg-gray-light relative">
 				<ClientOnly>
 					<CardCategory
@@ -33,31 +34,26 @@ const { pending: infoWait } = await useLazyAsyncData('setInfo', () => getInfo())
 			<span class="parallax_bg" style="background-image: url(/img/bg_main.webp)" />
 		</section>
 		<ClientOnly>
-			<Banner class=" " :data="bannerMain" v-if="!bannersWait" />
+			<Banner class="md:my-15 my-10" :data="bannerMain" v-if="!bannersWait" />
 		</ClientOnly>
-		<section class="container md:py-15 py-10" v-if="HITS.length">
+		<section class="container md:my-15 my-10" v-if="HITS.length">
 			<h2 class="col-span-full !mb-10 text-main">Сезонное предложение</h2>
 			<div class="wrap-full" v-if="!hitsWait">
 				<CardItem v-for="item in HITS" :key="item.url" :data="item" class="md:col-span-4 col-span-full" />
 			</div>
 		</section>
 		<ClientOnly>
-			<Banner class="md:py-15 py-10" right :data="bannerSecond" v-if="!bannersWait" />
-
-			<!-- <aside class="md:mb-15 mb-10" v-if="!infoWait">
-				<Info :data="item" v-for="item in infoHalf" class="md:mb-15 mb-10" />
-
-				<Info :data="item" v-for="item in infoLast" />
-			</aside> -->
-			<aside class="md:mb-15 mb-10 container" v-if="!infoWait">
-				<div v-for="list in info" :key="list.id" class="mb-4">
-					<h3 v-if="list.title" v-text="list.title" class="text-center text-4xl capitalize" />
-					<span v-if="list.subTitle" v-text="list.subTitle" class="text-center max-w-md" />
-					<div v-if="list.text" v-html="list.text" class="text-center max-w-lg mx-auto" />
-					<Info :data="list.list" class="max-w-4xl mx-auto" />
-				</div>
-			</aside>
+			<Banner class="md:my-15 my-10" right :data="bannerSecond" v-if="!bannersWait" />
 		</ClientOnly>
+		<aside class="md:mb-15 mb-10 container" v-if="!infoWait">
+			<div v-for="list in info" :key="list.id" class="mb-15">
+				<h3 v-if="list.title" v-text="list.title" class="text-center text-4xl capitalize" />
+				<span v-if="list.subTitle" v-text="list.subTitle" class="block text-center max-w-md mx-auto mb-3" />
+				<div v-if="list.text" v-html="list.text" class="text-center max-w-lg mx-auto mb-10" />
+				<Info :data="list.list" />
+			</div>
+		</aside>
+
 		<!-- <span class="parallax" style="background-image: url(/img/bg3.webp)" /> -->
 	</main>
 </template>

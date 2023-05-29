@@ -16,7 +16,7 @@ const isOpenPhones = () => (togglePhones.value = !togglePhones.value)
 <template>
 	<!--sticky bg-gradient-to-l from-main-dark to-sec-dark/80 -->
 	<header
-		class="fixed top-0 z-50 w-full py-2 border-b bg-dark/70 border-white duration-300 transition-colors"
+		class="sticky top-0 z-50 w-full py-2 border-b bg-dark/70 border-white duration-300 transition-colors"
 		:class="{ 'h-full  !fixed !bg-dark': toggleMenu }"
 	>
 		<nav class="flex justify-between items-center gap-4 container" :class="{ 'flex-wrap': toggleMenu }">

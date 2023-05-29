@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs, mapActions } from 'pinia'
 import { useGoods } from '@/store/goods.js'
-const { getCategoryActive } = storeToRefs(useGoods())
+const { setCategoryActive } = storeToRefs(useGoods())
 
 const props = defineProps({
 	data: Object,
@@ -17,8 +17,8 @@ const props = defineProps({
 		<Btn
 			glue
 			:to="`/kategorii/${data.url}`"
-			@click="useGoods().getCategoryActive(data.url)"
-			class="absolute inset-0 flex justify-center items-center px-2 py-4 !text-xl lg:!text-base"
+			@click="useGoods().setCategoryActive(data.url)"
+			class="absolute inset-0 flex justify-center items-center px-2 py-4 !text-xl lg:!text-base !font-semibold"
 		>
 			{{ data.name }}
 		</Btn>

@@ -48,10 +48,11 @@ const isClass = computed(() => {
 	@apply py-2 lg:py-3 px-2 w-auto;
 
 	@apply text-white;
-	@apply text-sm xl:text-lg md:text-base;
+	@apply text-sm xl:text-base md:text-sm;
 	@apply align-middle not-italic;
 	@apply transition-all duration-300;
 	@apply !outline-none target:outline-none focus:outline-none focus:ring-0 focus-visible:outline-none active:outline-none;
+	@apply hover:text-sec;
 	@apply disabled:pointer-events-none disabled:isolate disabled:opacity-70;
 	-webkit-appearance: none;
 	&__main {

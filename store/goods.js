@@ -12,16 +12,18 @@ export const useGoods = defineStore('goods', {
 		PRODUCT: {},
 		CATEGORYACTIVE: '', // активнй пункт меню в категории
 	}),
-	// getters: {
-	// categories: (s) => s.CATEGORIES,
-	// hits: (s) => s.HITS,
-	// tovari: (s) => s.TOVARI,
-	// product: (s) => s.PRODUCT,
-	// categoryactive: (s) => s.CATEGORYACTIVE,
-	// },
+	getters: {
+		// categories: (s) => s.CATEGORIES,
+		// hits: (s) => s.HITS,
+		// tovari: (s) => s.TOVARI,
+		// product: (s) => s.PRODUCT,
+		// categoryactive: (s) => s.CATEGORYACTIVE,
+		categoryItem: (s) => s.CATEGORIES.find(i => i.url === s.CATEGORYACTIVE),
+		// tovarItem: (s) => s.CATEGORIES.find(i => i.url === s.CATEGORYACTIVE)
+	},
 	actions: {
 
-		getCategoryActive(url) {
+		setCategoryActive(url) {
 			this.CATEGORYACTIVE = url
 		},
 		// /category/item
@@ -57,14 +59,12 @@ export const useGoods = defineStore('goods', {
 		},
 
 		async getTovari(categoryUrlActive) {
-			if (!this.TOVARI.length) {
-				try {
-					const API = await $fetch(`${useRuntimeConfig().public.API}/categories/${categoryUrlActive}`)
-
-					this.TOVARI = API.sort(sortOrder)
-				} catch (err) {
-					console.log(err)
-				}
+			this.setCategoryActive(categoryUrlActive)
+			try {
+				const API = await $fetch(`${useRuntimeConfig().public.API}/categories/${categoryUrlActive}`)
+				this.TOVARI = API.sort(sortOrder)
+			} catch (err) {
+				console.log(err)
 			}
 		},
 	},

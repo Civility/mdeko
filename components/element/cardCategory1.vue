@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs, mapActions } from 'pinia'
 import { useGoods } from '@/store/goods.js'
-const { getCategoryActive } = storeToRefs(useGoods())
+const { setCategoryActive } = storeToRefs(useGoods())
 
 const props = defineProps({
 	data: Object,
@@ -25,7 +25,7 @@ const props = defineProps({
 					glue
 					:to="`/kategorii/${data.url}`"
 					class="lg:opacity-0 lg:group-hover:opacity-100"
-					@click="useGoods().getCategoryActive(data.url)"
+					@click="useGoods().setCategoryActive(data.url)"
 				>
 					Подробнее
 				</Btn>

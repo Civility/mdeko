@@ -89,7 +89,7 @@ const isSendForm = async (name, phone, email, message) => {
 				<dl class="bg-white/50 p-4">
 					<dt class="mb-2">Телефоны:</dt>
 					<dd>
-						<Btn v-for="item in CONTACT.phones" :key="item.number" :to="`tel:${item.number}`" class="flex gap-2 !text-dark !p-0">
+						<Btn v-for="item in CONTACT.phones" :key="item.number" :to="`tel:${item.number}`" class="flex gap-2 !text-dark !p-0 !text-sm">
 							<Svg svg="baseline-local-phone" class="row-span-2" />
 							{{ item.tel }}
 							<span v-text="`по ${item.city}`" class="text-sm" />
@@ -131,7 +131,7 @@ const isSendForm = async (name, phone, email, message) => {
 				<div class="border border-dark p-4 bg-white/50 flex flex-col">
 					<dt class="mb-2">Форма обратной связи:</dt>
 					<dd>
-						<Btn main @click.native="openModal('callback')" class="!text-dark">Связаться</Btn>
+						<Btn main @click.native="openModal('callback')">Связаться</Btn>
 					</dd>
 				</div>
 			</dl>
@@ -147,6 +147,7 @@ const isSendForm = async (name, phone, email, message) => {
 			</div>
 		</div>
 		<span class="parallax" style="background-image: url(/img/bg3.webp)" />
+
 		<Modal refName="callback" :show="showModal === 'callback'" @isClickShow="(val) => isShow(val)">
 			<div>
 				<div class="pb-6 relative">
