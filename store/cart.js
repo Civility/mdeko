@@ -52,7 +52,6 @@ export const useCart = defineStore('cart', {
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(params),
 					})
-
 				}
 				console.log('finish send')
 			} catch (err) {

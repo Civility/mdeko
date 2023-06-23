@@ -13,6 +13,15 @@ const { sendOrder } = useCart()
 const searchDELIVERY = DATADELIVERY.find((i) => i.data == false)
 const deliveryDATA = ref(searchDELIVERY.price)
 
+onMounted(() => {
+	var url = new URL(window.location.href)
+	var isOnline_payment = url.searchParams.get('online_payment')
+	if (isOnline_payment === 'on') {
+		console.log('online_payment ', isOnline_payment)
+		// 'http://api-akvamdeko.na4u.ru/checkout/order-pay/138/?key=wc_order_ARjMhilvq83bK&order=138'
+	}
+})
+
 definePageMeta({
 	middleware: ['cartroute'],
 })
