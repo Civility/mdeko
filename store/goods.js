@@ -52,7 +52,7 @@ export const useGoods = defineStore('goods', {
 			if (!this.HITS.length) {
 				try {
 					const API = await $fetch(`${useRuntimeConfig().public.API}/products/hits`)
-					return (this.HITS = await API.sort(sortOrder))
+					this.HITS = API.sort(sortOrder)
 				} catch (err) {
 					console.log(err)
 				}

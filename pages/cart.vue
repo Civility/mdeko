@@ -2,24 +2,22 @@
 import { storeToRefs } from 'pinia'
 import { useCart } from '@/store/cart.js'
 import { useGoods } from '@/store/goods.js'
+const { getHits } = useGoods()
+const { pending: getHitsWait } = await useAsyncData('setGetHits', () => getHits())
 const { CARTS } = storeToRefs(useCart())
-const { getHits, HITS } = useGoods()
-
-await useLazyAsyncData('setHits', () => getHits())
+const { HITS } = storeToRefs(useGoods())
 </script>
  <template>
 	<main class="cart md:py-15 py-10 container">
 		<h1 class="capitalize">Корзина</h1>
 		<div v-if="!CARTS.length">
-			<ClientOnly>
-				<h3 class="mb-12 md:mb-20">Ваша корзина пуста</h3>
-				<section v-if="HITS.length">
-					<h2 class="text-center col-span-full"><span class="inline-block">Сезонное предложение</span></h2>
-					<div class="wrap-full">
-						<CardItem v-for="item in HITS" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
-					</div>
-				</section>
-			</ClientOnly>
+			<h3 class="mb-12 md:mb-20">Ваша корзина пуста</h3>
+			<section v-if="!getHitsWait">
+				<h2 class="text-center col-span-full"><span class="inline-block">Сезонное предложение</span></h2>
+				<div class="wrap-full">
+					<CardItem v-for="item in HITS" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
+				</div>
+			</section>
 		</div>
 		<div class="flex flex-col gap-6" v-else>
 			<div class="relative p-6 wrap-full bg-main/70 text-dark" v-for="(item, index) in CARTS" :key="index">

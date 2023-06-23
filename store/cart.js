@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import { useGoods } from './goods'
+
+// const router = useRouter();
 const sortOrder = (a, b) => {
 	return a.order > b.order ? -1 : 1
 }
@@ -13,7 +15,7 @@ export const useCart = defineStore('cart', {
 			{ price: 185, text: 'Самовывоз с пункта выдачи', data: false },
 			{ price: 320, text: 'Доставка до двери', data: true }
 		],
-
+		// RESPONSDELIVERY: {}
 	}),
 	getters: {
 		cartsLength: (s) => s.CARTS.length,
@@ -28,7 +30,6 @@ export const useCart = defineStore('cart', {
 
 		async setCartPlus(url, category) {
 			await useGoods().getTovari(category)
-
 			const total = 1
 			const product = await useGoods().TOVARI[category].find((i) => i.url === url)
 			if (this.CARTS.length) {
@@ -41,16 +42,22 @@ export const useCart = defineStore('cart', {
 			}
 
 		},
-		async sendOrder(params) {
+		sendOrder(params) {
 			try {
 				console.log('start send')
 				if (this.cartsLength) {
-					// console.log('order ', JSON.stringify(params))
+					$fetch(`${useRuntimeConfig().public.API}/order`,
+						{
+							method: 'POST',
+							body: params,
+						}
+					).then((response) => {
+						if (response.success) {
+							navigateTo(response.redirect, { external: true })
+						} else {
+							navigateTo('/')
+						}
 
-					await $fetch(`${useRuntimeConfig().public.API}/order`, {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify(params),
 					})
 				}
 				console.log('finish send')
@@ -63,7 +70,6 @@ export const useCart = defineStore('cart', {
 				this.CARTS.find((i) => {
 					if (i.product.url === url) --i.total
 					if (i.product.url === url) this.CARTITEMTOTAL = i.total
-
 				})
 			}
 		},
