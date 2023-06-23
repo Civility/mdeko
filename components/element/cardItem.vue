@@ -15,7 +15,7 @@ const props = defineProps({
 		</Btn>
 		<div class="flex gap-px flex-col items-start text-dark mb-2 lg:text-sm text-xl">
 			<span v-text="data.title" class="text-dar" />
-			<strong class=" ">{{ data.price }}<Svg svg="baseline-currency-ruble" /></strong>
+			<strong>{{ data.price }}<Svg svg="baseline-currency-ruble" /></strong>
 		</div>
 
 		<Btn
@@ -24,9 +24,7 @@ const props = defineProps({
 			class="group !w-full border-dark hover:!border-sec mt-auto z-10 !text-dark hover:!text-sec"
 		>
 			+<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:text-sec" />
-			<!-- <span class="text-dark lg:text-sm text-xl">В корзину</span> -->
 		</Btn>
-		<!-- <pre>{{ data }}</pre> -->
 	</div>
 </template>
 

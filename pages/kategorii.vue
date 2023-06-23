@@ -2,13 +2,11 @@
 import { storeToRefs, mapActions } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 
-const { getCategories, getTovari } = useGoods()
+const { getCategories } = useGoods()
 const { CATEGORYACTIVE, CATEGORIES } = storeToRefs(useGoods())
 
-// const { setCategoryActive } = mapActions(useGoods(), ['setCategoryActive'])
-
 const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () => getCategories())
-const { pending: tovariWait } = await useAsyncData('setTovari', () => getTovari(CATEGORYACTIVE.value))
+// const { pending: tovariWait } = await useAsyncData('setTovari', () => getTovari(CATEGORYACTIVE.value))
 </script>
 <template>
 	<main class="wrap gap-x-12">
@@ -20,19 +18,21 @@ const { pending: tovariWait } = await useAsyncData('setTovari', () => getTovari(
 					icon
 					v-for="nav in CATEGORIES"
 					:key="nav.url"
-					class="mx-4"
+					class="mx-4 !justify-between"
 					:to="`/kategorii/${nav.url}`"
 					:class="{ '!text-main-lighter': CATEGORYACTIVE == nav.url }"
 					@click="useGoods().setCategoryActive(nav.url)"
 				>
 					{{ nav.name }}
-					<Svg :svg="nav.icon ?? 'baseline-cloud-sync'" :alt="nav.name" />
+					<Svg :svg="nav.icon ?? 'baseline-cloud-sync'" :alt="nav.name" class="min-w-max min-h-max" />
 				</Btn>
 			</div>
 		</nav>
 
 		<section class="container lg:col-span-6 col-span-full my-4">
-			<div v-for="categoryItem in CATEGORIES" :key="categoryItem.url" class="w-full wrap gap-4 mb-10 border-12 border-main relative">
+			<NuxtPage v-if="$route.path != '/kategorii'" />
+
+			<div v-else v-for="categoryItem in CATEGORIES" :key="categoryItem.url" class="w-full wrap gap-4 mb-10 border-12 border-main relative">
 				<div class="col-span-5 flex flex-col px-4 py-8">
 					<Btn
 						glue
@@ -49,7 +49,7 @@ const { pending: tovariWait } = await useAsyncData('setTovari', () => getTovari(
 					<img :src="categoryItem.img.mini" :alt="categoryItem.img.alt" v-if="categoryItem.img.mini" class="h-80" />
 				</div>
 			</div>
-			<NuxtPage />
+			<!-- <pre>{{ $route }}</pre> -->
 		</section>
 
 		<!-- <span class="parallax" style="background-image: url(/img/bg2.webp)" /> -->

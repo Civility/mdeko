@@ -22,7 +22,7 @@ export default defineNuxtConfig({
 			routes.push({
 				name: 'kategorii-list-url',
 				path: '/kategorii/:list/:url',
-				file: resolve('./pages/kategorii/[list]/[url].vue'),
+				file: resolve('./pages/kategorii/list/[url].vue'),
 			})
 		},
 	},

@@ -8,8 +8,9 @@ export const useGoods = defineStore('goods', {
 	state: () => ({
 		CATEGORIES: [],
 		HITS: [],
-		TOVARI: [],
+		// TOVARI: [],
 		PRODUCT: {},
+		TOVARI: {},
 		CATEGORYACTIVE: '', // активнй пункт меню в категории
 	}),
 	getters: {
@@ -58,11 +59,15 @@ export const useGoods = defineStore('goods', {
 			}
 		},
 
-		async getTovari(categoryUrlActive) {
-			this.setCategoryActive(categoryUrlActive)
+		async getTovari(route) {
+			this.setCategoryActive(route)
 			try {
-				const API = await $fetch(`${useRuntimeConfig().public.API}/categories/${categoryUrlActive}`)
-				this.TOVARI = API.sort(sortOrder)
+				if (!this.TOVARI[route]) {
+					const API = await $fetch(`${useRuntimeConfig().public.API}/categories/${route}`)
+					// this.TOVARI = API.sort(sortOrder)
+
+					this.TOVARI[route] = API.sort(sortOrder)
+				}
 			} catch (err) {
 				console.log(err)
 			}

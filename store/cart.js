@@ -30,7 +30,7 @@ export const useCart = defineStore('cart', {
 			await useGoods().getTovari(category)
 
 			const total = 1
-			const product = await useGoods().TOVARI.find((i) => i.url === url)
+			const product = await useGoods().TOVARI[category].find((i) => i.url === url)
 			if (this.CARTS.length) {
 				const result = await this.CARTS.find((i) => {
 					if (i.product.url === url) return ++i.total

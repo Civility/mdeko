@@ -37,11 +37,30 @@ const titleTab = [
 
 <template>
 	<main class="!pt-[20vh] md:py-15 py-10 container wrap">
-		<div class="lg:col-span-4 col-span-full">
-			<!-- <Slider
+		<div class="lg:col-span-4 col-span-full flex max-h-96">
+			<Slider
+				@swiper="setThumbsSwiper"
+				:data="PRODUCT.slider"
+				:spaceBetween="16"
+				:slidesPerView="3"
+				:direction="'vertical'"
+				:freeMode="true"
+				:watchSlidesProgress="true"
+				:loop="false"
+				:navigation="false"
+				:grabCursor="true"
+				class="w-[30%]"
+			>
+				<template #content="{ slider }">
+					<img :src="`${slider}`" :alt="slider" class="object-cover" />
+				</template>
+			</Slider>
+
+			<Slider
 				:data="PRODUCT.slider"
 				:spaceBetween="10"
-				:slidesPerView="1" 	
+				:slidesPerView="1"
+				:mousewheel="true"
 				loop
 				:effect="'fade'"
 				:fadeEffect="{ crossFade: true }"
@@ -55,29 +74,12 @@ const titleTab = [
 				:pagination="{
 					clickable: true,
 				}"
+				class="w-auto"
 			>
 				<template #content="{ slider }">
- 
 					<img :src="`${slider}`" :alt="slider" class="object-cover mx-auto" />
 				</template>
-			</Slider> -->
-			<!-- <Slider
-				@swiper="setThumbsSwiper"
-				:data="PRODUCT.slider"
-				:spaceBetween="16"
-				:slidesPerView="3"
-				:freeMode="true"
-				:watchSlidesProgress="true"
-				:loop="false"
-				:navigation="false"
-				:grabCursor="true"
-				:direction="'horizontal'"
-				class="h-1/5 box-border !py-3 overflow-hidden"
-			>
-				<template #content="{ slider }">
-					<img :src="`${slider}`" :alt="slider" class="object-cover" />
-				</template>
-			</Slider> -->
+			</Slider>
 		</div>
 		<div class="lg:col-span-4 col-span-full">
 			<div class="flex flex-col gap-2">
