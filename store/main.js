@@ -21,15 +21,15 @@ export const useMain = defineStore('main', {
 		CONTACT: {
 			phones: [],
 			mail: [], // info@akvamdeko.ru
-			address: '',
+			address: ''
 		},
 		SOCIALS: [],
 		REQUISITES: { name: 'ООО "МДЕКО"', inn: '7816543798', ogrn: '1127847412220' },
 		DOCS: { title: 'Пользовательское соглашение', url: '#' },
 		COPYRIGHT: {
 			notice: '© Все права зарегистрированы.',
-			name: 'ООО "МДЕКО"',
-		},
+			name: 'ООО "МДЕКО"'
+		}
 		// FULLYEAR: new Date().getFullYear(),
 	}),
 	getters: {
@@ -50,7 +50,7 @@ export const useMain = defineStore('main', {
 		phones(s) {
 			return (s.CONTACT.phones = [
 				{ tel: s.PHONESPB, number: replaceNumber(s.PHONESPB), city: 'Санкт-Петербургу' },
-				{ tel: s.PHONEMSK, number: replaceNumber(s.PHONEMSK), city: 'России' },
+				{ tel: s.PHONEMSK, number: replaceNumber(s.PHONEMSK), city: 'России' }
 			])
 		},
 		socials: (s) => s.SOCIALS,
@@ -78,7 +78,7 @@ export const useMain = defineStore('main', {
 		toggleMenu: (s) => s.TOGGLEMENU,
 		modalOpen: (s) => (s.MODALOPEN = true),
 		modalClose: (s) => (s.MODALCLOSE = false),
-		modalToggle: (s) => s.MODALTOGGLE,
+		modalToggle: (s) => s.MODALTOGGLE
 	},
 	actions: {
 		// async getMainALL({ dispatch }) {
@@ -98,7 +98,6 @@ export const useMain = defineStore('main', {
 			this.TOGGLEMENU = false
 		},
 		async getMenu() {
-
 			if (!this.MENU.length) {
 				try {
 					const API = await $fetch(`${useRuntimeConfig().public.API}/menu`)
@@ -135,12 +134,12 @@ export const useMain = defineStore('main', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					// headers: { 'Content-Type': 'multipart/form-data' },
-					body: JSON.stringify(params),
+					body: JSON.stringify(params)
 				})
 				console.log('finish send')
 			} catch (err) {
 				console.log(err)
 			}
-		},
-	},
+		}
+	}
 })

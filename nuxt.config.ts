@@ -5,40 +5,40 @@ import { resolve } from 'path'
 export default defineNuxtConfig({
 	telemetry: false,
 	...(!isDev && {
-		experimental: { writeEarlyHints: false },
+		experimental: { writeEarlyHints: false }
 	}),
 	runtimeConfig: {
 		public: {
 			G_NAME: 'Akvamdeko',
 			G_IMG: `${process.env.API}/storage/app/media/`,
 			API: process.env.API
-		},
+		}
 	},
 	components: {
-		dirs: ['~/components/element', '~/components/partial', '~/components/global'],
+		dirs: ['~/components/element', '~/components/partial', '~/components/global']
 	},
-	hooks: {
-		'pages:extend'(routes) {
-			routes.push({
-				name: 'kategorii-list-url',
-				path: '/kategorii/:list/:url',
-				file: resolve('./pages/kategorii/list/[url].vue'),
-			})
-		},
-	},
+	// hooks: {
+	// 	'pages:extend'(routes) {
+	// 		routes.push({
+	// 			name: 'kategorii-list-url',
+	// 			path: '/kategorii/:list/:url',
+	// 			file: resolve('./pages/kategorii/list/[url].vue')
+	// 		})
+	// 	}
+	// },
+	// extends: ['nuxt-seo-kit'],
 	modules: getModules(),
-
 	postcss: {
 		plugins: {
 			'tailwindcss/nesting': {},
 			autoprefixer: {},
 			'postcss-responsive-type': {}
-		},
+		}
 	},
 
 	tailwindcss: {
 		cssPath: '~/assets/tailwind.css',
 		viewer: true,
-		exposeConfig: true,
-	},
+		exposeConfig: true
+	}
 })

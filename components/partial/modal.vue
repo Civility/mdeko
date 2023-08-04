@@ -5,12 +5,12 @@ const props = defineProps({
 	bgclass: String,
 	show: {
 		type: Boolean,
-		default: false,
+		default: false
 	},
 	refName: {
 		type: String,
-		required: true,
-	},
+		required: true
+	}
 })
 const showModal = ref(false)
 
@@ -24,15 +24,15 @@ const closeModal = () => (showModal.value = false)
 
 useHead({
 	bodyAttrs: {
-		class: showModal.value ? 'over-hidden' : false,
-	},
+		class: showModal.value ? 'over-hidden' : false
+	}
 })
 </script>
 
 <template>
 	<ClientOnly>
 		<Teleport to="body">
-			<div class="fixed z-30 inset-0 overflow-y-auto" :ref="refName" v-if="showModal">
+			<div class="fixed inset-0 z-30 overflow-y-auto" :ref="refName" v-if="showModal">
 				<transition
 					enter-active-class="transition ease-out duration-200 transform"
 					enter-from-class="opacity-0"
@@ -42,11 +42,11 @@ useHead({
 					leave-to-class="opacity-0"
 				>
 					<div class="flex items-center justify-center pt-24 text-center">
-						<div class="w-1/2 bg-white rounded-lg text-left overflow-hidden p-4 shadow-dark z-20" :class="bgclass">
+						<div class="z-20 w-1/2 overflow-hidden rounded-lg bg-white p-4 text-left shadow-dark" :class="bgclass">
 							<div class="relative flex justify-end">
-								<Btn clean class="relative group !p-0" @click="$emit('isClickShow', false)">
+								<Btn clean class="group relative !p-0" @click="$emit('isClickShow', false)">
 									<div
-										class="border border-main rounded-full w-7 h-7 flex items-center justify-center relative group-hover:bg-main group-hover:text-white text-main"
+										class="relative flex h-7 w-7 items-center justify-center rounded-full border border-main text-main group-hover:bg-main group-hover:text-white"
 									>
 										<Svg svg="round-close" />
 									</div>
@@ -56,7 +56,7 @@ useHead({
 								<slot />
 							</div>
 						</div>
-						<div @click="$emit('isClickShow', false)" class="bg-sec/70 bg-opacity-50 absolute inset-0 z-10" />
+						<div @click="$emit('isClickShow', false)" class="absolute inset-0 z-10 bg-sec/70 bg-opacity-50" />
 					</div>
 				</transition>
 			</div>

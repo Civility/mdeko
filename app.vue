@@ -6,7 +6,7 @@ const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () =
 <template>
 	<div>
 		<Header />
-		<NuxtPage />
+		<NuxtPage class="-mt-32" />
 		<Footer />
 	</div>
 </template>

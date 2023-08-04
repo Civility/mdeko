@@ -1,7 +1,6 @@
-
 <script setup>
 const props = defineProps({
-	data: Object,
+	data: Object
 })
 const tab = ref(0)
 const isTab = (id) => {
@@ -14,7 +13,7 @@ const isTab = (id) => {
 			<ul
 				v-for="(item, id) in data"
 				:key="id"
-				class="flex gap-8 odd:bg-gray-light even:bg-gray"
+				class="flex gap-8 odd:bg-gray even:bg-gray"
 				:class="{ '!bg-main-lighter  ': id === tab }"
 			>
 				<li class="relative w-full text-left">
@@ -27,10 +26,10 @@ const isTab = (id) => {
 		<div class="col-span-6 bg-main-lighter text-dark">
 			<div v-for="(item, id) in data" :key="id">
 				<span v-show="id === tab" class="flex">
-					<div class="w-full max-w-xs flex items-center">
+					<div class="flex w-full max-w-xs items-center">
 						<img v-if="item.photo" :src="item.photo" :alt="item.title" />
 					</div>
-					<div v-html="item.text" class="w-full py-3 px-8" />
+					<div v-html="item.text" class="w-full px-8 py-3" />
 				</span>
 			</div>
 		</div>

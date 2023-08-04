@@ -9,8 +9,8 @@
 defineProps({
 	data: {
 		type: Array,
-		required: true,
-	},
+		required: true
+	}
 })
 const modules = [SwiperAutoplay, SwiperFreeMode, SwiperNavigation, SwiperPagination, SwiperMousewheel, SwiperThumbs, SwiperEffectFade]
 </script>
@@ -28,13 +28,13 @@ const modules = [SwiperAutoplay, SwiperFreeMode, SwiperNavigation, SwiperPaginat
 	}
 }
 .swiper-pagination {
-	@apply flex justify-center items-center w-full my-4 mx-auto;
+	@apply mx-auto my-4 flex w-full items-center justify-center;
 	&-bullet {
 		@apply relative z-10;
-		@apply border border-solid rounded-circle border-transparent;
-		@apply flex justify-center items-center;
-		@apply before:content-[''] before:w-2 before:h-2 before:opacity-60 before:border before:border-solid before:border-main before:rounded-circle;
-		@apply w-4 h-4;
+		@apply rounded-circle border border-solid border-transparent;
+		@apply flex items-center justify-center;
+		@apply before:h-2 before:w-2 before:rounded-circle before:border before:border-solid before:border-main before:opacity-60 before:content-[''];
+		@apply h-4 w-4;
 		@apply mx-3;
 		@apply cursor-pointer;
 		&-active {

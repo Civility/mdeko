@@ -1,32 +1,37 @@
 <script setup>
-import { storeToRefs, mapActions } from 'pinia'
+import { storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 
 const { getCategories, getTovari } = useGoods()
-const { CATEGORIES, categoryItem, TOVARI } = storeToRefs(useGoods())
+const { CATEGORIES, TOVARI } = storeToRefs(useGoods())
 
-const { setCategoryActive } = mapActions(useGoods(), ['setCategoryActive'])
 const route = useRoute().params.list
 const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () => getCategories())
 const { pending: tovariWait } = await useAsyncData('setTovari', () => getTovari(route))
 
+const categori = computed(() => CATEGORIES.value.find((i) => i.url === route))
 const tovars = computed(() => TOVARI.value[route])
-definePageMeta({
-	key: (route) => route.fullPath,
-})
 </script>
 <template>
-	<div class="wrap-full">
-		<CardItem v-if="!tovariWait" v-for="item in tovars" :key="item.url" :data="item" class="sm:col-span-4 col-span-full" />
+	<main v-if="CATEGORIES.length && TOVARI.length">
+		<section class="relative h-screen w-full">
+			<div class="container absolute inset-0 flex h-full w-full items-center justify-start opacity-50">
+				<img src="/svg/logo.svg" width="600" height="200" alt="logo" />
+			</div>
+			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
+		</section>
 
-		<div class="w-full wrap gap-4 mb-10 border-12 border-main relative col-span-full">
-			<div class="col-span-5 flex flex-col px-4 py-8">
-				<h3 v-text="categoryItem.name" class="text-main" />
-				<div v-html="categoryItem.text" />
+		<h1 class="mb-10 bg-main py-10 text-center text-5xl uppercase" v-text="categori.name" />
+		<section class="container mt-20 bg-main py-10 lg:mt-20 lg:py-20" v-if="CATEGORIES.length && !categoriesWait">
+			<div class="wrap gap-10 lg:gap-15" v-if="!tovariWait && tovars.length">
+				<CardItem v-for="item in tovars" :key="item.url" :data="item" more class="col-span-full md:col-span-4 lg:col-span-2" />
 			</div>
-			<div class="col-span-3 place-self-end">
-				<img :src="categoryItem.img.mini" :alt="categoryItem.img.alt" v-if="categoryItem.img.mini" class="h-80" />
+		</section>
+		<section class="container py-20" v-if="CATEGORIES.length && !categoriesWait">
+			<h2 class="mb-10 text-center uppercase text-main-light">Каталог</h2>
+			<div class="wrap justify-around gap-10">
+				<CardCategory v-for="item in CATEGORIES" :data="item" :key="item.url" class="col-span-full md:col-span-4 lg:col-span-2" />
 			</div>
-		</div>
-	</div>
+		</section>
+	</main>
 </template>

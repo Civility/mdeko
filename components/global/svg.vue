@@ -1,8 +1,8 @@
 <template>
-	<Icon :name="`ic:${svg}`" size="24" />
+	<!-- <Icon :name="`ic:${svg}`" size="24" /> -->
 </template>
 <script setup>
 defineProps({
-	svg: String,
+	svg: String
 })
 </script>

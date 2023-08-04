@@ -5,9 +5,9 @@ import { useInfo } from '@/store/info.js'
 
 const { getHits, CATEGORIES } = useGoods()
 const { HITS } = storeToRefs(useGoods())
+
 const { getBanners, getInfo, info } = useInfo()
 const { bannerMain, bannerSecond } = storeToRefs(useInfo())
-// const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () => getCategories())
 const { pending: bannersWait } = await useLazyAsyncData('setBanners', () => getBanners())
 const { pending: hitsWait } = await useLazyAsyncData('setHits', () => getHits())
 const { pending: infoWait } = await useLazyAsyncData('setInfo', () => getInfo())
@@ -15,45 +15,51 @@ const { pending: infoWait } = await useLazyAsyncData('setInfo', () => getInfo())
 
 <template>
 	<main>
-		<!-- bg-fixed inset-0 stretch after:bg-black/30 style="background-image: url(/img/bg_main.webp)"-->
-		<!-- lg:h-screen h-auto  lg:pb-[15vh] lg:pt-[20vh] md:pt-[15vh] -->
-		<!-- -->
-		<section class="category w-full lg:h-screen h-full relative py-15 flex items-center">
-			<div class="wrap-full md:gap-2 gap-5 container px-0 border-14 shadow border-gray-light bg-gray-light relative">
-				<ClientOnly>
+		<section class="relative h-screen w-full">
+			<div class="container absolute inset-0 flex h-full w-full items-center justify-center">
+				<img src="/svg/logo.svg" width="800" height="400" alt="logo" />
+			</div>
+			<span class="parallax_bg" style="background-image: url(/img/main.webp)" />
+		</section>
+
+		<ClientOnly>
+			<section class="container relative -top-20" v-if="!bannersWait && bannerMain">
+				<Banner :data="bannerMain" />
+			</section>
+		</ClientOnly>
+		<ClientOnly>
+			<section class="container mb-20 py-10 lg:mb-20 lg:py-20" v-if="CATEGORIES.length && !categoriesWait">
+				<h2 class="mb-10 text-center uppercase text-main-light">Каталог</h2>
+				<div class="wrap justify-around gap-10">
 					<CardCategory
 						v-for="item in CATEGORIES"
 						:data="item"
 						:key="item.url"
-						class="xl:col-span-4 md:col-span-6 col-span-full relative md:max-h-[25vh] max-h-40"
-						v-if="!categoriesWait"
+						class="col-span-full md:col-span-4 lg:col-span-2"
 					/>
-				</ClientOnly>
-				<img src="/img/bird.webp" alt="bird" class="w-1/5 absolute -top-24 xl:-left-20 left-1/3 -z-10 origin-bottom-right -rotate-45" />
-			</div>
-			<span class="parallax_bg" style="background-image: url(/img/bg_main.webp)" />
-		</section>
-		<ClientOnly>
-			<Banner class="md:my-15 my-10" :data="bannerMain" v-if="!bannersWait" />
+				</div>
+			</section>
 		</ClientOnly>
-		<section class="container md:my-15 my-10" v-if="HITS.length">
-			<h2 class="col-span-full !mb-10 text-main">Сезонное предложение</h2>
-			<div class="wrap-full" v-if="!hitsWait">
-				<CardItem v-for="item in HITS" :key="item.url" :data="item" class="md:col-span-4 col-span-full" />
-			</div>
-		</section>
 		<ClientOnly>
-			<Banner class="md:my-15 my-10" right :data="bannerSecond" v-if="!bannersWait" />
+			<section class="container my-10 bg-main py-10 md:my-20 lg:py-20" v-if="HITS.length && !hitsWait">
+				<h2 class="mb-10 text-center">Сезонное предложение</h2>
+				<div class="wrap-full gap-10">
+					<CardItem v-for="item in HITS" :key="item.url" :data="item" class="col-span-full md:col-span-4" />
+				</div>
+			</section>
 		</ClientOnly>
-		<aside class="md:mb-15 mb-10 container" v-if="!infoWait">
+		<ClientOnly>
+			<section class="container relative" v-if="!bannersWait && bannerSecond">
+				<Banner :data="bannerSecond" />
+			</section>
+		</ClientOnly>
+		<!-- <aside class="container mb-10 md:mb-15" v-if="!infoWait">
 			<div v-for="list in info" :key="list.id" class="mb-15">
 				<h3 v-if="list.title" v-text="list.title" class="text-center text-4xl capitalize" />
-				<span v-if="list.subTitle" v-text="list.subTitle" class="block text-center max-w-md mx-auto mb-3" />
-				<div v-if="list.text" v-html="list.text" class="text-center max-w-lg mx-auto mb-10" />
+				<span v-if="list.subTitle" v-text="list.subTitle" class="mx-auto mb-3 block max-w-md text-center" />
+				<div v-if="list.text" v-html="list.text" class="mx-auto mb-10 max-w-lg text-center" />
 				<Info :data="list.list" />
 			</div>
-		</aside>
-
-		<!-- <span class="parallax" style="background-image: url(/img/bg3.webp)" /> -->
+		</aside> -->
 	</main>
 </template>

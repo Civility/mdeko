@@ -11,7 +11,8 @@ export const useGoods = defineStore('goods', {
 		// TOVARI: [],
 		PRODUCT: {},
 		TOVARI: {},
-		CATEGORYACTIVE: '', // активнй пункт меню в категории
+
+		CATEGORYACTIVE: '' // активнй пункт меню в категории
 	}),
 	getters: {
 		// categories: (s) => s.CATEGORIES,
@@ -19,11 +20,10 @@ export const useGoods = defineStore('goods', {
 		// tovari: (s) => s.TOVARI,
 		// product: (s) => s.PRODUCT,
 		// categoryactive: (s) => s.CATEGORYACTIVE,
-		categoryItem: (s) => s.CATEGORIES.find(i => i.url === s.CATEGORYACTIVE),
+		categoryItem: (s) => s.CATEGORIES.find((i) => i.url === s.CATEGORYACTIVE)
 		// tovarItem: (s) => s.CATEGORIES.find(i => i.url === s.CATEGORYACTIVE)
 	},
 	actions: {
-
 		setCategoryActive(url) {
 			this.CATEGORYACTIVE = url
 		},
@@ -48,6 +48,7 @@ export const useGoods = defineStore('goods', {
 				}
 			}
 		},
+
 		async getHits() {
 			if (!this.HITS.length) {
 				try {
@@ -64,13 +65,12 @@ export const useGoods = defineStore('goods', {
 			try {
 				if (!this.TOVARI[route]) {
 					const API = await $fetch(`${useRuntimeConfig().public.API}/categories/${route}`)
-					// this.TOVARI = API.sort(sortOrder)
-
+					this.TOVARI = API.sort(sortOrder)
 					this.TOVARI[route] = API.sort(sortOrder)
 				}
 			} catch (err) {
 				console.log(err)
 			}
-		},
-	},
+		}
+	}
 })

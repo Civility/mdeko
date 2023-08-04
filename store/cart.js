@@ -14,21 +14,20 @@ export const useCart = defineStore('cart', {
 		DATADELIVERY: [
 			{ price: 185, text: 'Самовывоз с пункта выдачи', data: false },
 			{ price: 320, text: 'Доставка до двери', data: true }
-		],
+		]
 		// RESPONSDELIVERY: {}
 	}),
 	getters: {
 		cartsLength: (s) => s.CARTS.length,
 		cartTotal(s) {
-			const totalList = s.CARTS.map(i => {
+			const totalList = s.CARTS.map((i) => {
 				return i.product.price * i.total
 			})
-			return totalList.reduce((partialSum, a) => partialSum + a, 0);
-		},
+			return totalList.reduce((partialSum, a) => partialSum + a, 0)
+		}
 	},
 	actions: {
-
-		async setCartPlus(url, category) {
+		async setCartPlus(category, url) {
 			await useGoods().getTovari(category)
 			const total = 1
 			const product = await useGoods().TOVARI[category].find((i) => i.url === url)
@@ -40,24 +39,20 @@ export const useCart = defineStore('cart', {
 			} else {
 				await this.CARTS.push({ product, total: total })
 			}
-
 		},
 		sendOrder(params) {
 			try {
 				console.log('start send')
 				if (this.cartsLength) {
-					$fetch(`${useRuntimeConfig().public.API}/order`,
-						{
-							method: 'POST',
-							body: params,
-						}
-					).then((response) => {
+					$fetch(`${useRuntimeConfig().public.API}/order`, {
+						method: 'POST',
+						body: params
+					}).then((response) => {
 						if (response.success) {
 							navigateTo(response.redirect, { external: true })
 						} else {
 							navigateTo('/')
 						}
-
 					})
 				}
 				console.log('finish send')
@@ -74,11 +69,11 @@ export const useCart = defineStore('cart', {
 			}
 		},
 		setCartDel(index) {
-			this.CARTS.splice(index, 1);
+			this.CARTS.splice(index, 1)
 		},
 		setDelivery(data) {
 			this.DELIVERY = data
-		},
+		}
 		// cartItemTotal(url) {
 		// 	return this.CARTITEMTOTAL = this.CARTS.map((i) => { if (i.product.url === url) return i.total }
 		// 	)

@@ -1,22 +1,12 @@
 <script setup>
 const props = defineProps({
-	data: Object,
-	right: Boolean,
-	center: Boolean,
+	data: Object
 })
 </script>
 
 <template>
-	<div class="relative group wrap gap-0 bg-main-darker">
-		<div class="col-span-4 p-3 max-h-screen min-h-full overflow-hidden">
-			<img :src="`${data.img.bg}`" :alt="data.img.alt" class="w-full h-full" />
-		</div>
-		<div class="col-span-4 flex flex-col justify-center items-center">
-			<div class="m-12 lg:m-0 w-3/4">
-				<h3 v-text="data.title" class="text-4xl" />
-				<div v-html="data.text" class="uppercase" />
-				<Btn main :to="data.url" class="!p-1.5 !w-min !mt-4">Подробнее</Btn>
-			</div>
-		</div>
+	<div class="bg-gradient-to-r from-main from-30% to-main-dark to-100% py-16 text-center">
+		<h2 v-if="data?.title" v-text="data?.title" class="mb-10" />
+		<div v-if="data?.text" v-html="data?.text" />
 	</div>
 </template>

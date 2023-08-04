@@ -10,23 +10,23 @@ const NuxtTO = resolveComponent('NuxtLink')
 const props = defineProps({
 	to: {
 		type: String,
-		default: null,
+		default: null
 	},
 	main: {
-		type: Boolean,
+		type: Boolean
 	},
 	clear: {
-		type: Boolean,
+		type: Boolean
 	},
 	glue: {
-		type: Boolean,
+		type: Boolean
 	},
 	icon: {
-		type: Boolean,
+		type: Boolean
 	},
 	svg: {
-		type: Boolean,
-	},
+		type: Boolean
+	}
 })
 const isComponent = computed(() => (props.to ? NuxtTO : 'button'))
 const isType = computed(() => (isComponent != 'button' ? null : 'button'))
@@ -36,7 +36,7 @@ const isClass = computed(() => {
 		btn__clear: props.clear,
 		btn__glue: props.glue,
 		btn__icon: props.icon,
-		btn__svg: props.svg,
+		btn__svg: props.svg
 	}
 })
 </script>
@@ -45,36 +45,32 @@ const isClass = computed(() => {
 .btn {
 	appearance: none;
 	@apply inline-flex items-center justify-center;
-	@apply py-2 lg:py-3 px-2 w-auto;
+	@apply w-auto px-2 py-2 lg:py-3;
 
 	@apply text-white;
-	@apply text-sm xl:text-base md:text-sm;
+
 	@apply align-middle not-italic;
 	@apply transition-all duration-300;
 	@apply !outline-none target:outline-none focus:outline-none focus:ring-0 focus-visible:outline-none active:outline-none;
-	@apply hover:text-sec;
+
 	@apply disabled:pointer-events-none disabled:isolate disabled:opacity-70;
 	-webkit-appearance: none;
 	&__main {
-		/* @apply border-b-2 border-r-2 border-main-light  hover:border-main-lighter rounded-lg; */
-		/* @apply shadow-[3px_3px] shadow-main-light; */
-		@apply !no-underline;
-		@apply !px-10 !py-2;
-		@apply border;
-		/* @apply bg-gradient-to-tl from-main-light/70 to-sec-light/90 hover:to-main hover:from-sec; */
-		/* @apply border-main-lighter border-2 rounded-md;	 */
+		@apply hover:no-underline;
+		@apply px-10 py-2;
+		@apply bg-main-light hover:opacity-70;
 	}
 	&__clear {
 		@apply rounded-none p-0;
 	}
 	&__glue {
-		@apply after:absolute after:inset-0 after:content-[''] after:z-10;
+		@apply after:absolute after:inset-0 after:z-10 after:content-[''];
 	}
 	&__icon {
 		@apply gap-x-1;
 	}
 	&__svg {
-		@apply border-2 !p-1.5 w-min !no-underline hover:border-white;
+		@apply w-min   !p-1.5 !no-underline;
 	}
 }
 </style>

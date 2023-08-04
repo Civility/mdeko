@@ -19,7 +19,7 @@ const state = reactive({
 	name: '',
 	phone: '',
 	email: '',
-	message: '',
+	message: ''
 })
 const rules = computed(() => {
 	let requiredText = 'Поле обязательно для заполнения'
@@ -35,23 +35,26 @@ const rules = computed(() => {
 		name: {
 			required: helpers.withMessage(requiredText, required),
 			minLength: helpers.withMessage(({ $params }) => `Имя должно содержать не менее ${$params.min} символов.`, minLength(2)),
-			maxLength: helpers.withMessage(({ $params }) => `Имя должно содержать не более ${$params.max} символов.`, maxLength(32)),
+			maxLength: helpers.withMessage(({ $params }) => `Имя должно содержать не более ${$params.max} символов.`, maxLength(32))
 		},
 		phone: {
 			regexPhone: helpers.withMessage('Проверьте правильность заполнения поля', regexPhone),
 			required: helpers.withMessage(requiredText, required),
-			minLength: helpers.withMessage(({ $params }) => `Номер телефона должен содержать не менее ${$params.min} символов.`, minLength(7)),
-			maxLength: helpers.withMessage(({ $params }) => `Имя должно содержать не более ${$params.max} символов.`, maxLength(22)),
+			minLength: helpers.withMessage(
+				({ $params }) => `Номер телефона должен содержать не менее ${$params.min} символов.`,
+				minLength(7)
+			),
+			maxLength: helpers.withMessage(({ $params }) => `Имя должно содержать не более ${$params.max} символов.`, maxLength(22))
 		},
 		email: {
 			required: helpers.withMessage(requiredText, required),
-			email: helpers.withMessage('Проверьте правильность заполения', email),
+			email: helpers.withMessage('Проверьте правильность заполения', email)
 		},
 		message: {
 			required: helpers.withMessage(requiredText, required),
 			minLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не менее ${$params.min} символов.`, minLength(20)),
-			maxLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не более ${$params.max} символов.`, maxLength(300)),
-		},
+			maxLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не более ${$params.max} символов.`, maxLength(300))
+		}
 	}
 })
 const v$ = useVuelidate(rules, state)
@@ -65,7 +68,7 @@ const isSendForm = async (name, phone, email, message) => {
 				phone,
 				email,
 				message,
-				agreement: true,
+				agreement: true
 			})
 		)
 		state.name = ''
@@ -79,9 +82,9 @@ const isSendForm = async (name, phone, email, message) => {
 }
 </script>
 <template>
-	<main class="md:py-15 py-10 container wrap">
+	<main class="wrap container py-10 md:py-15">
 		<ClientOnly>
-			<div class="lg:col-span-3 col-span-full flex flex-col gap-4 text-dark">
+			<div class="col-span-full flex flex-col gap-4 text-dark lg:col-span-3">
 				<dl class="bg-white/50 p-4">
 					<dt class="mb-2">Адрес офиса:</dt>
 					<dd v-text="CONTACT.address" />
@@ -89,7 +92,12 @@ const isSendForm = async (name, phone, email, message) => {
 				<dl class="bg-white/50 p-4">
 					<dt class="mb-2">Телефоны:</dt>
 					<dd>
-						<Btn v-for="item in CONTACT.phones" :key="item.number" :to="`tel:${item.number}`" class="flex gap-2 !text-dark !p-0 !text-sm">
+						<Btn
+							v-for="item in CONTACT.phones"
+							:key="item.number"
+							:to="`tel:${item.number}`"
+							class="flex gap-2 !p-0 !text-sm !text-dark"
+						>
 							<Svg svg="baseline-local-phone" class="row-span-2" />
 							{{ item.tel }}
 							<span v-text="`по ${item.city}`" class="text-sm" />
@@ -116,8 +124,8 @@ const isSendForm = async (name, phone, email, message) => {
 				</dl>
 			</div>
 		</ClientOnly>
-		<div class="lg:col-span-5 col-span-full">
-			<div class="w-[500px] h-[370px] max-h-[370px] bg-gray min-w-full min-h-full flex justify-center items-center text-dark">
+		<div class="col-span-full lg:col-span-5">
+			<div class="flex h-[370px] max-h-[370px] min-h-full w-[500px] min-w-full items-center justify-center bg-gray text-dark">
 				<iframe
 					src="https://yandex.ru/map-widget/v1/?um=constructor%3A31e5016da115367de16aac4834ae21ab40bc2e21ced4e1305fd85e7bef6ed376&amp;source=constructor"
 					width="100%"
@@ -126,83 +134,82 @@ const isSendForm = async (name, phone, email, message) => {
 				></iframe>
 			</div>
 		</div>
-		<div class="gap-4 text-dark col-span-full wrap">
-			<dl class="lg:col-span-3 col-span-full">
-				<div class="border border-dark p-4 bg-white/50 flex flex-col">
+		<div class="wrap col-span-full gap-4 text-dark">
+			<dl class="col-span-full lg:col-span-3">
+				<div class="flex flex-col border border-dark bg-white/50 p-4">
 					<dt class="mb-2">Форма обратной связи:</dt>
 					<dd>
 						<Btn main @click.native="openModal('callback')">Связаться</Btn>
 					</dd>
 				</div>
 			</dl>
-			<div class="lg:col-span-5 col-span-full">
+			<div class="col-span-full lg:col-span-5">
 				<!-- <div class="border border-dark p-4 flex justify-center items-center bg-white/50">ООО "МДЕКО"</div>
 				<div class="border border-dark p-4 flex justify-center items-center bg-white/50">ИНН 7816543798</div>
 				<div class="border border-dark p-4 flex justify-center items-center bg-white/50">ОГРН 1127847412220</div> -->
-				<div class="border border-dark p-4 flex justify-between items-center bg-white/50 h-full">
+				<div class="flex h-full items-center justify-between border border-dark bg-white/50 p-4">
 					<span>ООО "МДЕКО"</span>
 					<span>ИНН 7816543798</span>
 					<span>ОГРН 1127847412220</span>
 				</div>
 			</div>
 		</div>
-		<span class="parallax" style="background-image: url(/img/bg3.webp)" />
 
 		<Modal refName="callback" :show="showModal === 'callback'" @isClickShow="(val) => isShow(val)">
 			<div>
-				<div class="pb-6 relative">
+				<div class="relative pb-6">
 					<label for="name" class="block text-sm font-medium text-main">Вашe Имя</label>
 					<input
 						v-model.trim="state.name"
 						@change="v$.name.$touch"
 						type="text"
 						id="name"
-						class="bg-gray/90 border border-sec text-sec-dark text-sm rounded-lg focus:ring-sec-dark focus:border-sec-dark block w-full p-2.5 outline-main"
+						class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
 						placeholder="Имя Фамилия"
 					/>
-					<small class="text-some absolute right-0 bottom-0" v-if="v$.name.$error" v-text="v$.name.$errors[0].$message" />
+					<small class="absolute bottom-0 right-0 text-sec" v-if="v$.name.$error" v-text="v$.name.$errors[0].$message" />
 				</div>
-				<div class="pb-6 relative">
+				<div class="relative pb-6">
 					<label for="phone" class="block text-sm font-medium text-main">Ваш Телефон</label>
 					<input
 						v-model.trim="state.phone"
 						@change="v$.phone.$touch"
 						type="text"
 						id="phone"
-						class="bg-gray/90 border border-sec text-sec-dark text-sm rounded-lg focus:ring-sec-dark focus:border-sec-dark block w-full p-2.5 outline-main"
+						class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
 						placeholder="+7 ( ___ ) ___ - __ - __"
 					/>
-					<small class="text-some absolute right-0 bottom-0" v-if="v$.phone.$error" v-text="v$.phone.$errors[0].$message" />
+					<small class="absolute bottom-0 right-0 text-sec" v-if="v$.phone.$error" v-text="v$.phone.$errors[0].$message" />
 				</div>
-				<div class="pb-6 relative">
+				<div class="relative pb-6">
 					<label for="email" class="block text-sm font-medium text-main">Ваш Email</label>
 					<input
 						v-model.trim="state.email"
 						@change="v$.email.$touch"
 						type="email"
 						id="email"
-						class="bg-gray/90 border border-sec text-sec-dark text-sm rounded-lg focus:ring-sec-dark focus:border-sec-dark block w-full p-2.5 outline-main"
+						class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
 						placeholder="email@email.com"
 					/>
-					<small class="text-some absolute right-0 bottom-0" v-if="v$.email.$error" v-text="v$.email.$errors[0].$message" />
+					<small class="absolute bottom-0 right-0 text-sec" v-if="v$.email.$error" v-text="v$.email.$errors[0].$message" />
 				</div>
-				<div class="pb-6 relative">
+				<div class="relative pb-6">
 					<label for="message" class="block text-sm font-medium text-main">Вашe Сообщение</label>
 					<textarea
 						v-model.trim="state.message"
 						@change="v$.message.$touch"
 						id="message"
 						rows="4"
-						class="block p-2.5 w-full text-sm text-sec-dark bg-gray/90 rounded-lg border border-sec focus:ring-sec-dark focus:border-sec-dark"
+						class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark focus:border-sec-dark focus:ring-sec-dark"
 						placeholder="Текст сообщения"
 					/>
-					<small class="text-some absolute right-0 bottom-0" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
+					<small class="absolute bottom-0 right-0 text-sec" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
 				</div>
 				<Btn
 					type="submit"
 					@click.native="isSendForm(state.name, state.email, state.phone, state.message), v$.$reset()"
 					:disabled="v$.$invalid"
-					class="!w-full bg-gradient-to-tl from-sec to-main hover:to-sec hover:from-main"
+					class="!w-full bg-gradient-to-tl from-sec to-main hover:from-main hover:to-sec"
 					>Отправить</Btn
 				>
 			</div>

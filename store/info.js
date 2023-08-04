@@ -8,12 +8,12 @@ export const useInfo = defineStore('info', {
 		BANNERS: [],
 		INFO: [],
 		BANNERMAIN: null,
-		BANNERSECOND: null,
+		BANNERSECOND: null
 	}),
 	getters: {
 		info: (s) => s.INFO,
 		bannerMain: (s) => s.BANNERS.find((banner) => banner.order === 0),
-		bannerSecond: (s) => s.BANNERS.find((banner) => banner.order === 1),
+		bannerSecond: (s) => s.BANNERS.find((banner) => banner.order === 1)
 	},
 	actions: {
 		async getBanners() {
@@ -34,6 +34,6 @@ export const useInfo = defineStore('info', {
 					console.log(err)
 				}
 			}
-		},
-	},
+		}
+	}
 })

@@ -1,30 +1,17 @@
-
 <script setup>
-import { useCart } from '@/store/cart.js'
-
 const props = defineProps({
 	data: Object,
+	more: Boolean
 })
 </script>
 <template>
-	<div class="relative flex flex-col w-full mx-auto">
-		<Btn clear glue :to="`/kategorii/${data.category}/${data.url}`" class="bg-main-lighter mb-4">
-			<div class="relative w-24 px-4 py-8 mx-auto overflow-hidden">
-				<img v-if="data.img.mini" :src="data.img.mini" :alt="data.img.alt" class="w-full" />
+	<div class="flex flex-col">
+		<NuxtLink :to="`/kategorii/${data.category}/${data.url}`" class="flex flex-col items-center justify-center gap-10 py-5">
+			<div class="flex h-96 w-full justify-center">
+				<img v-if="data?.img?.mini" :src="data.img.mini" :alt="data.img?.alt" class="object-fill" />
 			</div>
-		</Btn>
-		<div class="flex gap-px flex-col items-start text-dark mb-2 lg:text-sm text-xl">
-			<span v-text="data.title" class="text-dar" />
-			<strong>{{ data.price }}<Svg svg="baseline-currency-ruble" /></strong>
-		</div>
-
-		<Btn
-			svg
-			@click="useCart().setCartPlus(data.url, data.category)"
-			class="group !w-full border-dark hover:!border-sec mt-auto z-10 !text-dark hover:!text-sec"
-		>
-			+<Svg svg="sharp-shopping-cart" class="mr-2 text-dark group-hover:text-sec" />
-		</Btn>
+			<span v-if="data?.title" class="grow text-center text-white" v-text="data.title" />
+		</NuxtLink>
+		<Btn v-if="more" main :to="`/kategorii/${data.category}/${data.url}`" class="mt-auto">Подробнее</Btn>
 	</div>
 </template>
-
