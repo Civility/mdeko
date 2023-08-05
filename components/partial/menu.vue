@@ -23,15 +23,5 @@ defineProps({
 				v-text="item.title"
 			/>
 		</li>
-		<!-- <li class="hidden lg:block">
-			<Btn clear to="/cart" class="relative">
-				<Svg svg="sharp-shopping-cart" class="mr-2 text-white group-hover:!text-white" />
-				<span
-					v-if="cartsLength"
-					v-text="cartsLength"
-					class="absolute bottom-2 right-0 inline-flex h-4 w-4 items-center justify-center rounded-circle border-2 border-main-lighter bg-sec p-1 text-small shadow"
-				/>
-			</Btn>
-		</li> -->
 	</ul>
 </template>

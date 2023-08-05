@@ -53,6 +53,8 @@
 		@apply text-white;
 		@apply text-xl;
 		@apply bg-main-darker;
+		@apply m-0 scroll-smooth;
+		/* @apply overflow-y-hidden; */
 	}
 	/* #__nuxt {
 		@apply h-full flex flex-col;
@@ -117,6 +119,11 @@
 	dt {
 		@apply font-bold;
 	}
+	/* Применяем стили к label и span, когда связанный input в состоянии :checked */
+	/* input[type='radio']:checked + label,
+	input[type='radio']:checked + span {
+ 
+	} */
 }
 
 @layer components {

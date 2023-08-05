@@ -6,11 +6,10 @@ import { useInfo } from '@/store/info.js'
 const { getHits, CATEGORIES } = useGoods()
 const { HITS } = storeToRefs(useGoods())
 
-const { getBanners, getInfo, info } = useInfo()
+const { getBanners } = useInfo()
 const { bannerMain, bannerSecond } = storeToRefs(useInfo())
 const { pending: bannersWait } = await useLazyAsyncData('setBanners', () => getBanners())
-const { pending: hitsWait } = await useLazyAsyncData('setHits', () => getHits())
-const { pending: infoWait } = await useLazyAsyncData('setInfo', () => getInfo())
+const { pending: getHitsWait } = await useLazyAsyncData('setHits', () => getHits())
 </script>
 
 <template>
@@ -24,11 +23,11 @@ const { pending: infoWait } = await useLazyAsyncData('setInfo', () => getInfo())
 
 		<ClientOnly>
 			<section class="container relative -top-20" v-if="!bannersWait && bannerMain">
-				<Banner :data="bannerMain" />
+				<Banner :data="bannerMain" class="bg-gradient-to-r from-main from-30% to-main-dark to-100% py-10 text-center lg:py-20" />
 			</section>
 		</ClientOnly>
 		<ClientOnly>
-			<section class="container mb-20 py-10 lg:mb-20 lg:py-20" v-if="CATEGORIES.length && !categoriesWait">
+			<section class="container mb-10 py-10 lg:mb-20 lg:py-20" v-if="CATEGORIES.length && !categoriesWait">
 				<h2 class="mb-10 text-center uppercase text-main-light">Каталог</h2>
 				<div class="wrap justify-around gap-10">
 					<CardCategory
@@ -41,7 +40,7 @@ const { pending: infoWait } = await useLazyAsyncData('setInfo', () => getInfo())
 			</section>
 		</ClientOnly>
 		<ClientOnly>
-			<section class="container my-10 bg-main py-10 md:my-20 lg:py-20" v-if="HITS.length && !hitsWait">
+			<section class="container my-10 bg-main py-10 md:my-20 lg:py-20" v-if="HITS.length && !getHitsWait">
 				<h2 class="mb-10 text-center">Сезонное предложение</h2>
 				<div class="wrap-full gap-10">
 					<CardItem v-for="item in HITS" :key="item.url" :data="item" class="col-span-full md:col-span-4" />

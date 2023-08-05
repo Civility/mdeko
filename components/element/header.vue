@@ -26,14 +26,6 @@ const { pending: menuWait } = useLazyAsyncData('menu', () => getMenu())
 				/>
 			</ClientOnly>
 			<div class="order-4 flex items-center justify-center gap-4 lg:hidden">
-				<Btn clear to="/cart" class="relative">
-					<Svg svg="sharp-shopping-cart" class="mr-2 text-white group-hover:!text-white" />
-					<span
-						v-if="cartsLength"
-						v-text="cartsLength"
-						class="absolute bottom-2 right-0 inline-flex h-4 w-4 items-center justify-center rounded-circle border-2 border-main-lighter bg-sec p-1 text-small shadow"
-					/>
-				</Btn>
 				<button
 					@click="useMain().getMenuToggle"
 					class="nav__menu relative h-4 w-8 -translate-y-1"

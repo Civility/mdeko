@@ -32,13 +32,13 @@ definePageMeta({
 // 	console.log(`[🍍 ${mutation}]`)
 // })
 const state = reactive({
-	name: 'Oleg',
-	phone: '+7 (950)-030-78-34',
-	email: 'civilitys@gmail.com',
-	message: 'message message message',
-	city: 'Санкт-Петербург',
-	street: 'Сырная',
-	houseNumber: '123в',
+	name: '',
+	phone: '',
+	email: '',
+	message: '',
+	city: '',
+	street: '',
+	houseNumber: '',
 	online_payment: false,
 	delivery: DELIVERY.value
 })
@@ -66,7 +66,7 @@ const rules = computed(() => {
 		},
 		message: {
 			// required: helpers.withMessage(requiredText, required),
-			// minLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не менее ${$params.min} символов.`, minLength(20)),
+			minLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не менее ${$params.min} символов.`, minLength(5)),
 			maxLength: helpers.withMessage(({ $params }) => `Сообщение должно содержать не более ${$params.max} символов.`, maxLength(300))
 		},
 		city: { required: helpers.withMessage(requiredText, required) },
@@ -122,102 +122,109 @@ const isSendOrder = async (name, phone, email, message, city, street, houseNumbe
 }
 </script>
 <template>
-	<main class="checkout wrap container py-10 text-dark md:py-15">
-		<form class="wrap col-span-full col-start-3">
-			<div class="relative col-span-5 mb-6">
-				<label for="name" class="mb-2 block text-sm font-medium text-main">Вашe Имя</label>
+	<main class="checkout">
+		<section class="relative h-screen w-full">
+			<div class="container absolute inset-0 flex h-full w-full items-center justify-center opacity-50">
+				<img src="/svg/logo.svg" width="800" height="400" alt="logo" />
+			</div>
+			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
+		</section>
+
+		<form class="container relative -top-20 bg-gradient-to-r from-main from-30% to-main-dark to-100% py-20 text-center">
+			<div class="wrap relative items-center pb-6">
+				<label for="name" class="col-span-3 ml-auto block text-xl font-medium">ФИО</label>
 				<input
 					v-model.trim="state.name"
 					@change="v$.name.$touch"
 					type="text"
 					id="name"
-					class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
-					placeholder="Имя Фамилия"
+					class="text-red-dark col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+					placeholder=""
 				/>
-				<small class="text-sec -bottom-4.5 absolute right-0" v-if="v$.name.$error" v-text="v$.name.$errors[0].$message" />
+				<strong class="-bottom-4.5 absolute right-2 text-red" v-if="v$.name.$error" v-text="v$.name.$errors[0].$message" />
 			</div>
-			<div class="relative col-span-5 mb-6">
-				<label for="name" class="mb-2 block text-sm font-medium text-main">Ваш Телефон</label>
+			<div class="wrap relative items-center pb-6">
+				<label for="name" class="col-span-3 ml-auto block text-xl font-medium">Ваш Телефон</label>
 				<input
 					v-model.trim="state.phone"
 					@change="v$.phone.$touch"
 					type="tel"
 					id="phone"
-					class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
-					placeholder="+7 ( ___ ) ___ - __ - __"
+					class="text-red-dark col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+					placeholder=""
 				/>
-				<small class="text-sec -bottom-4.5 absolute right-0" v-if="v$.phone.$error" v-text="v$.phone.$errors[0].$message" />
+				<strong class="-bottom-4.5 absolute right-2 text-red" v-if="v$.phone.$error" v-text="v$.phone.$errors[0].$message" />
 			</div>
-			<div class="relative col-span-5 mb-6">
-				<label for="name" class="mb-2 block text-sm font-medium text-main">Ваш Email</label>
+			<div class="wrap relative items-center pb-6">
+				<label for="name" class="col-span-3 ml-auto block text-xl font-medium">Ваш Email</label>
 				<input
 					v-model.trim="state.email"
 					@change="v$.email.$touch"
 					type="email"
 					id="email"
-					class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
-					placeholder="email@email.com"
+					class="text-red-dark col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+					placeholder=""
 				/>
-				<small class="text-sec -bottom-4.5 absolute right-0" v-if="v$.email.$error" v-text="v$.email.$errors[0].$message" />
+				<strong class="-bottom-4.5 absolute right-2 text-red" v-if="v$.email.$error" v-text="v$.email.$errors[0].$message" />
 			</div>
 
-			<div class="relative col-span-5 mb-6">
-				<label for="name" class="mb-2 block text-sm font-medium text-main">Ваш Город</label>
+			<div class="wrap relative items-center pb-6">
+				<label for="name" class="col-span-3 ml-auto block text-xl font-medium">Ваш Город</label>
 				<input
 					v-model.trim="state.city"
 					@change="v$.city.$touch"
 					type="text"
 					id="city"
-					class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
-					placeholder="Москва"
+					class="text-red-dark col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+					placeholder=""
 				/>
-				<small class="text-sec -bottom-4.5 absolute right-0" v-if="v$.city.$error" v-text="v$.city.$errors[0].$message" />
+				<strong class="-bottom-4.5 absolute right-2 text-red" v-if="v$.city.$error" v-text="v$.city.$errors[0].$message" />
 			</div>
-			<div class="relative col-span-4 mb-6">
-				<label for="name" class="mb-2 block text-sm font-medium text-main">Адрес Доставки</label>
+			<div class="wrap relative items-center pb-6">
+				<label for="name" class="col-span-3 ml-auto block text-xl font-medium">Адрес Доставки</label>
 				<input
 					v-model.trim="state.street"
 					@change="v$.street.$touch"
 					type="text"
 					id="street"
-					class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
+					class="text-red-dark col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
 					placeholder=""
 				/>
-				<small class="text-sec -bottom-4.5 absolute right-0" v-if="v$.street.$error" v-text="v$.street.$errors[0].$message" />
+				<strong class="-bottom-4.5 absolute right-2 text-red" v-if="v$.street.$error" v-text="v$.street.$errors[0].$message" />
 			</div>
-			<div class="relative col-span-1 mb-6">
-				<label for="name" class="mb-2 block text-sm font-medium text-main">Квартира</label>
+			<div class="wrap relative items-center pb-6">
+				<label for="name" class="col-span-3 ml-auto block text-xl font-medium">Квартира</label>
 				<input
 					v-model.trim="state.houseNumber"
 					@change="v$.houseNumber.$touch"
 					type="text"
 					id="houseNumber"
-					class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark outline-main focus:border-sec-dark focus:ring-sec-dark"
+					class="text-red-dark col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
 					placeholder=""
 				/>
-				<small
-					class="text-sec -bottom-4.5 absolute right-0"
+				<strong
+					class="-bottom-4.5 absolute right-2 text-red"
 					v-if="v$.houseNumber.$error"
 					v-text="v$.houseNumber.$errors[0].$message"
 				/>
 			</div>
 
-			<div class="relative col-span-5 mb-6">
-				<label for="name" class="mb-2 block text-sm font-medium text-main">Примечание</label>
+			<div class="wrap relative items-center pb-6">
+				<label for="name" class="col-span-3 ml-auto block text-xl font-medium">Примечание</label>
 				<textarea
 					v-model.trim="state.message"
 					@change="v$.message.$touch"
 					id="message"
 					rows="4"
-					class="block w-full rounded-lg border border-sec bg-gray/90 p-2.5 text-sm text-sec-dark focus:border-sec-dark focus:ring-sec-dark"
-					placeholder="Текст сообщения"
+					class="text-red-dark col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+					placeholder=""
 				/>
-				<small class="text-sec -bottom-4.5 absolute right-0" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
+				<strong class="-bottom-4.5 absolute right-0 text-red" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
 			</div>
-			<div class="relative col-span-5 mb-6">
-				<h6 class="">Способ получения</h6>
-				<fieldset>
-					<div class="mb-4 flex items-center" v-for="(deliveryItem, id) in DATADELIVERY" :key="id">
+			<div class="wrap relative items-center pb-6">
+				<strong class="col-span-3 ml-auto block text-xl font-medium">Способ получения</strong>
+				<fieldset class="col-span-5 flex flex-wrap items-center gap-6">
+					<div class="relative flex items-center" v-for="(deliveryItem, id) in DATADELIVERY" :key="id">
 						<input
 							:id="`delivery-option-${id}`"
 							type="radio"
@@ -225,55 +232,48 @@ const isSendOrder = async (name, phone, email, message, city, street, houseNumbe
 							:value="deliveryItem.data"
 							v-model="state.delivery"
 							@click.passive="useCart().setDelivery(deliveryItem.data), (deliveryDATA = deliveryItem.price)"
-							class="h-4 w-4 border-gray accent-main focus:ring-2 focus:ring-main"
+							class="h-5 w-5 border-gray accent-main focus:ring-2 focus:ring-main"
 							:checked="state.delivery === deliveryItem.data"
 						/>
-						<label :for="`delivery-option-${id}`" class="ml-2 block text-sm font-medium text-dark"
-							>от {{ deliveryItem.price }}<Svg svg="baseline-currency-ruble" size="18" />
+						<label :for="`delivery-option-${id}`" class="ml-2 block cursor-pointer font-medium"
+							>от {{ deliveryItem.price }}
+							<span class="ml-2 border px-2 py-1"> {{ deliveryItem.text }}</span>
 						</label>
-						<span class="ml-2 border px-2 py-1 text-sm"> {{ deliveryItem.text }}</span>
 					</div>
 				</fieldset>
 			</div>
-			<div class="relative col-span-5 mb-6">
-				<span class="mb-2 block text-sm text-main">Способ оплаты</span>
-				<!-- <label class="relative inline-flex items-center cursor-pointer">
-					<input type="checkbox" value="" class="sr-only peer" />
-					<div
-						class="w-11 h-6 bg-gray rounded-full peer peer-focus:ring-4 peer-focus:ring-sec-lighter peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sec-dark"
-					></div>
-					<span class="ml-3 text-sm font-medium ">Оплата онлайн</span>
-				</label> -->
+			<div class="wrap relative items-center pb-6">
+				<span class="col-span-3 ml-auto block text-xl font-medium">Способ оплаты</span>
 
-				<!-- <label class="">
-					<input type="checkbox" class="w-4 h-4 border-main-lighter rounded bg-dark focus:ring-3 focus:ring-main" /> Browser default
-				</label> -->
+				<div class="col-span-5 flex items-center">
+					<input
+						id="online_payment"
+						aria-describedby="online_payment"
+						v-model="state.online_payment"
+						name="online_payment"
+						type="checkbox"
+						class="focus:ring-3 h-5 w-5 cursor-pointer items-center rounded border-main-lighter bg-dark accent-main focus:ring-main"
+					/>
 
-				<div class="flex items-start">
-					<div class="flex h-5 items-center">
-						<input
-							id="online_payment"
-							aria-describedby="online_payment"
-							v-model="state.online_payment"
-							name="online_payment"
-							type="checkbox"
-							class="focus:ring-3 h-4 w-4 cursor-pointer rounded border-main-lighter bg-dark accent-main focus:ring-main"
-						/>
-					</div>
-					<div class="ml-3 text-sm">
+					<div class="ml-3">
 						<label for="online_payment" class="cursor-pointer font-medium">Оплата онлайн </label>
 					</div>
 				</div>
 			</div>
-			<div class="col-span-5">
-				<dl>
-					<dt>Всего</dt>
-					<dd>{{ cartTotal }}<Svg svg="baseline-currency-ruble" /></dd>
-					<dt>Доставка</dt>
-					<dd>{{ deliveryDATA }}<Svg svg="baseline-currency-ruble" /></dd>
-				</dl>
-			</div>
+
+			<dl class="wrap relative items-center pb-6">
+				<dt class="col-span-3 ml-auto block text-xl font-bold text-sec">Всего</dt>
+				<dd class="col-span-5 justify-self-start font-bold">
+					{{ cartTotal }}
+				</dd>
+				<dt class="col-span-3 ml-auto block text-xl font-bold text-sec">Доставка</dt>
+				<dd class="col-span-5 justify-self-start font-bold">
+					{{ deliveryDATA }}
+				</dd>
+			</dl>
+
 			<Btn
+				main
 				type="submit"
 				@click.native="
 					isSendOrder(
@@ -290,7 +290,7 @@ const isSendOrder = async (name, phone, email, message, city, street, houseNumbe
 						v$.$reset()
 				"
 				:disabled="v$.$invalid"
-				class="col-span-5 !w-full bg-gradient-to-tl from-sec to-main hover:from-main hover:to-sec"
+				class="!ml-auto !w-72"
 				>Отправить</Btn
 			>
 		</form>

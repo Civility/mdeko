@@ -73,10 +73,9 @@ export const useCart = defineStore('cart', {
 		},
 		setDelivery(data) {
 			this.DELIVERY = data
+		},
+		resetItemTotal(index) {
+			this.CARTS[index].total = 0
 		}
-		// cartItemTotal(url) {
-		// 	return this.CARTITEMTOTAL = this.CARTS.map((i) => { if (i.product.url === url) return i.total }
-		// 	)
-		// }
 	}
 })

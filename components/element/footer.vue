@@ -1,8 +1,7 @@
 <script setup>
 import { useMain } from '@/store/main.js'
 const { COPYRIGHT, CONTACT } = useMain()
-const { getContactData, getСontacts } = useMain()
-const { pending: contactWait } = useLazyAsyncData('contact', () => getContactData())
+const { getСontacts } = useMain()
 await useAsyncData('contacts', async () => getСontacts())
 </script>
 
@@ -20,7 +19,7 @@ await useAsyncData('contacts', async () => getСontacts())
 			<div class=" " v-text="COPYRIGHT.notice" />
 			<div class=" ">{{ COPYRIGHT.name }} {{ new Date().getFullYear() + 'г.' }}</div>
 		</div>
-		<div class="flex lg:gap-52" v-if="!contactWait && CONTACT">
+		<div class="flex lg:gap-52" v-if="CONTACT">
 			<ClientOnly>
 				<Btn
 					icon

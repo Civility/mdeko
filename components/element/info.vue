@@ -18,7 +18,6 @@ const isTab = (id) => {
 			>
 				<li class="relative w-full text-left">
 					<Btn glue :title="item.title" @click="isTab(id)" class="flex gap-2 !text-dark" :class="{ '!text-white': id === tab }">
-						<Svg :svg="item.icon" v-if="item.icon" />{{ item.title }}
 					</Btn>
 				</li>
 			</ul>

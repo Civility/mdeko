@@ -14,23 +14,19 @@ export const useGoods = defineStore('goods', {
 
 		CATEGORYACTIVE: '' // активнй пункт меню в категории
 	}),
-	getters: {
-		// categories: (s) => s.CATEGORIES,
-		// hits: (s) => s.HITS,
-		// tovari: (s) => s.TOVARI,
-		// product: (s) => s.PRODUCT,
-		// categoryactive: (s) => s.CATEGORYACTIVE,
-		categoryItem: (s) => s.CATEGORIES.find((i) => i.url === s.CATEGORYACTIVE)
-		// tovarItem: (s) => s.CATEGORIES.find(i => i.url === s.CATEGORYACTIVE)
-	},
+	// getters: {
+	// 	categoryItem: (s) => s.CATEGORIES.find((i) => i.url === s.CATEGORYACTIVE)
+	// },
 	actions: {
 		setCategoryActive(url) {
 			this.CATEGORYACTIVE = url
 		},
 		// /category/item
-		async getProduct(category, path) {
+		async getProduct(category, url) {
 			try {
-				this.PRODUCT = await $fetch(`${useRuntimeConfig().public.API}/categories/${category}/${path}`)
+				this.PRODUCT = await $fetch(`${useRuntimeConfig().public.API}/categories/${category}/${url}`)
+				this.PRODUCT.category = category // Добавляем поле category
+				this.PRODUCT.url = url // Добавляем поле url
 			} catch (err) {
 				console.log(err)
 			}

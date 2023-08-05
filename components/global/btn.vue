@@ -44,7 +44,7 @@ const isClass = computed(() => {
 <style scoped lang="postcss">
 .btn {
 	appearance: none;
-	@apply inline-flex items-center justify-center;
+	@apply flex items-center justify-center;
 	@apply w-auto px-2 py-2 lg:py-3;
 
 	@apply text-white;
