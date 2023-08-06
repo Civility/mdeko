@@ -6,6 +6,11 @@ const { getHits } = useGoods()
 const { pending: getHitsWait } = await useAsyncData('setGetHits', () => getHits())
 const { CARTS } = storeToRefs(useCart())
 const { HITS } = storeToRefs(useGoods())
+useSeoMeta({
+	title: 'Корзина',
+	description: 'Корзина - Минеральные удобрения от производителя',
+	ogImage: '/img/main.webp'
+})
 const filteredCarts = computed(() => {
 	return CARTS.value.filter((cart) => cart.total !== 0)
 })
@@ -18,12 +23,11 @@ const filteredCarts = computed(() => {
 			</div>
 			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
 		</section>
-		<h1 class="mb-10 bg-main py-10 text-center text-5xl uppercase">Корзина</h1>
+		<h1 class="mb-10 bg-main py-10 text-center">Корзина</h1>
 
 		<section class="wrap container my-10 gap-5 lg:my-20" v-if="CARTS.length">
 			<CardCart v-for="item in filteredCarts" :data="item.product" class="col-span-3 bg-main p-10 lg:p-20" />
-			<Btn v-if="filteredCarts.length" main to="/checkout" class="col-span-full ml-auto !w-full lg:!w-72">оформить</Btn>
-			<h3 v-else class="col-span-full py-10 text-center lg:py-20">Ваша корзина пуста</h3>
+			<Btn v-if="filteredCarts.length" main to="/checkout" class="col-span-full ml-auto !w-full">оформить</Btn>
 		</section>
 		<template v-if="!filteredCarts.length">
 			<h3 class="col-span-full py-10 text-center lg:py-20">Ваша корзина пуста</h3>

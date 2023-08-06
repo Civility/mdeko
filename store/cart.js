@@ -8,7 +8,6 @@ const sortOrder = (a, b) => {
 
 export const useCart = defineStore('cart', {
 	state: () => ({
-		CART: 0,
 		CARTS: [],
 		DELIVERY: false,
 		DATADELIVERY: [

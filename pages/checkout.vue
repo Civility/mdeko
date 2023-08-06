@@ -12,25 +12,15 @@ const { sendOrder } = useCart()
 const searchDELIVERY = DATADELIVERY.find((i) => i.data == false)
 const deliveryDATA = ref(searchDELIVERY.price)
 
-// onMounted(() => {
-// 	var url = new URL(window.location.href)
-// 	var isOnline_payment = url.searchParams.get('online_payment')
-// 	if (isOnline_payment === 'on') {
-// 		console.log('online_payment ', isOnline_payment)
-// 		// 'http://api-akvamdeko.na4u.ru/checkout/order-pay/138/?key=wc_order_ARjMhilvq83bK&order=138'
-// 	}
-// })
+useSeoMeta({
+	title: 'Оформление Заказа',
+	description: 'Оформление Заказа - Минеральные удобрения от производителя'
+})
 
 definePageMeta({
 	middleware: ['cartroute']
 })
-// store.$subscribe(() => {
-// 	console.log(' RESPONSDELIVERY ', RESPONSDELIVERY.value)
-// })
-// useCart().$subscribe((mutation) => {
-// 	// react to store changes
-// 	console.log(`[🍍 ${mutation}]`)
-// })
+
 const state = reactive({
 	name: '',
 	phone: '',
@@ -290,7 +280,7 @@ const isSendOrder = async (name, phone, email, message, city, street, houseNumbe
 						v$.$reset()
 				"
 				:disabled="v$.$invalid"
-				class="!ml-auto !w-72"
+				class="!ml-auto"
 				>Отправить</Btn
 			>
 		</form>

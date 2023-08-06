@@ -28,7 +28,7 @@ const { pending: getHitsWait } = await useLazyAsyncData('setHits', () => getHits
 		</ClientOnly>
 		<ClientOnly>
 			<section class="container mb-10 py-10 lg:mb-20 lg:py-20" v-if="CATEGORIES.length && !categoriesWait">
-				<h2 class="mb-10 text-center uppercase text-main-light">Каталог</h2>
+				<h2 class="mb-10 text-center text-main-light">Каталог</h2>
 				<div class="wrap justify-around gap-10">
 					<CardCategory
 						v-for="item in CATEGORIES"

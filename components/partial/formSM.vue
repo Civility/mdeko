@@ -2,8 +2,17 @@
 import { useMain } from '@/store/main.js'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
+import { useReCaptcha } from 'vue-recaptcha-v3'
 const { sendForm } = useMain()
+const recaptchaInstance = useReCaptcha()
+const recaptcha = async () => {
+	// optional you can await for the reCaptcha load
+	await recaptchaInstance?.recaptchaLoaded()
+	// get the token, a custom action could be added as argument to the method
+	const token = await recaptchaInstance?.executeRecaptcha('yourActionHere')
 
+	return token
+}
 const state = reactive({
 	name: '',
 	phone: '',
@@ -43,7 +52,8 @@ const v$ = useVuelidate(rules, state)
 const isSendForm = async (name, phone, email, message) => {
 	let result = await v$.value.$validate()
 	result ? console.log('Form validate Ok ', result) : console.log('Form validate Failed ', result)
-	if (!v$.value.$error) {
+	const token = await this.recaptcha()
+	if (!v$.value.$error && token) {
 		await useAsyncData('sendForm', () =>
 			sendForm({
 				name,
@@ -75,7 +85,7 @@ const isSendForm = async (name, phone, email, message) => {
 				class="col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
 				placeholder=""
 			/>
-			<small class="absolute bottom-0 right-0 text-sec" v-if="v$.name.$error" v-text="v$.name.$errors[0].$message" />
+			<span class="absolute bottom-0 right-0 text-red" v-if="v$.name.$error" v-text="v$.name.$errors[0].$message" />
 		</div>
 		<div class="wrap relative items-center pb-6">
 			<label for="phone" class="col-span-3 ml-auto block text-xl font-medium text-white">Телефон</label>
@@ -87,7 +97,7 @@ const isSendForm = async (name, phone, email, message) => {
 				class="col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
 				placeholder=""
 			/>
-			<small class="absolute bottom-0 right-0 text-sec" v-if="v$.phone.$error" v-text="v$.phone.$errors[0].$message" />
+			<span class="absolute bottom-0 right-0 text-red" v-if="v$.phone.$error" v-text="v$.phone.$errors[0].$message" />
 		</div>
 		<div class="wrap relative items-center pb-6">
 			<label for="email" class="col-span-3 ml-auto block text-xl font-medium text-white">Email</label>
@@ -99,7 +109,7 @@ const isSendForm = async (name, phone, email, message) => {
 				class="col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
 				placeholder=""
 			/>
-			<small class="absolute bottom-0 right-0 text-sec" v-if="v$.email.$error" v-text="v$.email.$errors[0].$message" />
+			<span class="absolute bottom-0 right-0 text-red" v-if="v$.email.$error" v-text="v$.email.$errors[0].$message" />
 		</div>
 		<div class="wrap relative items-center pb-6">
 			<label for="message" class="col-span-3 ml-auto block text-xl font-medium text-white">Сообщение</label>
@@ -111,7 +121,7 @@ const isSendForm = async (name, phone, email, message) => {
 				class="col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
 				placeholder=""
 			/>
-			<small class="absolute bottom-0 right-0 text-sec" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
+			<span class="absolute bottom-0 right-0 text-red" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
 		</div>
 
 		<Btn

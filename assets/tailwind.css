@@ -80,27 +80,27 @@
 		@apply !font-display;
 	}
 	h1 {
-		@apply text-6xl lg:text-7xl;
+		@apply text-5xl lg:text-6xl;
 		@apply leading-9 lg:leading-10;
 		@apply mb-6 lg:mb-12;
 		@apply uppercase;
 	}
 	h2 {
-		@apply text-5xl lg:text-6xl;
+		@apply text-4xl lg:text-5xl;
 		@apply leading-8 lg:leading-9;
 		@apply mb-6 lg:mb-12;
 		@apply uppercase;
 	}
 	h3 {
-		@apply text-4xl lg:text-5xl;
+		@apply text-3xl lg:text-4xl;
 		@apply leading-6 lg:leading-7;
 	}
 	h4 {
-		@apply text-3xl lg:text-4xl;
+		@apply text-2xl lg:text-3xl;
 		@apply leading-4 lg:leading-5;
 	}
 	h5 {
-		@apply text-3xl;
+		@apply text-2xl;
 		@apply leading-4 lg:leading-5;
 	}
 	p {

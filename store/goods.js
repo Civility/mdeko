@@ -3,7 +3,6 @@ import { defineStore } from 'pinia'
 const sortOrder = (a, b) => {
 	return a.order > b.order ? -1 : 1
 }
-
 export const useGoods = defineStore('goods', {
 	state: () => ({
 		CATEGORIES: [],
@@ -35,7 +34,8 @@ export const useGoods = defineStore('goods', {
 			if (!this.CATEGORIES.length) {
 				try {
 					const API = await $fetch(`${useRuntimeConfig().public.API}/categories`)
-					const maxOrder = API.map((item) => item.order)
+
+					// const maxOrder = API.map((item) => item.order)
 					// const categoryURL = API.find(item => item.order === Math.max(...maxOrder)  )
 					// this.CATEGORYACTIVE = categoryURL.url
 					return (this.CATEGORIES = API.sort(sortOrder))

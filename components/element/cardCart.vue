@@ -1,6 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useCart } from '@/store/cart.js'
+
 const { CARTS } = storeToRefs(useCart())
 const route = useRoute()
 const props = defineProps({

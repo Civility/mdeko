@@ -2,7 +2,10 @@
 import { useMain } from '@/store/main.js'
 import { storeToRefs } from 'pinia'
 const { CONTACT, CONTACTS } = storeToRefs(useMain())
-
+useSeoMeta({
+	title: 'Контакты',
+	description: 'Контакты - Минеральные удобрения от производителя'
+})
 const showModal = shallowRef(null)
 const isShow = (val) => (showModal.value = val)
 const openModal = (modalRefName) => (showModal.value = modalRefName)
@@ -16,7 +19,7 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 			<span class="parallax_bg" style="background-image: url(/img/main.webp)" />
 		</section>
 		<section class="container relative -top-20 bg-main px-10 py-10 lg:px-20 lg:py-20" v-if="CONTACTS && CONTACT">
-			<h1 class="mb-10 text-center uppercase lg:mb-20">Контакты</h1>
+			<h1 class="mb-10 text-center lg:mb-20">Контакты</h1>
 
 			<div class="mb-10 flex flex-col gap-1">
 				<dl v-if="CONTACT.address" class="flex items-center gap-5">

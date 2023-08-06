@@ -56,6 +56,7 @@ const isClass = computed(() => {
 	@apply disabled:pointer-events-none disabled:isolate disabled:opacity-70;
 	-webkit-appearance: none;
 	&__main {
+		@apply w-60 lg:w-72;
 		@apply hover:no-underline;
 		@apply px-10 py-2;
 		@apply bg-main-light hover:opacity-70;

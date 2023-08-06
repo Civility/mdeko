@@ -2,6 +2,10 @@
 import { useMain } from '@/store/main.js'
 import { storeToRefs } from 'pinia'
 const { CONTACT, CONTACTS } = storeToRefs(useMain())
+useSeoMeta({
+	title: 'Информация покупателям',
+	description: 'Информация покупателям - Минеральные удобрения от производителя'
+})
 </script>
 <template>
 	<main>
@@ -11,8 +15,10 @@ const { CONTACT, CONTACTS } = storeToRefs(useMain())
 			</div>
 			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
 		</section>
-		<section class="container relative -top-20 bg-gradient-to-r from-main from-30% to-main-dark to-100% py-20 text-center">
-			<h1 class="uppercase">Информация оптовым покупателям</h1>
+		<section
+			class="container relative -top-20 bg-gradient-to-r from-main from-30% to-main-dark to-100% px-20 pb-5 pt-20 text-center lg:px-40"
+		>
+			<h1>Информация покупателям</h1>
 			<p>Откройте двери к бесконечной красоте с нашей эксклюзивной линейкой продуктов «МДЕКО»!</p>
 			<p>
 				Мы предлагаем оптовые продажи нашей высококачественной косметики и удобрений, которая обеспечит вашим клиентам незабываемый
@@ -37,8 +43,10 @@ const { CONTACT, CONTACTS } = storeToRefs(useMain())
 				</Btn>
 
 				<span v-if="CONTACT.email" class="flex flex-col items-center">
-					<Btn :to="`mailto:${CONTACT.email}`" class="flex-col !p-0 !text-main-lighter">{{ CONTACT.email }}</Btn>
-					<span>email</span>
+					<Btn :to="`mailto:${CONTACT.email}`" class="flex-col !p-0 !text-main-lighter"
+						><span>{{ CONTACT.email }}</span
+						><span>email</span></Btn
+					>
 				</span>
 			</div>
 		</section>
