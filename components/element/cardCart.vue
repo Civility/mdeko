@@ -39,7 +39,7 @@ const ifCart = computed(() => route.name === 'cart')
 			>
 				<template #content="{ slider }">
 					<div class="flex w-full items-center justify-center">
-						<img :src="`${slider}`" :alt="slider" class="object-contain" />
+						<img :src="`${slider}`" :alt="slider" class="h-60 object-contain lg:h-auto" />
 					</div>
 				</template>
 			</Slider>

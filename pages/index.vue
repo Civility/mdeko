@@ -21,7 +21,7 @@ const { pending: getHitsWait } = await useLazyAsyncData('setHits', () => getHits
 
 		<ClientOnly>
 			<section class="container relative -top-20" v-if="!bannersWait && bannerMain">
-				<Banner :data="bannerMain" class="bg-gradient-to-r from-main from-30% to-main-dark to-100% py-10 text-center lg:py-20" />
+				<Banner :data="bannerMain" class="bg-gradient-to-r from-main from-30% to-main-dark to-100% p-5 text-center lg:py-20" />
 			</section>
 		</ClientOnly>
 		<ClientOnly>

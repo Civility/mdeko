@@ -42,8 +42,8 @@ watch(
 
 		<h1 class="mb-10 bg-main py-10 text-center" v-text="categori.name" />
 		<section class="wrap container mt-20 gap-5" v-if="PRODUCT && !productWait">
-			<CardCart :data="PRODUCT" class="col-span-3 bg-main p-10 lg:p-20" />
-			<div class="col-span-5 bg-main p-10 text-gray lg:py-20">
+			<CardCart :data="PRODUCT" class="col-span-full bg-main p-5 lg:col-span-3 lg:p-20" />
+			<div class="col-span-full bg-main p-5 text-gray lg:col-span-5 lg:py-20">
 				<p v-html="PRODUCT.text" />
 				<dl v-if="PRODUCT?.primeneniye" class="flex gap-1">
 					<dt class="font-normal">Применение -</dt>
@@ -66,7 +66,7 @@ watch(
 					<dd>Россия</dd>
 				</dl>
 			</div>
-			<div class="col-span-full bg-main p-10 text-gray lg:py-20" v-html="PRODUCT.description" />
+			<div class="col-span-full bg-main p-5 text-gray lg:py-20" v-html="PRODUCT.description" />
 
 			<Btn main class="col-span-full ml-auto" @click.once="$router.back()">назад</Btn>
 		</section>

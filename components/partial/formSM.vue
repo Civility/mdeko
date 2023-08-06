@@ -74,54 +74,54 @@ const isSendForm = async (name, phone, email, message) => {
 }
 </script>
 <template>
-	<div class="bg-gradient-to-r from-main from-30% to-main-dark to-100% p-20 shadow-2xl">
-		<div class="wrap relative items-center pb-6">
-			<label for="name" class="col-span-3 ml-auto block text-xl font-medium text-white">ФИО</label>
+	<div class="bg-gradient-to-r from-main from-30% to-main-dark to-100% p-5 shadow-2xl lg:p-20">
+		<div class="wrap relative mb-8 items-center gap-0 lg:mb-6 lg:gap-4">
+			<label for="name" class="col-span-full block text-xl font-medium text-white lg:col-span-3 lg:ml-auto">ФИО</label>
 			<input
 				v-model.trim="state.name"
 				@change="v$.name.$touch"
 				type="text"
 				id="name"
-				class="col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+				class="col-span-full block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark lg:col-span-5"
 				placeholder=""
 			/>
-			<span class="absolute bottom-0 right-0 text-red" v-if="v$.name.$error" v-text="v$.name.$errors[0].$message" />
+			<span class="absolute bottom-0 right-0 leading-4 text-red" v-if="v$.name.$error" v-text="v$.name.$errors[0].$message" />
 		</div>
-		<div class="wrap relative items-center pb-6">
-			<label for="phone" class="col-span-3 ml-auto block text-xl font-medium text-white">Телефон</label>
+		<div class="wrap relative mb-8 items-center gap-0 lg:mb-6 lg:gap-4">
+			<label for="phone" class="col-span-full block text-xl font-medium text-white lg:col-span-3 lg:ml-auto">Телефон</label>
 			<input
 				v-model.trim="state.phone"
 				@change="v$.phone.$touch"
 				type="text"
 				id="phone"
-				class="col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+				class="col-span-full block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark lg:col-span-5"
 				placeholder=""
 			/>
-			<span class="absolute bottom-0 right-0 text-red" v-if="v$.phone.$error" v-text="v$.phone.$errors[0].$message" />
+			<span class="absolute bottom-0 right-0 leading-4 text-red" v-if="v$.phone.$error" v-text="v$.phone.$errors[0].$message" />
 		</div>
-		<div class="wrap relative items-center pb-6">
-			<label for="email" class="col-span-3 ml-auto block text-xl font-medium text-white">Email</label>
+		<div class="wrap relative mb-8 items-center gap-0 lg:mb-6 lg:gap-4">
+			<label for="email" class="col-span-full block text-xl font-medium text-white lg:col-span-3 lg:ml-auto">Email</label>
 			<input
 				v-model.trim="state.email"
 				@change="v$.email.$touch"
 				type="email"
 				id="email"
-				class="col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+				class="col-span-full block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark lg:col-span-5"
 				placeholder=""
 			/>
-			<span class="absolute bottom-0 right-0 text-red" v-if="v$.email.$error" v-text="v$.email.$errors[0].$message" />
+			<span class="absolute bottom-0 right-0 leading-4 text-red" v-if="v$.email.$error" v-text="v$.email.$errors[0].$message" />
 		</div>
-		<div class="wrap relative items-center pb-6">
-			<label for="message" class="col-span-3 ml-auto block text-xl font-medium text-white">Сообщение</label>
+		<div class="wrap relative mb-8 items-center gap-0 lg:mb-6 lg:gap-4">
+			<label for="message" class="col-span-full block text-xl font-medium text-white lg:col-span-3 lg:ml-auto">Сообщение</label>
 			<textarea
 				v-model.trim="state.message"
 				@change="v$.message.$touch"
 				id="message"
 				rows="4"
-				class="col-span-5 block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark"
+				class="col-span-full block w-full rounded-lg border border-sec bg-sec-light p-2.5 text-xl text-sec-dark outline-main placeholder:text-gray-dark focus:border-sec-dark focus:ring-sec-dark lg:col-span-5"
 				placeholder=""
 			/>
-			<span class="absolute bottom-0 right-0 text-red" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
+			<span class="absolute bottom-0 right-0 leading-4 text-red" v-if="v$.message.$error" v-text="v$.message.$errors[0].$message" />
 		</div>
 
 		<Btn

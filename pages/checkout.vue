@@ -224,8 +224,8 @@ const isSendOrder = async (name, phone, email, message, city, street, houseNumbe
 							class="h-5 w-5 border-gray accent-main focus:ring-2 focus:ring-main"
 							:checked="state.delivery === deliveryItem.data"
 						/>
-						<label :for="`delivery-option-${id}`" class="ml-2 block cursor-pointer font-medium"
-							>от {{ deliveryItem.price }}
+						<label :for="`delivery-option-${id}`" class="ml-2 flex cursor-pointer items-center font-medium">
+							<span>от {{ deliveryItem.price }}</span>
 							<span class="ml-2 border px-2 py-1"> {{ deliveryItem.text }}</span>
 						</label>
 					</div>

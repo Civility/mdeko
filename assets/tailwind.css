@@ -81,27 +81,27 @@
 	}
 	h1 {
 		@apply text-5xl lg:text-6xl;
-		@apply leading-9 lg:leading-10;
+		@apply leading-10;
 		@apply mb-6 lg:mb-12;
 		@apply uppercase;
 	}
 	h2 {
 		@apply text-4xl lg:text-5xl;
-		@apply leading-8 lg:leading-9;
+		@apply leading-8 lg:leading-10;
 		@apply mb-6 lg:mb-12;
 		@apply uppercase;
 	}
 	h3 {
 		@apply text-3xl lg:text-4xl;
-		@apply leading-6 lg:leading-7;
+		@apply leading-7 lg:leading-8;
 	}
 	h4 {
 		@apply text-2xl lg:text-3xl;
-		@apply leading-4 lg:leading-5;
+		@apply leading-6 lg:leading-7;
 	}
 	h5 {
 		@apply text-2xl;
-		@apply leading-4 lg:leading-5;
+		@apply leading-5 lg:leading-6;
 	}
 	p {
 		@apply mb-5 text-xl;
@@ -169,13 +169,6 @@
 	}
 	.parallax_bg {
 		@apply -z-30 flex h-full w-full items-center justify-center bg-cover bg-fixed bg-no-repeat;
-		/* &:before {
-			@apply absolute inset-0 content-[''];
-			@apply bg-black/30;
-			@apply relative inline-block;
-			@apply backdrop-blur-sm;
-			@apply h-full w-full;
-		} */
 	}
 	.parallax {
 		@apply fixed inset-0 -z-30  h-screen w-full;
@@ -183,22 +176,11 @@
 		@apply bg-cover bg-center bg-no-repeat;
 		@apply flex items-center justify-center;
 		@apply bg-fixed;
-
-		/* &:before {
-			@apply absolute inset-0 content-[''];
-			@apply bg-black/10;
-			@apply relative inline-block;
-			@apply backdrop-blur-sm;
-			@apply h-full w-full;
-		} */
 	}
 }
 
 @layer utilities {
 	.scrollbar {
-		/* &::-webkit-scrollbar {
-			@apply w-1.5;
-		} */
 		&::-webkit-scrollbar-track {
 			@apply bg-sec-light;
 		}

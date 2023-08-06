@@ -27,7 +27,7 @@ const filteredCarts = computed(() => {
 		<h1 class="mb-10 bg-main py-10 text-center">Корзина</h1>
 
 		<section class="wrap container my-10 gap-5 lg:my-20" v-if="CARTS.length">
-			<CardCart v-for="item in filteredCarts" :data="item.product" class="col-span-3 bg-main p-10 lg:p-20" />
+			<CardCart v-for="item in filteredCarts" :data="item.product" class="col-span-full bg-main p-5 lg:col-span-3 lg:p-20" />
 			<Btn v-if="filteredCarts.length" main to="/checkout" class="col-span-full ml-auto !w-full">оформить</Btn>
 		</section>
 		<template v-if="!filteredCarts.length">

@@ -19,30 +19,30 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 			</div>
 			<span class="parallax_bg" style="background-image: url(/img/main.webp)" />
 		</section>
-		<section class="container relative -top-20 bg-main px-10 py-10 lg:px-20 lg:py-20" v-if="CONTACTS && CONTACT">
+		<section class="container relative -top-20 bg-main p-5 lg:p-20" v-if="CONTACTS && CONTACT">
 			<h1 class="mb-10 text-center lg:mb-20">Контакты</h1>
 
 			<div class="mb-10 flex flex-col gap-1">
-				<dl v-if="CONTACT.address" class="flex items-center gap-5">
+				<dl v-if="CONTACT.address" class="flex flex-col items-center gap-5 text-center lg:text-left">
 					<dt>
 						<Icon svg="location" class="text-7xl" />
 					</dt>
 					<dd v-text="CONTACT.address" />
 				</dl>
-				<dl v-for="phone in CONTACT.phones" :key="phone.tel" v-if="CONTACT.phones" class="flex items-center gap-5">
+				<dl v-for="phone in CONTACT.phones" :key="phone.tel" v-if="CONTACT.phones" class="flex flex-col items-center gap-5">
 					<dt v-if="phone.city === 'по России'"><Icon svg="smartphone" class="text-7xl" /></dt>
 					<dt v-if="phone.city === 'по Санкт-Петербургу'"><Icon svg="phone" class="text-7xl" /></dt>
 					<dd>
 						<Btn clear :to="`tel:${phone.number}`" class="gap-2">{{ phone.tel }}<span v-text="phone.city" /></Btn>
 					</dd>
 				</dl>
-				<dl class="flex items-center gap-5">
+				<dl class="flex flex-col items-center gap-5">
 					<dt><Icon svg="mail" class="text-7xl" /></dt>
 					<dd>
 						<a :href="`mailto:${CONTACT.email}`" v-text="CONTACT.email" />
 					</dd>
 				</dl>
-				<dl class="flex items-center gap-5">
+				<dl class="flex flex-col items-center gap-5 text-center lg:text-left">
 					<dt><Icon svg="people" class="text-7xl" /></dt>
 					<dd>Наши реквизиты: ООО "МДЕКО" / ИНН 7816543798 / ОГРН 1127847412220</dd>
 				</dl>
