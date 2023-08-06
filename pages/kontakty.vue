@@ -14,10 +14,10 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 			<Meta name="description" content="Контакты - Минеральные удобрения от производителя" />
 		</Head>
 		<section class="relative h-screen w-full">
-			<div class="container absolute inset-0 flex h-full w-full items-center justify-center">
+			<div class="container absolute inset-0 z-10 flex h-full w-full items-center justify-start mix-blend-difference">
 				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
-			<span class="parallax_bg" style="background-image: url(/img/main.webp)" />
+			<span class="parallax_bg" style="background-image: url(/main.webp)" />
 		</section>
 		<section class="container relative -top-20 bg-main p-5 lg:p-20" v-if="CONTACTS && CONTACT">
 			<h1 class="mb-10 text-center lg:mb-20">Контакты</h1>
@@ -25,25 +25,25 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 			<div class="mb-10 flex flex-col gap-1">
 				<dl v-if="CONTACT.address" class="flex flex-col items-center gap-5 text-center lg:text-left">
 					<dt>
-						<Icon svg="location" class="text-7xl" />
+						<Icon svg="location" class="text-7xl text-sec-light" />
 					</dt>
 					<dd v-text="CONTACT.address" />
 				</dl>
 				<dl v-for="phone in CONTACT.phones" :key="phone.tel" v-if="CONTACT.phones" class="flex flex-col items-center gap-5">
-					<dt v-if="phone.city === 'по России'"><Icon svg="smartphone" class="text-7xl" /></dt>
-					<dt v-if="phone.city === 'по Санкт-Петербургу'"><Icon svg="phone" class="text-7xl" /></dt>
+					<dt v-if="phone.city === 'по России'"><Icon svg="smartphone" class="text-7xl text-sec-light" /></dt>
+					<dt v-if="phone.city === 'по Санкт-Петербургу'"><Icon svg="phone" class="text-7xl text-sec-light" /></dt>
 					<dd>
 						<Btn clear :to="`tel:${phone.number}`" class="gap-2">{{ phone.tel }}<span v-text="phone.city" /></Btn>
 					</dd>
 				</dl>
 				<dl class="flex flex-col items-center gap-5">
-					<dt><Icon svg="mail" class="text-7xl" /></dt>
+					<dt><Icon svg="mail" class="text-7xl text-sec-light" /></dt>
 					<dd>
 						<a :href="`mailto:${CONTACT.email}`" v-text="CONTACT.email" />
 					</dd>
 				</dl>
 				<dl class="flex flex-col items-center gap-5 text-center lg:text-left">
-					<dt><Icon svg="people" class="text-7xl" /></dt>
+					<dt><Icon svg="people" class="text-7xl text-sec-light" /></dt>
 					<dd>Наши реквизиты: ООО "МДЕКО" / ИНН 7816543798 / ОГРН 1127847412220</dd>
 				</dl>
 			</div>

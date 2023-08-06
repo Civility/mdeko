@@ -19,10 +19,11 @@ const filteredCarts = computed(() => {
 			<!-- <Meta name="og:image" :content="'/img/main.webp'" /> -->
 		</Head>
 		<section class="relative h-screen w-full">
-			<div class="container absolute inset-0 flex h-full w-full items-center justify-center opacity-50">
+			<div class="container absolute inset-0 z-10 flex h-full w-full items-center justify-start mix-blend-difference">
 				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
-			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
+			<Icon :svg="categori.url" class="absolute inset-0 z-0 flex items-center justify-center text-[40rem] text-dark" />
+			<span style="background-image: url(/main.webp)" class="parallax_bg" />
 		</section>
 		<h1 class="mb-10 bg-main py-10 text-center">Корзина</h1>
 

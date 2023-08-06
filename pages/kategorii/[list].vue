@@ -19,11 +19,15 @@ const tovars = computed(() => TOVARI.value[route])
 			<Meta name="description" :content="'Товары ' + categori.name + ' - Минеральные удобрения от производителя'" />
 			<!-- <Meta v-if="categori?.img?.mini" name="og:image" :content="categori?.img?.mini" /> -->
 		</Head>
-		<section class="relative h-screen w-full">
-			<div class="container absolute inset-0 flex h-full w-full items-center justify-start opacity-50">
+		<section class="relative h-screen w-full overflow-hidden">
+			<!-- <div class="container absolute inset-0 z-10 flex h-full w-full items-center justify-start mix-blend-difference">
 				<img src="/logo.svg" width="600" height="200" alt="logo" />
-			</div>
-			<span :style="`background-image: url(/img/${categori.url}.webp)`" class="parallax_bg" />
+			</div> -->
+			<Icon
+				:svg="categori.url"
+				class="absolute inset-0 z-0 flex items-center justify-center text-[32rem] text-main-light mix-blend-multiply"
+			/>
+			<span style="background-image: url(/sec.webp)" class="parallax_bg" />
 		</section>
 
 		<template v-if="CATEGORIES.length && TOVARI.length">

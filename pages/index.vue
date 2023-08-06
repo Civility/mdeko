@@ -16,7 +16,7 @@ const { pending: getHitsWait } = await useLazyAsyncData('setHits', () => getHits
 			<div class="container absolute inset-0 flex h-full w-full items-center justify-center">
 				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
-			<span class="parallax_bg" style="background-image: url(/img/main.webp)" />
+			<span class="parallax_bg" style="background-image: url(/main.webp)" />
 		</section>
 
 		<ClientOnly>

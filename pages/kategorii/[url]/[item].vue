@@ -34,10 +34,15 @@ watch(
 			<!-- <Meta v-if="PRODUCT?.slider && PRODUCT?.slider.length > 0" name="og:image" :content="PRODUCT.slider[0]" /> -->
 		</Head>
 		<section class="relative h-screen w-full">
-			<div class="container absolute inset-0 flex h-full w-full items-center justify-start opacity-50">
+			<!-- <div class="container absolute inset-0 z-10 flex h-full w-full items-center justify-start mix-blend-difference">
 				<img src="/logo.svg" width="600" height="200" alt="logo" />
-			</div>
-			<span :style="`background-image: url(/img/${categori.url}.webp)`" class="parallax_bg" />
+			</div> -->
+			<!-- <span :style="`background-image: url(/${categori.url}.webp)`" class="parallax_bg" /> -->
+			<Icon
+				:svg="categori.url"
+				class="absolute inset-0 z-0 flex items-center justify-center text-[32rem] text-main-light mix-blend-multiply"
+			/>
+			<span style="background-image: url(/sec.webp)" class="parallax_bg" />
 		</section>
 
 		<h1 class="mb-10 bg-main py-10 text-center" v-text="categori.name" />

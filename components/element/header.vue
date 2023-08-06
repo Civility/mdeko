@@ -11,7 +11,7 @@ const { pending: menuWait } = useLazyAsyncData('menu', () => getMenu())
 		:class="{ '!fixed h-full w-full !bg-dark': toggleMenu }"
 	>
 		<nav
-			class="flex items-center justify-between gap-4 bg-gradient-to-r from-sec-dark from-10% to-sec-light to-100% px-4 py-2"
+			class="flex items-center justify-between gap-4 bg-gradient-to-r from-sec-dark from-10% to-sec-light to-100% px-4 py-5"
 			:class="{ 'flex-wrap': toggleMenu }"
 		>
 			<NuxtLink to="/" class="order-0" exact @click="useMain().getMenuClosed">

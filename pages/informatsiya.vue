@@ -10,10 +10,10 @@ const { CONTACT, CONTACTS } = storeToRefs(useMain())
 			<Meta name="description" content="Оптовым покупателям - Минеральные удобрения от производителя" />
 		</Head>
 		<section class="relative h-screen w-full">
-			<div class="container absolute inset-0 flex h-full w-full items-center justify-start opacity-50">
+			<div class="container absolute inset-0 z-10 flex h-full w-full items-center justify-start mix-blend-difference">
 				<img src="/logo.svg" width="600" height="200" alt="logo" />
 			</div>
-			<span style="background-image: url(/img/face.webp)" class="parallax_bg" />
+			<span style="background-image: url(/sec.webp)" class="parallax_bg" />
 		</section>
 		<section
 			class="container relative -top-20 bg-gradient-to-r from-main from-30% to-main-dark to-100% px-5 pb-5 pt-10 text-center lg:px-40 lg:pt-20"

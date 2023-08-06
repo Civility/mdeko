@@ -113,10 +113,11 @@ const isSendOrder = async (name, phone, email, message, city, street, houseNumbe
 			<Meta name="description" content="Оформление Заказа - Минеральные удобрения от производителя" />
 		</Head>
 		<section class="relative h-screen w-full">
-			<div class="container absolute inset-0 flex h-full w-full items-center justify-center opacity-50">
+			<div class="container absolute inset-0 z-10 flex h-full w-full items-center justify-start mix-blend-difference">
 				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
-			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
+
+			<span style="background-image: url(/main.webp)" class="parallax_bg" />
 		</section>
 
 		<form class="container relative -top-20 bg-gradient-to-r from-main from-30% to-main-dark to-100% py-20 text-center">
