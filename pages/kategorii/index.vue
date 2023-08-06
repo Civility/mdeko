@@ -3,18 +3,19 @@ import { storeToRefs } from 'pinia'
 import { useGoods } from '@/store/goods.js'
 const { getCategories } = useGoods()
 const { CATEGORIES } = storeToRefs(useGoods())
-useSeoMeta({
-	title: 'Каталог',
-	description: 'Каталог - Минеральные удобрения от производителя',
-	ogImage: '/img/main.webp'
-})
+
 const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () => getCategories())
 </script>
 <template>
 	<main>
+		<Head>
+			<Title>Каталог</Title>
+			<Meta name="description" content="Каталог - Минеральные удобрения от производителя" />
+			<!-- <Meta name="og:image" content="/img/main.webp" /> -->
+		</Head>
 		<section class="relative h-screen w-full">
 			<div class="container absolute inset-0 flex h-full w-full items-center justify-start opacity-50">
-				<img src="/svg/logo.svg" width="800" height="400" alt="logo" />
+				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
 			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
 		</section>

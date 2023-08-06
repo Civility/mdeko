@@ -2,19 +2,20 @@
 import { useMain } from '@/store/main.js'
 import { storeToRefs } from 'pinia'
 const { CONTACT, CONTACTS } = storeToRefs(useMain())
-useSeoMeta({
-	title: 'Контакты',
-	description: 'Контакты - Минеральные удобрения от производителя'
-})
+
 const showModal = shallowRef(null)
 const isShow = (val) => (showModal.value = val)
 const openModal = (modalRefName) => (showModal.value = modalRefName)
 </script>
 <template>
 	<main>
+		<Head>
+			<Title>Контакты</Title>
+			<Meta name="description" content="Контакты - Минеральные удобрения от производителя" />
+		</Head>
 		<section class="relative h-screen w-full">
 			<div class="container absolute inset-0 flex h-full w-full items-center justify-center">
-				<img src="/svg/logo.svg" width="800" height="400" alt="logo" />
+				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
 			<span class="parallax_bg" style="background-image: url(/img/main.webp)" />
 		</section>

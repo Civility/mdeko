@@ -42,7 +42,10 @@ useHead({
 					leave-to-class="opacity-0"
 				>
 					<div class="flex items-center justify-center pt-[20vh] text-center">
-						<div class="relative z-20 w-1/2 overflow-hidden rounded-lg text-left shadow-dark" :class="bgclass">
+						<div
+							class="relative z-20 mx-20 w-full overflow-hidden rounded-lg text-left shadow-dark lg:mx-0 lg:w-3/6"
+							:class="bgclass"
+						>
 							<Btn class="group absolute right-0 top-0 !p-1" @click="$emit('isClickShow', false)">
 								<div
 									class="relative flex h-5 w-20 items-center justify-center rounded-full border border-white p-4 text-white group-hover:border-sec-lighter group-hover:text-sec-lighter"

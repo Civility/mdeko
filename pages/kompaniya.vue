@@ -2,16 +2,16 @@
 import { useMain } from '@/store/main.js'
 import { storeToRefs } from 'pinia'
 const { CONTACT, CONTACTS } = storeToRefs(useMain())
-useSeoMeta({
-	title: 'Информация покупателям',
-	description: 'Информация покупателям - Минеральные удобрения от производителя'
-})
 </script>
 <template>
 	<main>
+		<Head>
+			<Title>Информация покупателям</Title>
+			<Meta name="description" content="Информация покупателям - Минеральные удобрения от производителя" />
+		</Head>
 		<section class="relative h-screen w-full">
 			<div class="container absolute inset-0 flex h-full w-full items-center justify-start opacity-50">
-				<img src="/svg/logo.svg" width="600" height="200" alt="logo" />
+				<img src="/logo.svg" width="600" height="200" alt="logo" />
 			</div>
 			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
 		</section>

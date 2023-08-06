@@ -6,20 +6,21 @@ const { getHits } = useGoods()
 const { pending: getHitsWait } = await useAsyncData('setGetHits', () => getHits())
 const { CARTS } = storeToRefs(useCart())
 const { HITS } = storeToRefs(useGoods())
-useSeoMeta({
-	title: 'Корзина',
-	description: 'Корзина - Минеральные удобрения от производителя',
-	ogImage: '/img/main.webp'
-})
+
 const filteredCarts = computed(() => {
 	return CARTS.value.filter((cart) => cart.total !== 0)
 })
 </script>
 <template>
 	<main class="cart">
+		<Head>
+			<Title>Корзина</Title>
+			<Meta name="description" content="Корзина - Минеральные удобрения от производителя" />
+			<!-- <Meta name="og:image" :content="'/img/main.webp'" /> -->
+		</Head>
 		<section class="relative h-screen w-full">
 			<div class="container absolute inset-0 flex h-full w-full items-center justify-center opacity-50">
-				<img src="/svg/logo.svg" width="800" height="400" alt="logo" />
+				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
 			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
 		</section>

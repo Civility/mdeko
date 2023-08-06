@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 			G_NAME: 'Akvamdeko',
 			G_IMG: `${process.env.API}/storage/app/media/`,
 			API: process.env.API,
-			siteUrl: 'https://akvamdeko.ru',
+			siteUrl: 'http://akvamdeko.na4u.ru/',
 			siteName: 'МДЕКО',
 			siteDescription: 'АкваМДЕКО - Минеральные удобрения от производителя',
 			language: 'ru',
@@ -29,15 +29,16 @@ export default defineNuxtConfig({
 		head: {
 			titleTemplate: '%pageTitle %titleSeparator %siteName',
 			charset: 'utf-8',
-			viewport: 'width=device-width, initial-scale=1'
+			viewport: 'width=device-width, initial-scale=1',
+			link: [
+				{ rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+				{ rel: 'icon', sizes: '32x32', type: 'image/png', href: '/favicon-32x32.png' },
+				{ rel: 'icon', sizes: '16x16', type: 'image/png', href: '/favicon-16x16.png' },
+				{ rel: 'shortcut icon', href: '/favicon.ico' },
+				{ rel: 'manifest', href: '/site.webmanifest' }
+			]
 		}
 	},
-	// seoKit: {
-	// 	linkChecker: {
-	// 		failOn404: true
-	// 	}
-	// },
-
 	extends: ['nuxt-seo-kit'],
 	modules: getModules(),
 	postcss: {

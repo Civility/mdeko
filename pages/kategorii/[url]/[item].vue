@@ -10,6 +10,7 @@ const { pending: productWait, refresh } = await useLazyAsyncData('getProduct', (
 const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () => getCategories())
 
 const categori = computed(() => CATEGORIES.value.find((i) => i.url === route.params.url))
+
 const isCartTotal = ref({})
 
 const cartTotal = computed(() => CARTS.value.find((i) => i.product.url === route.params.item))
@@ -23,18 +24,18 @@ watch(
 	},
 	{ deep: true }
 )
-useSeoMeta({
-	title: 'Товар ' + PRODUCT.value.title,
-	description: 'Товар ' + PRODUCT.value.title + ' - Минеральные удобрения от производителя',
-	ogImage: () => PRODUCT.value?.slider[0]
-})
 </script>
 
 <template>
 	<main v-if="categori">
+		<Head v-if="PRODUCT">
+			<Title>{{ PRODUCT.title }}</Title>
+			<Meta name="description" :content="'Товар ' + PRODUCT.title + ' - Минеральные удобрения от производителя'" />
+			<!-- <Meta v-if="PRODUCT?.slider && PRODUCT?.slider.length > 0" name="og:image" :content="PRODUCT.slider[0]" /> -->
+		</Head>
 		<section class="relative h-screen w-full">
 			<div class="container absolute inset-0 flex h-full w-full items-center justify-start opacity-50">
-				<img src="/svg/logo.svg" width="600" height="200" alt="logo" />
+				<img src="/logo.svg" width="600" height="200" alt="logo" />
 			</div>
 			<span :style="`background-image: url(/img/${categori.url}.webp)`" class="parallax_bg" />
 		</section>

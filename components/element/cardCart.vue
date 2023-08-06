@@ -44,13 +44,13 @@ const ifCart = computed(() => route.name === 'cart')
 				</template>
 			</Slider>
 			<span v-else class="mb-5 flex h-fit w-full items-center justify-center">
-				<img src="/svg/logo.svg" width="200" height="100" alt="logo" />
+				<img src="/logo.svg" width="200" height="100" alt="logo" />
 			</span>
 		</template>
 		<div v-else class="mb-5 flex items-center justify-center">
 			<img v-if="data?.img?.mini" :src="data?.img?.mini" :alt="data?.img?.alt ?? data.title" />
 			<span v-else class="mb-5 flex h-fit w-full items-center justify-center">
-				<img src="/svg/logo.svg" width="200" height="100" alt="logo" />
+				<img src="/logo.svg" width="200" height="100" alt="logo" />
 			</span>
 		</div>
 

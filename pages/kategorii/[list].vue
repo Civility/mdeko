@@ -11,18 +11,17 @@ const { pending: tovariWait } = await useAsyncData('setTovari', () => getTovari(
 
 const categori = computed(() => CATEGORIES.value.find((i) => i.url === route))
 const tovars = computed(() => TOVARI.value[route])
-
-useSeoMeta({
-	title: 'Товары ' + categori.value.name,
-	description: 'Товары ' + categori.value.name + ' - Минеральные удобрения от производителя',
-	ogImage: () => categori.value?.img?.mini
-})
 </script>
 <template>
-	<main>
+	<main v-if="categori">
+		<Head>
+			<Title>{{ categori.name }}</Title>
+			<Meta name="description" :content="'Товары ' + categori.name + ' - Минеральные удобрения от производителя'" />
+			<!-- <Meta v-if="categori?.img?.mini" name="og:image" :content="categori?.img?.mini" /> -->
+		</Head>
 		<section class="relative h-screen w-full">
 			<div class="container absolute inset-0 flex h-full w-full items-center justify-start opacity-50">
-				<img src="/svg/logo.svg" width="600" height="200" alt="logo" />
+				<img src="/logo.svg" width="600" height="200" alt="logo" />
 			</div>
 			<span :style="`background-image: url(/img/${categori.url}.webp)`" class="parallax_bg" />
 		</section>
@@ -31,7 +30,7 @@ useSeoMeta({
 			<h1 class="mb-10 bg-main py-10 text-center" v-text="categori.name" />
 			<section class="container mt-20 bg-main py-10 lg:mt-20 lg:py-20">
 				<div class="wrap gap-10 lg:gap-15" v-if="!tovariWait && tovars.length">
-					<CardItem v-for="item in tovars" :key="item.url" :data="item" more class="col-span-full md:col-span-4 lg:col-span-2" />
+					<CardItem v-for="item in tovars" :key="item.url" :data="item" more class="col-span-full md:col-span-4 xl:col-span-2" />
 				</div>
 			</section>
 			<section class="container py-20" v-if="!categoriesWait">

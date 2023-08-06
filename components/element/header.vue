@@ -8,13 +8,13 @@ const { toggleMenu } = storeToRefs(useMain())
 const { pending: menuWait } = useLazyAsyncData('menu', () => getMenu())
 </script>
 <template>
-	<header
-		class="container sticky top-0 z-50 mt-10 bg-gradient-to-r from-sec-dark from-10% to-sec-light to-100% py-2 transition-colors duration-300"
-		:class="{ '!fixed  h-full !bg-dark': toggleMenu }"
-	>
-		<nav class="flex items-center justify-between gap-4" :class="{ 'flex-wrap': toggleMenu }">
+	<header class="container sticky top-0 z-50 transition-colors duration-300 lg:mt-10" :class="{ '!fixed h-full !bg-dark': toggleMenu }">
+		<nav
+			class="flex items-center justify-between gap-4 bg-gradient-to-r from-sec-dark from-10% to-sec-light to-100% px-4 py-2"
+			:class="{ 'flex-wrap': toggleMenu }"
+		>
 			<NuxtLink to="/" class="order-0" exact>
-				<img src="/svg/logo.svg" width="200" height="100" alt="logo" />
+				<img src="/logo.svg" width="200" height="100" alt="logo" />
 			</NuxtLink>
 			<ClientOnly>
 				<Menu

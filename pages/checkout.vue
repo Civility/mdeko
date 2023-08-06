@@ -12,11 +12,6 @@ const { sendOrder } = useCart()
 const searchDELIVERY = DATADELIVERY.find((i) => i.data == false)
 const deliveryDATA = ref(searchDELIVERY.price)
 
-useSeoMeta({
-	title: 'Оформление Заказа',
-	description: 'Оформление Заказа - Минеральные удобрения от производителя'
-})
-
 definePageMeta({
 	middleware: ['cartroute']
 })
@@ -113,9 +108,13 @@ const isSendOrder = async (name, phone, email, message, city, street, houseNumbe
 </script>
 <template>
 	<main class="checkout">
+		<Head>
+			<Title>Оформление Заказа</Title>
+			<Meta name="description" content="Оформление Заказа - Минеральные удобрения от производителя" />
+		</Head>
 		<section class="relative h-screen w-full">
 			<div class="container absolute inset-0 flex h-full w-full items-center justify-center opacity-50">
-				<img src="/svg/logo.svg" width="800" height="400" alt="logo" />
+				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
 			<span style="background-image: url(/img/main.webp)" class="parallax_bg" />
 		</section>

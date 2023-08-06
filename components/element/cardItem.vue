@@ -12,6 +12,6 @@ const props = defineProps({
 			</div>
 			<span v-if="data?.title" class="grow text-center text-white" v-text="data.title" />
 		</NuxtLink>
-		<Btn v-if="more" main :to="`/kategorii/${data.category}/${data.url}`" class="mt-auto">Подробнее</Btn>
+		<Btn v-if="more" main :to="`/kategorii/${data.category}/${data.url}`" class="mx-auto mt-auto !w-full">Подробнее</Btn>
 	</div>
 </template>
