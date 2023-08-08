@@ -1,4 +1,3 @@
-import { getModules } from './config/modules'
 const isDev = process.env.NODE_ENV !== 'production'
 // const isHost = require('os').type() !== 'Linux'
 import { resolve } from 'path'
@@ -14,7 +13,7 @@ export default defineNuxtConfig({
 			G_NAME: 'Akvamdeko',
 			G_IMG: `${process.env.API}/storage/app/media/`,
 			API: process.env.API,
-			siteUrl: 'http://akvamdeko.na4u.ru/',
+			siteUrl: 'https://akvamdeko.ru',
 			siteName: 'МДЕКО',
 			siteDescription: 'АкваМДЕКО - Минеральные удобрения от производителя',
 			language: 'ru',
@@ -39,8 +38,24 @@ export default defineNuxtConfig({
 			]
 		}
 	},
+	modules: [
+		'@pinia/nuxt',
+		'@nuxtjs/tailwindcss',
+		'nuxt-swiper',
+		'nuxt-icons',
+		[
+			'@artmizu/yandex-metrika-nuxt',
+			{
+				id: process.env.YANDEX_METRIKA_ID,
+				webvisor: true,
+				clickmap: true,
+				trackLinks: true,
+				accurateTrackBounce: true
+			}
+		]
+	],
+
 	extends: ['nuxt-seo-kit'],
-	modules: getModules(),
 	postcss: {
 		plugins: {
 			'tailwindcss/nesting': {},

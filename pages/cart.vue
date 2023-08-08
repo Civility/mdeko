@@ -22,7 +22,6 @@ const filteredCarts = computed(() => {
 			<div class="container absolute inset-0 z-10 flex h-full w-full items-center justify-start mix-blend-difference">
 				<img src="/logo.svg" width="800" height="400" alt="logo" />
 			</div>
-			<Icon :svg="categori.url" class="absolute inset-0 z-0 flex items-center justify-center text-[40rem] text-dark" />
 			<span style="background-image: url(/main.webp)" class="parallax_bg" />
 		</section>
 		<h1 class="mb-10 bg-main py-10 text-center">Корзина</h1>
