@@ -34,7 +34,7 @@ module.exports = {
 			white: '#FFF',
 			black: '#000',
 			dark: '#041611',
-			green: '#116646',
+			green: '#172a0f',
 			orange: '#D6654D',
 			red: '#D91D0B',
 
@@ -58,15 +58,8 @@ module.exports = {
 				light: '#919F8E	',
 				DEFAULT: '#1D9A49',
 				dark: '#0D1D15'
-				// darker: '#0D1D15',
+				// darker: '#172a0f'
 			}
-			// sec: {
-			// lighter: '#afb8a2',
-			// light: '#419139',
-			// DEFAULT: '#A3C1A4',
-			// dark: '#606060',
-			// darker: '#606060',
-			// },
 		},
 
 		fontFamily: {

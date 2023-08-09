@@ -23,10 +23,7 @@ const tovars = computed(() => TOVARI.value[route])
 			<!-- <div class="container absolute inset-0 z-10 flex h-full w-full items-center justify-start mix-blend-difference">
 				<img src="/logo.svg" width="600" height="200" alt="logo" />
 			</div> -->
-			<Icon
-				:svg="categori.url"
-				class="absolute inset-0 z-0 flex items-center justify-center text-[32rem] text-main-light mix-blend-multiply"
-			/>
+			<Icon :svg="categori.url" class="absolute inset-0 z-0 flex items-center justify-center text-[32rem] text-green" />
 			<span style="background-image: url(/sec.webp)" class="parallax_bg" />
 		</section>
 

@@ -19,7 +19,7 @@ await useAsyncData('contacts', async () => getСontacts())
 			<div class=" " v-text="COPYRIGHT.notice" />
 			<div class=" ">{{ COPYRIGHT.name }} {{ new Date().getFullYear() + 'г.' }}</div>
 		</div>
-		<div class="flex flex-wrap justify-start lg:gap-52 lg:p-10" v-if="CONTACT">
+		<div class="flex flex-wrap justify-center lg:justify-start lg:gap-52 lg:p-10" v-if="CONTACT">
 			<ClientOnly>
 				<Btn
 					icon

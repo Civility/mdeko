@@ -38,10 +38,7 @@ watch(
 				<img src="/logo.svg" width="600" height="200" alt="logo" />
 			</div> -->
 			<!-- <span :style="`background-image: url(/${categori.url}.webp)`" class="parallax_bg" /> -->
-			<Icon
-				:svg="categori.url"
-				class="absolute inset-0 z-0 flex items-center justify-center text-[32rem] text-main-light mix-blend-multiply"
-			/>
+			<Icon :svg="categori.url" class="absolute inset-0 z-0 flex items-center justify-center text-[32rem] text-green" />
 			<span style="background-image: url(/sec.webp)" class="parallax_bg" />
 		</section>
 

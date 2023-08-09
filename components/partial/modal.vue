@@ -32,18 +32,18 @@ useHead({
 <template>
 	<ClientOnly>
 		<Teleport to="body">
-			<div class="fixed inset-0 z-50 overflow-y-auto" :ref="refName" v-if="showModal">
-				<transition
-					enter-active-class="transition ease-out duration-200 transform"
+			<Transition
+					enter-active-class="transition ease-out duration-300 transform"
 					enter-from-class="opacity-0"
 					enter-to-class="opacity-100"
-					leave-active-class="transition ease-in duration-200 transform"
+					leave-active-class="transition ease-in duration-300 transform"
 					leave-from-class="opacity-100"
 					leave-to-class="opacity-0"
 				>
+				<div class="fixed inset-0 z-50 overflow-y-auto" :ref="refName" v-if="showModal">
 					<div class="flex items-center justify-center pt-[20vh] text-center">
 						<div
-							class="relative z-20 mx-20 w-full overflow-hidden rounded-lg text-left shadow-dark lg:mx-0 lg:w-3/6"
+							class="relative z-20 w-full overflow-hidden rounded-lg text-left shadow-dark lg:mx-0 lg:w-3/6"
 							:class="bgclass"
 						>
 							<Btn class="group absolute right-0 top-0 !p-1" @click="$emit('isClickShow', false)">
@@ -58,8 +58,9 @@ useHead({
 						</div>
 						<div @click="$emit('isClickShow', false)" class="absolute inset-0 z-10 bg-main/70 bg-opacity-50" />
 					</div>
-				</transition>
-			</div>
+				</div>
+			</Transition>
 		</Teleport>
 	</ClientOnly>
 </template>
+

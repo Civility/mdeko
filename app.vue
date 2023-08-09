@@ -9,3 +9,13 @@ const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () =
 	<NuxtPage class="-mt-32" />
 	<Footer />
 </template>
+<style>
+.page-enter-active,
+.page-leave-active {
+	@apply transition-all  duration-300 ease-in-out;
+}
+.page-enter-from,
+.page-leave-to {
+	@apply blur-lg opacity-0;
+}
+</style>
