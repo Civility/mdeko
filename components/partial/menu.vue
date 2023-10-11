@@ -6,7 +6,7 @@ import { useMain } from '@/store/main.js'
 const { getMenuClosed } = storeToRefs(useMain())
 
 defineProps({
-	menu: {
+	data: {
 		type: Array,
 		required: true
 	}
@@ -15,13 +15,8 @@ defineProps({
 
 <template>
 	<ul>
-		<li v-for="item of menu" :key="item.url" @click="useMain().getMenuClosed">
-			<NuxtLink
-				:to="`/${item.url}`"
-				class="whitespace-nowrap !font-sec text-white hover:text-main"
-				:target="item?.target"
-				v-text="item.title"
-			/>
+		<li v-for="item of data" :key="item.slug" @click="useMain().getMenuClosed">
+			<NuxtLink :to="`/${item.slug}`" class="whitespace-nowrap !font-sec text-white hover:text-main" v-text="item.title" />
 		</li>
 	</ul>
 </template>

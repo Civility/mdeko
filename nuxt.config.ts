@@ -1,4 +1,5 @@
 const isDev = process.env.NODE_ENV !== 'production'
+import { resolve } from 'path'
 // const isHost = require('os').type() !== 'Linux'
 // API = 'https://api-akvamdeko.na4u.ru/wp-json/api'
 // YANDEX_METRIKA_ID = '94570298'
@@ -13,8 +14,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			G_NAME: 'Akvamdeko',
-			G_IMG: 'https://api-akvamdeko.na4u.ru/storage/app/media/',
-			API: 'https://api-akvamdeko.na4u.ru/wp-json/api',
+			G_IMG: `${process.env.API}/storage/app/media`,
+			API: `${process.env.API}/api`,
 			siteUrl: 'https://akvamdeko.ru',
 			siteName: 'МДЕКО',
 			siteDescription: 'АкваМДЕКО - Минеральные удобрения от производителя',
@@ -51,24 +52,34 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'@nuxtjs/tailwindcss',
 		'nuxt-swiper',
-		'nuxt-icons',
-		[
-			'nuxt-gtag',
-			{
-				id: 'G-B6NMNPZMFG'
-			}
-		],
-		[
-			'@artmizu/yandex-metrika-nuxt',
-			{
-				id: '94570298',
-				webvisor: false,
-				clickmap: true,
-				trackLinks: true,
-				accurateTrackBounce: true
-			}
-		]
+		'nuxt-icons'
+		// [
+		// 	'nuxt-gtag',
+		// 	{
+		// 		id: `${process.env.GTAG_ID}`
+		// 	}
+		// ],
+		// [
+		// 	'@artmizu/yandex-metrika-nuxt',
+		// 	{
+		// 		id: `${process.env.YANDEX_METRIKA_ID}`,
+		// 		webvisor: false,
+		// 		clickmap: true,
+		// 		trackLinks: true,
+		// 		accurateTrackBounce: true
+		// 	}
+		// ]
 	],
+
+	hooks: {
+		'pages:extend'(routes) {
+			routes.push({
+				name: 'catalog-category-slug',
+				path: '/catalog/:category/:slug',
+				file: resolve('./pages/catalog/[category]/[slug]/[index].vue')
+			})
+		}
+	},
 
 	extends: ['nuxt-seo-kit'],
 	postcss: {

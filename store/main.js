@@ -1,11 +1,4 @@
 import { defineStore } from 'pinia'
-
-const sortOrder = (a, b) => {
-	return a.order > b.order ? -1 : 1
-}
-const replaceNumber = (number) => {
-	return number.replace(/[^0-9]/g, '')
-}
 export const useMain = defineStore('main', {
 	state: () => ({
 		PUBLIC_NAME: '',
@@ -16,7 +9,7 @@ export const useMain = defineStore('main', {
 		PHONESPB: '',
 		PHONEMSK: '',
 		MENU: [],
-		CONTACTS: [],
+		CONTACTS: {},
 		CONTACT: {
 			phones: [],
 			email: {},
@@ -29,35 +22,6 @@ export const useMain = defineStore('main', {
 		}
 	}),
 	getters: {
-		contacts(s) {
-			s.CONTACTS.forEach((item) => {
-				if (item.address.indexOf('Санкт-Петербург') !== -1) {
-					// const spbPhone = { tel: item.phone, number: replaceNumber(item.phone), city: item.address }
-					if (!s.CONTACT.phones.some((phone) => phone.tel === item.phone)) {
-						s.CONTACT.phones.push({
-							tel: item.phone,
-							number: replaceNumber(item.phone),
-							city: item.title
-						})
-					}
-					s.CONTACT.address = item.address
-				} else {
-					// const mskPhone = { tel: item.phone, number: replaceNumber(item.phone), city: item.address }
-					// s.CONTACT.phones.push(mskPhone)
-					if (!s.CONTACT.phones.some((phone) => phone.tel === item.phone)) {
-						s.CONTACT.phones.push({
-							tel: item.phone,
-							number: replaceNumber(item.phone),
-							city: item.title
-						})
-					}
-					s.CONTACT.email = item.email
-				}
-			})
-		},
-
-		socials: (s) => s.SOCIALS,
-
 		toggleMenu: (s) => s.TOGGLEMENU,
 		modalOpen: (s) => (s.MODALOPEN = true),
 		modalClose: (s) => (s.MODALCLOSE = false),
@@ -76,8 +40,7 @@ export const useMain = defineStore('main', {
 		async getMenu() {
 			if (!this.MENU.length) {
 				try {
-					const API = await $fetch(`${useRuntimeConfig().public.API}/menu`)
-					return (this.MENU = API.sort(sortOrder))
+					this.MENU = await $fetch(`${useRuntimeConfig().public.API}/menu`)
 				} catch (err) {
 					console.log(err)
 				}
@@ -85,32 +48,43 @@ export const useMain = defineStore('main', {
 		},
 
 		async getСontacts() {
-			if (!this.CONTACTS.length) {
+			if (!Object.keys(this.CONTACTS).length) {
 				try {
-					this.CONTACTS = await $fetch(`${useRuntimeConfig().public.API}/contacts`)
-					await this.contacts
+					this.CONTACTS = await $fetch(`${useRuntimeConfig().public.API}/contact`)
 				} catch (err) {
 					console.log(err)
 				}
 			}
 		},
-		async getSocials() {
-			if (!this.SOCIALS.length) {
-				try {
-					this.SOCIALS = await $fetch(`${useRuntimeConfig().public.API}/socials`)
-				} catch (err) {
-					console.log(err)
-				}
-			}
-		},
-		async sendForm(params) {
+		async sendForm(data) {
 			try {
 				console.log('start send')
-				await $fetch(`${useRuntimeConfig().public.API}/feedback`, {
+
+				await $fetch(`${useRuntimeConfig().public.API}/callback`, {
+					mode: !import.meta.env.PROD ? 'no-cors' : null,
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(params)
+					// body: JSON.stringify(data)
+					body: data
+				}).then((response) => {
+					console.log('res', response)
 				})
+
+				// .then((response) => {
+				// 	if (!response.ok) {
+				// 		return response.json().then((errorData) => {
+				// 			console.error('Server error:', errorData)
+				// 			throw new Error('Server error')
+				// 		})
+				// 	}
+				// 	return response.json()
+				// })
+				// .then((responseData) => {
+				// 	console.log('Success:', responseData)
+				// })
+				// .catch((error) => {
+				// 	console.error('Fetch error:', error)
+				// })
 				console.log('finish send')
 			} catch (err) {
 				console.log(err)

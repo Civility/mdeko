@@ -1,10 +1,3 @@
-<template>
-	<Swiper :modules="modules" :speed="700">
-		<SwiperSlide v-for="(slider, id) of data" :key="id">
-			<slot name="content" :slider="slider" />
-		</SwiperSlide>
-	</Swiper>
-</template>
 <script setup>
 defineProps({
 	data: {
@@ -14,6 +7,14 @@ defineProps({
 })
 const modules = [SwiperAutoplay, SwiperFreeMode, SwiperNavigation, SwiperPagination, SwiperMousewheel, SwiperThumbs, SwiperEffectFade]
 </script>
+<template>
+	<Swiper :modules="modules" :speed="700">
+		<SwiperSlide v-for="(slider, id) of data" :key="id">
+			<slot name="content" :slider="slider" />
+		</SwiperSlide>
+	</Swiper>
+</template>
+
 <style lang="postcss">
 .swiper-slide-prev {
 	@apply !opacity-0;

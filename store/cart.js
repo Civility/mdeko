@@ -5,39 +5,48 @@ import { useGoods } from './goods'
 const sortOrder = (a, b) => {
 	return a.order > b.order ? -1 : 1
 }
-
+const DELIVERY_METHODS = [
+	{ price: 185, text: 'Самовывоз с пункта выдачи', data: false },
+	{ price: 320, text: 'Доставка до двери', data: true }
+]
 export const useCart = defineStore('cart', {
 	state: () => ({
 		CARTS: [],
 		DELIVERY: false,
-		DATADELIVERY: [
-			{ price: 185, text: 'Самовывоз с пункта выдачи', data: false },
-			{ price: 320, text: 'Доставка до двери', data: true }
-		]
-		// RESPONSDELIVERY: {}
+		DATADELIVERY: DELIVERY_METHODS
 	}),
 	getters: {
 		cartsLength: (s) => s.CARTS.length,
 		cartTotal(s) {
 			const totalList = s.CARTS.map((i) => {
-				return i.product.price * i.total
+				return i.product.price_min * i.total
 			})
 			return totalList.reduce((partialSum, a) => partialSum + a, 0)
 		}
 	},
 	actions: {
-		async setCartPlus(category, url) {
-			await useGoods().getTovari(category)
-			const total = 1
-			const product = await useGoods().TOVARI[category].find((i) => i.url === url)
-			if (this.CARTS.length) {
-				const result = await this.CARTS.find((i) => {
-					if (i.product.url === url) return ++i.total
-				})
-				result ? result : this.CARTS.push({ product, total: total })
+		findCartItem(slug) {
+			return this.CARTS.find((item) => item.product.slug === slug)
+		},
+		async setCartPlus(slug) {
+			// const total = 1
+			const cartItem = this.findCartItem(slug)
+			if (cartItem) {
+				cartItem.total++
 			} else {
-				await this.CARTS.push({ product, total: total })
+				const product = useGoods().ITEM[slug]
+				if (product) {
+					this.CARTS.push({ product, total: 1 })
+				}
 			}
+			// if (this.CARTS.length) {
+			// 	const result = await this.CARTS.find((i) => {
+			// 		if (i.product.slug === slug) return ++i.total
+			// 	})
+			// 	result ? result : this.CARTS.push({ product,   total })
+			// } else {
+			// 	await this.CARTS.push({ product,  total })
+			// }
 		},
 		sendOrder(params) {
 			try {
@@ -59,12 +68,24 @@ export const useCart = defineStore('cart', {
 				console.log(err)
 			}
 		},
-		setCartMinus(url) {
-			if (this.CARTS.length) {
-				this.CARTS.find((i) => {
-					if (i.product.url === url) --i.total
-					if (i.product.url === url) this.CARTITEMTOTAL = i.total
-				})
+		setCartMinus(slug) {
+			const cartItem = this.findCartItem(slug)
+			if (cartItem) {
+				if (cartItem.total > 1) {
+					cartItem.total--
+				} else {
+					this.removeCartItem(slug)
+				}
+			}
+			// const index = this.CARTS.findIndex((item) => item.product.slug === slug)
+			// if (index !== -1) {
+			// 	this.CARTS[index].total--
+			// }
+		},
+		removeCartItem(slug) {
+			const index = this.CARTS.findIndex((item) => item.product.slug === slug)
+			if (index !== -1) {
+				this.CARTS.splice(index, 1)
 			}
 		},
 		setCartDel(index) {

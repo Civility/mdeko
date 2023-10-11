@@ -4,6 +4,7 @@ import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
 import { useReCaptcha } from 'vue-recaptcha-v3'
 const { sendForm } = useMain()
+
 const recaptchaInstance = useReCaptcha()
 const recaptcha = async () => {
 	// optional you can await for the reCaptcha load
@@ -14,10 +15,10 @@ const recaptcha = async () => {
 	return token
 }
 const state = reactive({
-	name: '',
-	phone: '',
-	email: '',
-	message: ''
+	name: 'Users',
+	phone: '+7(996) 346-63-71',
+	email: 'civilitys@gmail.com',
+	message: 'testtesttesttesttest'
 })
 const rules = computed(() => {
 	let requiredText = 'Поле обязательно для заполнения'
@@ -49,27 +50,49 @@ const rules = computed(() => {
 	}
 })
 const v$ = useVuelidate(rules, state)
-const isSendForm = async (name, phone, email, message) => {
+const isSendForm = async (name, email, phone, message) => {
 	let result = await v$.value.$validate()
 	result ? console.log('Form validate Ok ', result) : console.log('Form validate Failed ', result)
-	const token = await this.recaptcha()
-	if (!v$.value.$error && token) {
-		await useAsyncData('sendForm', () =>
-			sendForm({
-				name,
-				phone,
-				email,
-				message,
-				agreement: true
-			})
-		)
-		state.name = ''
-		state.phone = ''
-		state.email = ''
-		state.message = ''
-		console.log('Form not error ', v$.value.$error)
+
+	if (import.meta.env.PROD) {
+		const token = await this.recaptcha()
+		if (!v$.value.$error && token) {
+			await useAsyncData('sendForm', () =>
+				sendForm({
+					name,
+					phone: replaceNumber(phone),
+					email,
+					text: message,
+					page: useRoute().name
+					// agreement: true
+				})
+			)
+			state.name = ''
+			state.phone = ''
+			state.email = ''
+			state.message = ''
+			console.log('Form OK ', v$.value.$error)
+		} else {
+			console.log('Form error ', v$.value.$error)
+		}
 	} else {
-		console.log('Form error ', v$.value.$error)
+		if (!v$.value.$error) {
+			await useAsyncData('sendForm', () =>
+				sendForm({
+					name: name,
+					phone: replaceNumber(phone),
+					email,
+					text: message,
+					page: useRoute().name
+				})
+			)
+			// state.name = ''
+			// state.phone = ''
+			// state.email = ''
+			// state.message = ''
+		} else {
+			console.log('Form error ', v$.value.$error)
+		}
 	}
 }
 </script>

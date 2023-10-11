@@ -9,28 +9,29 @@ const props = defineProps({
 })
 
 const isCartTotal = computed(() => {
-	const foundCartItem = CARTS.value.find((i) => i.product.url === props.data.url)
+	const foundCartItem = CARTS.value.find((i) => i.product.slug === props.data.slug)
+
 	return foundCartItem ? foundCartItem.total : 0
 })
 const setCartTotal = ref(isCartTotal.value)
 watch(isCartTotal, (newVal) => {
 	setCartTotal.value = newVal
 })
-const resetCartTotal = (url) => {
-	const index = CARTS.value.findIndex((cart) => cart.product.url === url)
-	if (index !== -1) {
-		useCart().resetItemTotal(index)
-	}
-}
+// const resetCartTotal = (slug) => {
+// 	const index = CARTS.value.findIndex((cart) => cart.product.slug === slug)
+// 	if (index !== -1) {
+// 		useCart().resetItemTotal(index)
+// 	}
+// }
 const ifCart = computed(() => route.name === 'cart')
 </script>
 
 <template>
-	<div v-if="data" class="relative" :class="{ 'flex flex-col': ifCart }">
-		<template v-if="!data?.img">
+	<div v-if="data" class="relative flex h-full flex-col">
+		<div v-if="data?.img ?? data?.slider.length" class="relative">
 			<Slider
-				v-if="data?.slider && data?.slider.length"
-				:data="data.slider"
+				v-if="data?.slider.length && !ifCart"
+				:data="data?.slider"
 				:slidesPerView="1"
 				:loop="true"
 				:navigation="false"
@@ -39,40 +40,40 @@ const ifCart = computed(() => route.name === 'cart')
 			>
 				<template #content="{ slider }">
 					<div class="flex w-full items-center justify-center">
-						<img :src="`${slider}`" :alt="slider" class="h-60 object-contain lg:h-auto" />
+						<img :src="IMG() + slider.img" :alt="slider.alt" class="h-60 object-contain lg:h-auto" />
 					</div>
 				</template>
 			</Slider>
 			<span v-else class="mb-5 flex h-fit w-full items-center justify-center">
-				<img src="/logo.svg" width="200" height="100" alt="logo" />
-			</span>
-		</template>
-		<div v-else class="mb-5 flex items-center justify-center">
-			<img v-if="data?.img?.mini" :src="data?.img?.mini" :alt="data?.img?.alt ?? data.title" />
-			<span v-else class="mb-5 flex h-fit w-full items-center justify-center">
-				<img src="/logo.svg" width="200" height="100" alt="logo" />
+				<img v-if="data?.img" :src="IMG() + data.img" :alt="data.title" />
+				<img v-else src="/logo.svg" width="200" height="100" alt="logo" />
 			</span>
 		</div>
 
-		<div class="flex flex-col text-center" :class="{ 'h-full': ifCart }">
-			<div class="mb-5">
-				<span v-if="data?.title" class="text-white" v-text="data.title" />
-				<span v-if="data?.sostav" class="text-gray" v-html="data.sostav" />
+		<div class="flex h-full flex-col text-center">
+			<div class="mb-5 flex h-full flex-col place-content-center">
+				<NuxtLink v-if="ifCart" :to="`/catalog/${data?.category_slug}/${data?.slug}`"
+					><span v-if="data?.title" class="text-white" v-text="data.title" />
+				</NuxtLink>
+				<span v-else v-if="data?.title" class="text-white" v-text="data.title" />
+				<p v-if="data?.composition" class="text-gray" v-html="data.composition" />
 			</div>
 			<div class="mt-auto flex flex-col gap-2">
-				<div class="w-full bg-main-light px-2 py-3 text-white">{{ data?.price }} р</div>
+				<div v-if="data?.price_min" class="w-full bg-main-light px-2 py-3 text-white">{{ data.price_min }} р</div>
 				<div class="relative flex gap-3" v-if="CARTS">
 					<div class="flex w-full">
-						<Btn :disabled="+setCartTotal <= 0" @click="useCart().setCartMinus(data.url)" class="!w-12 bg-main-light">-</Btn>
+						<Btn :disabled="+setCartTotal <= 0" @click="useCart().setCartMinus(data.slug)" class="!w-12 bg-main-light">-</Btn>
 						<input
 							type="text"
 							class="md:text-basecursor-default flex w-12 items-center bg-transparent text-center font-semibold outline-none focus:text-black focus:outline-none"
 							:value="+setCartTotal"
 						/>
 
-						<Btn clear @click="useCart().setCartPlus(data.category, data.url)" class="!w-12 bg-main-light">+</Btn>
+						<Btn clear @click="useCart().setCartPlus(data.slug)" class="!w-12 bg-main-light">+</Btn>
 					</div>
-					<Btn v-if="ifCart" main @click="resetCartTotal(data.url)" class="!w-full whitespace-nowrap !px-5">убрать</Btn>
+					<Btn v-if="ifCart" main @click="useCart().removeCartItem(data.slug)" class="!w-full whitespace-nowrap !px-5"
+						>убрать</Btn
+					>
 					<Btn v-else main to="/cart" class="!w-full whitespace-nowrap !px-5">в корзину</Btn>
 				</div>
 			</div>

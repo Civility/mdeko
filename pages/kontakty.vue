@@ -1,8 +1,6 @@
 <script setup>
 import { useMain } from '@/store/main.js'
-import { storeToRefs } from 'pinia'
-const { CONTACT, CONTACTS } = storeToRefs(useMain())
-
+const { CONTACTS } = useMain()
 const showModal = shallowRef(null)
 const isShow = (val) => (showModal.value = val)
 const openModal = (modalRefName) => (showModal.value = modalRefName)
@@ -19,27 +17,26 @@ const openModal = (modalRefName) => (showModal.value = modalRefName)
 			</div>
 			<span class="parallax_bg" style="background-image: url(/main.webp)" />
 		</section>
-		<section class="container relative -top-20 bg-main p-5 lg:p-20" v-if="CONTACTS && CONTACT">
+		<section class="container relative -top-20 bg-main p-5 lg:p-20" v-if="CONTACTS">
 			<h1 class="mb-10 text-center lg:mb-20">Контакты</h1>
-
 			<div class="mb-10 flex flex-col gap-1">
-				<dl v-if="CONTACT.address" class="flex flex-col items-center gap-5 text-center lg:text-left">
+				<dl v-if="CONTACTS.address" class="flex flex-col items-center gap-5 text-center lg:text-left">
 					<dt>
 						<Icon svg="location" class="text-7xl text-sec-light" />
 					</dt>
-					<dd v-text="CONTACT.address" />
+					<dd v-text="CONTACTS.address" />
 				</dl>
-				<dl v-for="phone in CONTACT.phones" :key="phone.tel" v-if="CONTACT.phones" class="flex flex-col items-center gap-5">
-					<dt v-if="phone.city === 'по России'"><Icon svg="smartphone" class="text-7xl text-sec-light" /></dt>
-					<dt v-if="phone.city === 'по Санкт-Петербургу'"><Icon svg="phone" class="text-7xl text-sec-light" /></dt>
+				<dl v-if="CONTACTS.city" v-for="(city, key) in CONTACTS.city" :key="key" class="flex flex-col items-center gap-5">
+					<dt><img :src="IMG() + city.icon" class="w-16" /></dt>
+					<!-- <dt v-if="city.name === 'по Санкт-Петербургу'"><Icon svg="phone" class="text-7xl text-sec-light" /></dt> -->
 					<dd>
-						<Btn clear :to="`tel:${phone.number}`" class="gap-2">{{ phone.tel }}<span v-text="phone.city" /></Btn>
+						<Btn clear :to="`tel:${replaceNumber(city.phone)}`" class="gap-2">{{ city.phone }}<span v-text="city.name" /></Btn>
 					</dd>
 				</dl>
 				<dl class="flex flex-col items-center gap-5">
 					<dt><Icon svg="mail" class="text-7xl text-sec-light" /></dt>
 					<dd>
-						<a :href="`mailto:${CONTACT.email}`" v-text="CONTACT.email" />
+						<a :href="`mailto:${CONTACTS.email}`" v-text="CONTACTS.email" />
 					</dd>
 				</dl>
 				<dl class="flex flex-col items-center gap-5 text-center lg:text-left">

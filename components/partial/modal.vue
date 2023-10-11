@@ -33,13 +33,13 @@ useHead({
 	<ClientOnly>
 		<Teleport to="body">
 			<Transition
-					enter-active-class="transition ease-out duration-300 transform"
-					enter-from-class="opacity-0"
-					enter-to-class="opacity-100"
-					leave-active-class="transition ease-in duration-300 transform"
-					leave-from-class="opacity-100"
-					leave-to-class="opacity-0"
-				>
+				enter-active-class="transition ease-out duration-300 transform"
+				enter-from-class="opacity-0"
+				enter-to-class="opacity-100"
+				leave-active-class="transition ease-in duration-300 transform"
+				leave-from-class="opacity-100"
+				leave-to-class="opacity-0"
+			>
 				<div class="fixed inset-0 z-50 overflow-y-auto" :ref="refName" v-if="showModal">
 					<div class="flex items-center justify-center pt-[20vh] text-center">
 						<div
@@ -63,4 +63,3 @@ useHead({
 		</Teleport>
 	</ClientOnly>
 </template>
-

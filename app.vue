@@ -1,13 +1,14 @@
 <script setup>
-import { useGoods } from '@/store/goods.js'
-const { getCategories } = useGoods()
-const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () => getCategories())
+import { useMain } from '@/store/main.js'
+const { getMenu, getСontacts } = useMain()
+await useAsyncData('contacts', async () => getСontacts())
+await useLazyAsyncData('menu', () => getMenu())
 </script>
 <template>
-	<Header />
-	<SeoKit />
-	<NuxtPage class="-mt-32" />
-	<Footer />
+		<Header />
+		<!-- <SeoKit /> -->
+		<NuxtPage class="-mt-32" />
+		<Footer />
 </template>
 <style>
 .page-enter-active,
@@ -16,6 +17,6 @@ const { pending: categoriesWait } = await useLazyAsyncData('setCategories', () =
 }
 .page-enter-from,
 .page-leave-to {
-	@apply blur-lg opacity-0;
+	@apply opacity-0 blur-lg;
 }
 </style>

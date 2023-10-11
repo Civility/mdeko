@@ -1,14 +1,13 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMain } from '@/store/main.js'
-const { getMenu, MENU } = useMain()
+const { MENU } = useMain()
 const { toggleMenu } = storeToRefs(useMain())
-const { pending: menuWait } = useLazyAsyncData('menu', () => getMenu())
 </script>
 <template>
 	<Body :class="{ 'overflow-y-hidden': toggleMenu }" />
 	<header
-		class="sticky top-0 z-50 transition-colors duration-300 lg:container lg:mt-10"
+		class="sticky top-0 z-40 !px-0 transition-colors duration-300 lg:container lg:mt-10"
 		:class="{ '!fixed h-full w-full !bg-dark': toggleMenu }"
 	>
 		<nav
@@ -20,8 +19,8 @@ const { pending: menuWait } = useLazyAsyncData('menu', () => getMenu())
 			</NuxtLink>
 			<ClientOnly>
 				<Menu
-					v-if="!menuWait && MENU.length"
-					:menu="MENU"
+					v-if="MENU.length"
+					:data="MENU"
 					v-show="toggleMenu"
 					class="order-5 flex w-full flex-col items-center gap-x-4 gap-y-10 py-[10vh] text-center lg:order-3 lg:!flex lg:w-auto lg:flex-row lg:justify-between lg:gap-x-10 lg:py-0"
 					:class="{ '!hidden ': !toggleMenu, 'h-screen': toggleMenu }"

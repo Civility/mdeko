@@ -168,7 +168,7 @@
 		}
 	}
 	.parallax_bg {
-		@apply -z-20 flex h-full w-full items-center justify-center bg-cover bg-fixed bg-no-repeat;
+		@apply -z-20 flex h-full w-full items-center justify-center bg-cover bg-fixed bg-no-repeat bg-center;
 	}
 	.parallax {
 		@apply fixed inset-0 -z-30  h-screen w-full;
