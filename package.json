@@ -19,7 +19,7 @@
 		"instProd": "npm i --production",
 		"del": "rm -rf node_modules package-lock.json .nuxt .output",
 		"devPROD": "env NITRO_HOST=127.0.0.1 node .output/server/index.mjs",
-		"start": "env NITRO_HOST=127.0.4.127 NITRO_PORT=58753 node .output/server/index.mjs",
+		"start": "env NITRO_HOST=127.0.4.127 NITRO_PORT=52085 node .output/server/index.mjs",
 		"iProd": "npm i --omit=dev",
 		"lint:prettier": "prettier --write .",
 		"lint:style:fix": "stylelint **/*.{css,html,vue} --fix"
